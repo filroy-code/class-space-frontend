@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
 import { SWRConfig } from "swr";
+import LoggedInLayout from "./components/LoggedInLayout";
 import { ClassSelection } from "./components/ClassSelection";
 import { ClassHome } from "./components/ClassHome";
+import { AssignmentPanel } from "./components/AssignmentPanel";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
-import LoggedInLayout from "./components/LoggedInLayout";
 
 const App = (): JSX.Element => {
   const fetcher = (...args: any) =>
@@ -18,9 +19,9 @@ const App = (): JSX.Element => {
             <Routes>
               <Route path="/:user" element={<LoggedInLayout />}>
                 <Route index element={<ClassSelection></ClassSelection>} />
-                {
-                  <Route path=":classID" element={<ClassHome></ClassHome>} />
-                  /* 
+
+                <Route path=":classID" element={<ClassHome></ClassHome>} />
+                {/* 
               <Route
                 path=":classID/students"
                 element={
@@ -29,15 +30,11 @@ const App = (): JSX.Element => {
                   ></ClassStudentPanel>
                 }
               />
-              <Route
-                path=":classID/assignments"
-                element={
-                  <ClassAssignmentPanel
-                    darkmode={darkThemeActive}
-                  ></ClassAssignmentPanel>
-                }
-              /> */
-                }
+              */}
+                <Route
+                  path=":classID/assignments"
+                  element={<AssignmentPanel></AssignmentPanel>}
+                />
               </Route>
             </Routes>
           </BrowserRouter>
