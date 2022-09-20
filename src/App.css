@@ -34,3 +34,14 @@
 .classHomeSelector:hover {
   background-color: antiquewhite;
 }
+
+.assignmentBox {
+  height: 100px;
+  width: 250px;
+  border: 1px solid black;
+  margin: 10px;
+}
+
+.assignmentBox:hover {
+  background-color: antiquewhite;
+}

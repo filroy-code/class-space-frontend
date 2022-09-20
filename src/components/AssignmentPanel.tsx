@@ -8,7 +8,14 @@ export const AssignmentPanel = (): JSX.Element => {
     classID: string;
   };
   const { user, classID } = useParams<keyof Params>() as Params;
-  const { data, error } = useSWR(`http://localhost:8000/${user}/${classID}/`);
+  const { data: classAssignmentData, error: classAssignmentError } = useSWR(
+    `http://localhost:8000/${user}/${classID}/`
+  );
+
+  const [selectedAssignment, setSelectedAssignment] = React.useState<string>();
+  const { data: singleAssignmentData, error: singleAssignmentError } = useSWR(
+    `http://localhost:8000/${user}/${classID}/${selectedAssignment}`
+  );
 
   type ClassInfo = {
     students: string;
@@ -18,13 +25,26 @@ export const AssignmentPanel = (): JSX.Element => {
 
   const [assignments, setAssignments] = React.useState<ClassInfo[]>([]);
 
-  console.log(data);
+  // to do: add a message for when no assignments are found
   return (
-    <div>
-      {data ? (
-        data.classInfo.map((item: any) => {
+    <div className="assignmentPanel">
+      {classAssignmentData ? (
+        classAssignmentData.classInfo.map((item: any) => {
           if (item.assignments) {
-            return <div key={item.assignments}>{item.assignments}</div>;
+            return (
+              <div
+                className="assignmentBox"
+                key={item.assignments}
+                data-assignmentname={item.assignments}
+                onClick={(event) => {
+                  const result = (event.target as HTMLDivElement).dataset
+                    .assignmentname;
+                  setSelectedAssignment(result);
+                }}
+              >
+                {item.assignments}
+              </div>
+            );
           }
         })
       ) : (
@@ -36,11 +56,18 @@ export const AssignmentPanel = (): JSX.Element => {
         //   <h1>No assignments found.</h1>
         // )
         <h1>
-          {error
+          {classAssignmentError
             ? "There was an error retrieving your assignments."
             : "Loading..."}
         </h1>
       )}
+      {selectedAssignment ? (
+        <div className="assignmentMarksTable">
+          <button onClick={() => console.log(singleAssignmentData)}>
+            CLICK
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 };
