@@ -16,7 +16,10 @@ export const ClassSelection: React.FC = () => {
   };
 
   const { user } = useParams<keyof Params>() as Params;
+
+  //fetches list of classes.
   const { data, error } = useSWR(`http://localhost:8000/${user}`);
+
   function clickHandler() {
     console.log("yo");
   }
