@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { SWRConfig } from "swr";
+import { ClassSelection } from "./components/ClassSelection";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import LoggedInLayout from "./components/LoggedInLayout";
 
-function App() {
+const App = (): JSX.Element => {
+  const fetcher = (...args: any) =>
+    fetch(args).then((response) => response.json());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <SWRConfig value={{ fetcher }}>
+        <div className="App">
+          <BrowserRouter>
+            <Routes>
+              <Route path="/:user" element={<LoggedInLayout />}>
+                <Route index element={<ClassSelection></ClassSelection>} />
+                {/* <Route
+                path=":classID"
+                element={<ClassHome darkmode={darkThemeActive}></ClassHome>}
+              />
+              <Route
+                path=":classID/students"
+                element={
+                  <ClassStudentPanel
+                    darkmode={darkThemeActive}
+                  ></ClassStudentPanel>
+                }
+              />
+              <Route
+                path=":classID/assignments"
+                element={
+                  <ClassAssignmentPanel
+                    darkmode={darkThemeActive}
+                  ></ClassAssignmentPanel>
+                }
+              /> */}
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </div>
+      </SWRConfig>
+    </>
   );
-}
+};
 
 export default App;
