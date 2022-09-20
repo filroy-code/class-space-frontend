@@ -3,16 +3,16 @@ import useSWR from "swr";
 import { useParams, useNavigate } from "react-router-dom";
 import { ClassBox } from "./ClassBox";
 
+export type ClassSelectionDataShape = {
+  id: number;
+  name: string;
+  icon: string;
+  admins: string;
+};
+
 export const ClassSelection: React.FC = () => {
   type Params = {
     user: string;
-  };
-
-  type ClassSelectionDataShape = {
-    id: number;
-    name: string;
-    icon: string;
-    admins: string;
   };
 
   const { user } = useParams<keyof Params>() as Params;
@@ -29,7 +29,7 @@ export const ClassSelection: React.FC = () => {
             return (
               <ClassBox
                 onClick={clickHandler}
-                nameOfClass={classInList.name}
+                classData={classInList}
                 key={classInList.id}
               ></ClassBox>
             );

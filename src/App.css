@@ -19,3 +19,18 @@
 .classBox:hover {
   background-color: antiquewhite;
 }
+
+.classHome {
+  display: flex;
+}
+
+.classHomeSelector {
+  height: 100px;
+  width: 100px;
+  margin: 20px;
+  border: 1px solid black;
+}
+
+.classHomeSelector:hover {
+  background-color: antiquewhite;
+}

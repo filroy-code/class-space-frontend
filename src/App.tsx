@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import { SWRConfig } from "swr";
 import { ClassSelection } from "./components/ClassSelection";
+import { ClassHome } from "./components/ClassHome";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import LoggedInLayout from "./components/LoggedInLayout";
 
@@ -17,10 +18,9 @@ const App = (): JSX.Element => {
             <Routes>
               <Route path="/:user" element={<LoggedInLayout />}>
                 <Route index element={<ClassSelection></ClassSelection>} />
-                {/* <Route
-                path=":classID"
-                element={<ClassHome darkmode={darkThemeActive}></ClassHome>}
-              />
+                {
+                  <Route path=":classID" element={<ClassHome></ClassHome>} />
+                  /* 
               <Route
                 path=":classID/students"
                 element={
@@ -36,7 +36,8 @@ const App = (): JSX.Element => {
                     darkmode={darkThemeActive}
                   ></ClassAssignmentPanel>
                 }
-              /> */}
+              /> */
+                }
               </Route>
             </Routes>
           </BrowserRouter>
