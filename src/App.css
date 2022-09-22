@@ -45,3 +45,10 @@
 .assignmentBox:hover {
   background-color: antiquewhite;
 }
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 16rem 6.5rem 5rem;
+  padding: 10px;
+  align-items: center;
+}

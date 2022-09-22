@@ -1,6 +1,7 @@
 import React from "react";
 import useSWR from "swr";
 import { useParams } from "react-router-dom";
+import { AssignmentMarksTable } from "./AssignmentMarksTable";
 
 export const AssignmentPanel = (): JSX.Element => {
   type Params = {
@@ -13,17 +14,12 @@ export const AssignmentPanel = (): JSX.Element => {
   );
 
   const [selectedAssignment, setSelectedAssignment] = React.useState<string>();
-  const { data: singleAssignmentData, error: singleAssignmentError } = useSWR(
-    `http://localhost:8000/${user}/${classID}/${selectedAssignment}`
-  );
 
-  type ClassInfo = {
-    students: string;
-    assignments: string;
-    admins: string;
-  };
-
-  const [assignments, setAssignments] = React.useState<ClassInfo[]>([]);
+  //   type ClassInfo = {
+  //     students: string;
+  //     assignments: string;
+  //     admins: string;
+  //   };
 
   // to do: add a message for when no assignments are found
   return (
@@ -62,11 +58,9 @@ export const AssignmentPanel = (): JSX.Element => {
         </h1>
       )}
       {selectedAssignment ? (
-        <div className="assignmentMarksTable">
-          <button onClick={() => console.log(singleAssignmentData)}>
-            CLICK
-          </button>
-        </div>
+        <AssignmentMarksTable
+          selectedAssignment={selectedAssignment}
+        ></AssignmentMarksTable>
       ) : null}
     </div>
   );
