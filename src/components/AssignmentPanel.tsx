@@ -2,6 +2,9 @@ import React from "react";
 import useSWR from "swr";
 import { useParams } from "react-router-dom";
 import { AssignmentMarksTable } from "./AssignmentMarksTable";
+import { CreateNewAssignmentForm } from "./CreateNewAssignmentForm";
+import AddIcon from "@mui/icons-material/Add";
+import Modal from "./Modal";
 
 export const AssignmentPanel = (): JSX.Element => {
   type Params = {
@@ -15,6 +18,9 @@ export const AssignmentPanel = (): JSX.Element => {
 
   const [selectedAssignment, setSelectedAssignment] = React.useState<string>();
 
+  const [assignmentModalOpen, setAssignmentModalOpen] =
+    React.useState<boolean>(false);
+
   //   type ClassInfo = {
   //     students: string;
   //     assignments: string;
@@ -24,7 +30,20 @@ export const AssignmentPanel = (): JSX.Element => {
   // to do: add a message for when no assignments are found
   return (
     <div className="assignmentPanel">
+      <Modal
+        open={assignmentModalOpen}
+        closeModal={() => {
+          setAssignmentModalOpen(false);
+        }}
+        children={<CreateNewAssignmentForm></CreateNewAssignmentForm>}
+      ></Modal>
       <div className="assignmentSelectorColumn">
+        <div
+          className="assignmentBox"
+          onClick={() => setAssignmentModalOpen(true)}
+        >
+          <AddIcon></AddIcon>
+        </div>
         {classAssignmentData ? (
           classAssignmentData.classInfo.map((item: any) => {
             if (item.assignments) {
