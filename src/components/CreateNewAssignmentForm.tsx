@@ -86,9 +86,15 @@ export const CreateNewAssignmentForm = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "white",
+        height: "30rem",
+        width: "30rem",
+        padding: "20px",
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        <h2>New Assignment:</h2>
         <div style={textFieldStyle}>
           <label htmlFor="assignmentName">Assignment Name:</label>
           <TextField

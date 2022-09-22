@@ -11,7 +11,7 @@ function Modal({ open, children, closeModal }) {
       <div
         className="backdrop"
         style={{
-          backgroundColor: "black",
+          backgroundColor: "rgba(0, 0, 0, 0.466)",
           position: "absolute",
           bottom: 0,
           left: 0,
