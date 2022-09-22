@@ -35,7 +35,11 @@ export const AssignmentPanel = (): JSX.Element => {
         closeModal={() => {
           setAssignmentModalOpen(false);
         }}
-        children={<CreateNewAssignmentForm></CreateNewAssignmentForm>}
+        children={
+          <CreateNewAssignmentForm
+            modalController={setAssignmentModalOpen}
+          ></CreateNewAssignmentForm>
+        }
       ></Modal>
       <div className="assignmentSelectorColumn">
         <div

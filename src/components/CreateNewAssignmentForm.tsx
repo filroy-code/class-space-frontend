@@ -6,7 +6,7 @@ import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { SvgIconTypeMap } from "@mui/material";
 import { useParams } from "react-router-dom";
 
-export const CreateNewAssignmentForm = () => {
+export const CreateNewAssignmentForm = (props: { modalController: any }) => {
   const { user, classID } = useParams();
 
   const iconButtonStyle = {
@@ -43,13 +43,13 @@ export const CreateNewAssignmentForm = () => {
 
   type FormState = {
     assignmentName: string;
-    totalMarks: number | undefined;
+    totalMarks: string;
     formType: "assignment";
   };
 
   const [formState, setFormState] = React.useState<FormState>({
     assignmentName: "",
-    totalMarks: undefined,
+    totalMarks: "",
     formType: "assignment",
   });
 
@@ -61,7 +61,13 @@ export const CreateNewAssignmentForm = () => {
     });
   }
 
+  const [textfieldError, setTextfieldError] = React.useState<boolean>(false);
+
   async function createNewAssignmentSubmit(formState: FormState) {
+    if (isNaN(parseInt(formState.totalMarks))) {
+      setTextfieldError(true);
+      return;
+    }
     let response = await fetch(`http://localhost:8000/${user}/${classID}`, {
       method: "POST",
       mode: "cors",
@@ -69,7 +75,7 @@ export const CreateNewAssignmentForm = () => {
       body: JSON.stringify(formState),
     });
     if (response.status === 200) {
-      console.log("success!");
+      props.modalController(false);
     } else {
       console.log("there was an error");
     }
@@ -78,6 +84,7 @@ export const CreateNewAssignmentForm = () => {
 
   return (
     <form
+      onClick={(e) => modalClick(e)}
       onSubmit={(e) => {
         e.preventDefault();
         createNewAssignmentSubmit(formState);
@@ -108,11 +115,13 @@ export const CreateNewAssignmentForm = () => {
         <div style={textFieldStyle}>
           <label htmlFor="totalMarks">Total Marks:</label>
           <TextField
+            error={textfieldError ? true : false}
             onChange={textFieldChangeHandler}
             name="totalMarks"
             style={{ backgroundColor: "white" }}
             placeholder="out of ____"
-            value={formState.totalMarks}
+            value={formState.totalMarks ? formState.totalMarks : ""}
+            helperText={textfieldError && "This value must be a number."}
           ></TextField>
         </div>
       </div>
