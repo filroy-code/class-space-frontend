@@ -40,10 +40,6 @@ export const AssignmentMarksTable = (props: {
     `http://localhost:8000/${user}/${classID}/${props.selectedAssignment}`
   );
 
-  if (data) {
-    console.log(data);
-  }
-
   type FormattedMarksData = {
     student: { id: string; firstname: string; lastname: string };
     score: number | null | undefined;
@@ -52,6 +48,10 @@ export const AssignmentMarksTable = (props: {
   const [studentMarks, setStudentMarks] = React.useState<FormattedMarksData[]>(
     []
   );
+
+  const [studentMarksInitial, setStudentMarksInitial] = React.useState<
+    FormattedMarksData[]
+  >([]);
 
   React.useEffect(() => {
     data &&
@@ -73,17 +73,59 @@ export const AssignmentMarksTable = (props: {
           ]);
         }
       });
+    setStudentMarksInitial([...studentMarks]);
   }, [data]);
+
+  async function submitMarkUpdate(studentMarks: FormattedMarksData[]) {
+    let response = await fetch(
+      `http://localhost:8000/${user}/${classID}/${props.selectedAssignment}`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          Origin: "localhost:8000",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(studentMarks),
+      }
+    );
+    if (response.status === 200) {
+      console.log("success!");
+    } else {
+      console.log("there was an error");
+    }
+  }
 
   return data ? (
     <div>
-      {studentMarks.map((singleStudent: any) => {
+      {studentMarks.map((singleStudent: any, index: number) => {
         return (
           <div className="tableRow" key={singleStudent.student.id}>
             <div>{`${singleStudent.student.firstname} ${singleStudent.student.lastname}`}</div>
             <div>
               <TextField
                 value={singleStudent.score ? `${singleStudent.score}` : ""}
+                id={`${index}`}
+                onChange={(event) => {
+                  setStudentMarks((prev: any) =>
+                    prev.map((dataPoint: any, index: number) => {
+                      if (isNaN(parseInt(event.target.value))) {
+                        return {
+                          ...dataPoint,
+                          score: null,
+                        };
+                      }
+                      if (index !== parseInt(event.target.id)) {
+                        return dataPoint;
+                      } else {
+                        return {
+                          ...dataPoint,
+                          score: parseInt(event.target.value),
+                        };
+                      }
+                    })
+                  );
+                }}
               ></TextField>
             </div>
             <div
@@ -92,6 +134,7 @@ export const AssignmentMarksTable = (props: {
           </div>
         );
       })}
+      <button onClick={() => submitMarkUpdate(studentMarks)}>CLICK</button>
     </div>
   ) : (
     <h1>{error ? "There was an error." : "Loading..."}</h1>
