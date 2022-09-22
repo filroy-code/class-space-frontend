@@ -35,6 +35,22 @@
   background-color: antiquewhite;
 }
 
+.assignmentPanel {
+  display: flex;
+}
+
+.markUpdatePanel {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.assignmentSelectorColumn {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+}
+
 .assignmentBox {
   height: 100px;
   width: 250px;

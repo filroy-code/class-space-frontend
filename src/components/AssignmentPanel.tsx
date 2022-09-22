@@ -24,43 +24,48 @@ export const AssignmentPanel = (): JSX.Element => {
   // to do: add a message for when no assignments are found
   return (
     <div className="assignmentPanel">
-      {classAssignmentData ? (
-        classAssignmentData.classInfo.map((item: any) => {
-          if (item.assignments) {
-            return (
-              <div
-                className="assignmentBox"
-                key={item.assignments}
-                data-assignmentname={item.assignments}
-                onClick={(event) => {
-                  const result = (event.target as HTMLDivElement).dataset
-                    .assignmentname;
-                  setSelectedAssignment(result);
-                }}
-              >
-                {item.assignments}
-              </div>
-            );
-          }
-        })
-      ) : (
-        // data.classInfo.assignments ? (
-        //   data.classInfo.assignments.map((assignment: string) => {
-        //     return <div>{assignment}</div>;
-        //   })
-        // ) : (
-        //   <h1>No assignments found.</h1>
-        // )
-        <h1>
-          {classAssignmentError
-            ? "There was an error retrieving your assignments."
-            : "Loading..."}
-        </h1>
-      )}
+      <div className="assignmentSelectorColumn">
+        {classAssignmentData ? (
+          classAssignmentData.classInfo.map((item: any) => {
+            if (item.assignments) {
+              return (
+                <div
+                  className="assignmentBox"
+                  key={item.assignments}
+                  data-assignmentname={item.assignments}
+                  onClick={(event) => {
+                    const result = (event.target as HTMLDivElement).dataset
+                      .assignmentname;
+                    setSelectedAssignment(result);
+                  }}
+                >
+                  {item.assignments}
+                </div>
+              );
+            }
+          })
+        ) : (
+          // data.classInfo.assignments ? (
+          //   data.classInfo.assignments.map((assignment: string) => {
+          //     return <div>{assignment}</div>;
+          //   })
+          // ) : (
+          //   <h1>No assignments found.</h1>
+          // )
+          <h1>
+            {classAssignmentError
+              ? "There was an error retrieving your assignments."
+              : "Loading..."}
+          </h1>
+        )}
+      </div>
       {selectedAssignment ? (
-        <AssignmentMarksTable
-          selectedAssignment={selectedAssignment}
-        ></AssignmentMarksTable>
+        <div className="markUpdatePanel">
+          <h2>{selectedAssignment}</h2>
+          <AssignmentMarksTable
+            selectedAssignment={selectedAssignment}
+          ></AssignmentMarksTable>
+        </div>
       ) : null}
     </div>
   );
