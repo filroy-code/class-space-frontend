@@ -7,6 +7,7 @@ export const AssignmentMarksTable = (props: {
   selectedAssignment: string;
 }): JSX.Element => {
   React.useEffect(() => {
+    setStudentMarks([]);
     setAssignmentMetaData({
       assignmentName: props.selectedAssignment,
       outof: undefined,
