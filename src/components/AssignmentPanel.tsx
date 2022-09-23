@@ -13,7 +13,7 @@ export const AssignmentPanel = (): JSX.Element => {
   };
   const { user, classID } = useParams<keyof Params>() as Params;
   const { data: classAssignmentData, error: classAssignmentError } = useSWR(
-    `http://localhost:8000/${user}/${classID}/`
+    `http://localhost:8000/${user}/${classID}/assignments`
   );
 
   const [selectedAssignment, setSelectedAssignment] = React.useState<string>();
@@ -26,6 +26,10 @@ export const AssignmentPanel = (): JSX.Element => {
   //     assignments: string;
   //     admins: string;
   //   };
+
+  if (classAssignmentData) {
+    console.log(classAssignmentData);
+  }
 
   // to do: add a message for when no assignments are found
   return (

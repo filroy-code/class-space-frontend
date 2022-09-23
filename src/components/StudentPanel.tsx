@@ -11,7 +11,9 @@ export const StudentPanel = (): JSX.Element => {
     classID: string;
   };
   const { user, classID } = useParams<keyof Params>() as Params;
-  const { data, error } = useSWR(`http://localhost:8000/${user}/${classID}/`);
+  const { data, error } = useSWR(
+    `http://localhost:8000/${user}/${classID}/students`
+  );
 
   const [selectedStudent, setSelectedStudent] = React.useState<string>();
 
@@ -56,7 +58,7 @@ export const StudentPanel = (): JSX.Element => {
                     setSelectedStudent(result);
                   }}
                 >
-                  {item.students}
+                  {`${item.firstname} ${item.lastname}`}
                 </div>
               );
             }
