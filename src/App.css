@@ -48,7 +48,7 @@
   height: 100vh;
 }
 
-.assignmentSelectorColumn {
+.selectorColumn {
   display: flex;
   flex-direction: column;
   padding: 0px 50px;
@@ -56,14 +56,14 @@
   height: 100vh;
 }
 
-.assignmentBox {
+.assignmentOrStudentSelectorBox {
   height: 100px;
   width: 250px;
   border: 1px solid black;
   margin: 10px;
 }
 
-.assignmentBox:hover {
+.assignmentOrStudentSelectorBox:hover {
   background-color: antiquewhite;
 }
 

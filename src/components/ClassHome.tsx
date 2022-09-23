@@ -10,7 +10,12 @@ export const ClassHome = (): JSX.Element => {
   const { user, classID } = useParams<keyof Params>() as Params;
   return (
     <div className="classHome">
-      <div className="classHomeSelector">Students</div>
+      <div
+        className="classHomeSelector"
+        onClick={() => navigate(`/${user}/${classID}/students`)}
+      >
+        Students
+      </div>
       <div
         className="classHomeSelector"
         onClick={() => navigate(`/${user}/${classID}/assignments`)}

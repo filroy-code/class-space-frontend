@@ -41,9 +41,9 @@ export const AssignmentPanel = (): JSX.Element => {
           ></CreateNewAssignmentForm>
         }
       ></Modal>
-      <div className="assignmentSelectorColumn">
+      <div className="selectorColumn">
         <div
-          className="assignmentBox"
+          className="assignmentOrStudentSelectorBox"
           onClick={() => setAssignmentModalOpen(true)}
         >
           <AddIcon></AddIcon>
@@ -53,7 +53,7 @@ export const AssignmentPanel = (): JSX.Element => {
             if (item.assignments) {
               return (
                 <div
-                  className="assignmentBox"
+                  className="assignmentOrStudentSelectorBox"
                   key={item.assignments}
                   data-assignmentname={item.assignments}
                   onClick={(event) => {

@@ -5,6 +5,7 @@ import LoggedInLayout from "./components/LoggedInLayout";
 import { ClassSelection } from "./components/ClassSelection";
 import { ClassHome } from "./components/ClassHome";
 import { AssignmentPanel } from "./components/AssignmentPanel";
+import { StudentPanel } from "./components/StudentPanel";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 const App = (): JSX.Element => {
@@ -21,16 +22,12 @@ const App = (): JSX.Element => {
                 <Route index element={<ClassSelection></ClassSelection>} />
 
                 <Route path=":classID" element={<ClassHome></ClassHome>} />
-                {/* 
-              <Route
-                path=":classID/students"
-                element={
-                  <ClassStudentPanel
-                    darkmode={darkThemeActive}
-                  ></ClassStudentPanel>
-                }
-              />
-              */}
+
+                <Route
+                  path=":classID/students"
+                  element={<StudentPanel></StudentPanel>}
+                />
+
                 <Route
                   path=":classID/assignments"
                   element={<AssignmentPanel></AssignmentPanel>}
