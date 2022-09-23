@@ -37,7 +37,7 @@ export const AssignmentMarksTable = (props: {
   const { user, classID } = useParams<keyof Params>() as Params;
 
   const { data, error, isValidating } = useSWR<AssignmentData | undefined>(
-    `http://localhost:8000/${user}/${classID}/${props.selectedAssignment}`
+    `http://localhost:8000/${user}/${classID}/assignments/${props.selectedAssignment}`
   );
 
   type FormattedMarksData = {
@@ -52,6 +52,10 @@ export const AssignmentMarksTable = (props: {
   const [studentMarksInitial, setStudentMarksInitial] = React.useState<
     FormattedMarksData[]
   >([]);
+
+  if (data) {
+    console.log(data);
+  }
 
   React.useEffect(() => {
     data &&
