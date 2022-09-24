@@ -27,10 +27,6 @@ export const AssignmentPanel = (): JSX.Element => {
   //     admins: string;
   //   };
 
-  if (classAssignmentData) {
-    console.log(classAssignmentData);
-  }
-
   // to do: add a message for when no assignments are found
   return (
     <div className="assignmentPanel">
@@ -45,7 +41,7 @@ export const AssignmentPanel = (): JSX.Element => {
           ></CreateNewAssignmentForm>
         }
       ></Modal>
-      <div className="selectorColumn">
+      <div className="selectorColumn" data-testid="assignmentColumn">
         <div
           className="assignmentOrStudentSelectorBox"
           onClick={() => setAssignmentModalOpen(true)}

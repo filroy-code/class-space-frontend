@@ -82,7 +82,7 @@ export const AssignmentMarksTable = (props: {
 
   async function submitMarkUpdate(studentMarks: FormattedMarksData[]) {
     let response = await fetch(
-      `http://localhost:8000/${user}/${classID}/${props.selectedAssignment}`,
+      `http://localhost:8000/${user}/${classID}/assignments/${props.selectedAssignment}`,
       {
         method: "POST",
         mode: "cors",

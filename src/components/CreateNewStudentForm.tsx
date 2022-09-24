@@ -64,7 +64,7 @@ export const CreateNewStudentForm = (props: { modalController: any }) => {
       body: JSON.stringify(formState),
     });
     if (response.status === 200) {
-      console.log("success!");
+      props.modalController(false);
     } else {
       console.log("there was an error");
     }

@@ -20,9 +20,6 @@ export const StudentPanel = (): JSX.Element => {
   const [studentModalOpen, setStudentModalOpen] =
     React.useState<boolean>(false);
 
-  if (data) {
-    console.log(data);
-  }
   // to do: add a message for when no students are found
   return (
     <div className="studentPanel">
@@ -37,7 +34,7 @@ export const StudentPanel = (): JSX.Element => {
           ></CreateNewStudentForm>
         }
       ></Modal>
-      <div className="studentSelectorColumn">
+      <div className="selectorColumn">
         <div
           className="assignmentOrStudentSelectorBox"
           onClick={() => setStudentModalOpen(true)}
