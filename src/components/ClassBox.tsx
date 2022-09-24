@@ -4,7 +4,7 @@ import { ClassSelectionDataShape } from "./ClassSelection";
 
 export const ClassBox = (props: {
   classData: ClassSelectionDataShape;
-  onClick: (event: React.MouseEvent) => void;
+  onClick?: (event: React.MouseEvent) => void;
 }): JSX.Element => {
   const navigate = useNavigate();
   type Params = {

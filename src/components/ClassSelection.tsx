@@ -2,6 +2,9 @@ import React from "react";
 import useSWR from "swr";
 import { useParams, useNavigate } from "react-router-dom";
 import { ClassBox } from "./ClassBox";
+import AddIcon from "@mui/icons-material/Add";
+import Modal from "./Modal";
+import { CreateNewClassForm } from "./CreateNewClassForm";
 
 export type ClassSelectionDataShape = {
   id: number;
@@ -20,21 +23,29 @@ export const ClassSelection: React.FC = () => {
   //fetches list of classes.
   const { data, error } = useSWR(`http://localhost:8000/${user}`);
 
-  function clickHandler() {
-    console.log("yo");
-  }
+  const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
   return (
     <div className="classSelection">
+      <Modal
+        open={modalOpen}
+        closeModal={() => {
+          setModalOpen(false);
+        }}
+        children={
+          <CreateNewClassForm
+            modalController={setModalOpen}
+          ></CreateNewClassForm>
+        }
+      ></Modal>
       <>
+        <div className="classBox" onClick={() => setModalOpen(true)}>
+          <AddIcon></AddIcon>
+        </div>
         {data ? (
           data.classList.map((classInList: ClassSelectionDataShape) => {
             return (
-              <ClassBox
-                onClick={clickHandler}
-                classData={classInList}
-                key={classInList.id}
-              ></ClassBox>
+              <ClassBox classData={classInList} key={classInList.id}></ClassBox>
             );
           })
         ) : (
