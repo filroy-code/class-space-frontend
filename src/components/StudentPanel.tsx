@@ -11,7 +11,7 @@ export const StudentPanel = (): JSX.Element => {
     classID: string;
   };
   const { user, classID } = useParams<keyof Params>() as Params;
-  const { data, error } = useSWR(
+  const { data, error, isValidating, mutate } = useSWR(
     `http://localhost:8000/${user}/${classID}/students`
   );
 
@@ -31,6 +31,7 @@ export const StudentPanel = (): JSX.Element => {
         children={
           <CreateNewStudentForm
             modalController={setStudentModalOpen}
+            mutate={mutate}
           ></CreateNewStudentForm>
         }
       ></Modal>
@@ -41,7 +42,7 @@ export const StudentPanel = (): JSX.Element => {
         >
           <AddIcon></AddIcon>
         </div>
-        {data ? (
+        {data && !isValidating ? (
           data.classInfo.map((item: any) => {
             if (item.students) {
               return (
