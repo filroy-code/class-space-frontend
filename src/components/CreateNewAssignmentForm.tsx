@@ -6,7 +6,10 @@ import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { SvgIconTypeMap } from "@mui/material";
 import { useParams } from "react-router-dom";
 
-export const CreateNewAssignmentForm = (props: { modalController: any }) => {
+export const CreateNewAssignmentForm = (props: {
+  modalController: any;
+  mutate: any;
+}) => {
   const { user, classID } = useParams();
 
   const iconButtonStyle = {
@@ -76,6 +79,7 @@ export const CreateNewAssignmentForm = (props: { modalController: any }) => {
     });
     if (response.status === 200) {
       props.modalController(false);
+      props.mutate(`http://localhost:8000/${user}/${classID}/assignments`);
     } else {
       console.log("there was an error");
     }

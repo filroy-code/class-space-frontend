@@ -12,9 +12,12 @@ export const AssignmentPanel = (): JSX.Element => {
     classID: string;
   };
   const { user, classID } = useParams<keyof Params>() as Params;
-  const { data: classAssignmentData, error: classAssignmentError } = useSWR(
-    `http://localhost:8000/${user}/${classID}/assignments`
-  );
+  const {
+    data: classAssignmentData,
+    error: classAssignmentError,
+    mutate,
+    isValidating,
+  } = useSWR(`http://localhost:8000/${user}/${classID}/assignments`);
 
   const [selectedAssignment, setSelectedAssignment] = React.useState<string>();
 
@@ -38,6 +41,7 @@ export const AssignmentPanel = (): JSX.Element => {
         children={
           <CreateNewAssignmentForm
             modalController={setAssignmentModalOpen}
+            mutate={mutate}
           ></CreateNewAssignmentForm>
         }
       ></Modal>
@@ -48,7 +52,7 @@ export const AssignmentPanel = (): JSX.Element => {
         >
           <AddIcon></AddIcon>
         </div>
-        {classAssignmentData ? (
+        {classAssignmentData && !isValidating ? (
           classAssignmentData.classInfo.map((item: any) => {
             if (item.assignments) {
               return (
