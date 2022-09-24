@@ -57,13 +57,16 @@ export const AssignmentMarksTable = (props: {
     console.log(data);
   }
 
+  React.useCallback(() => {}, [data]);
+
   React.useEffect(() => {
+    setStudentMarks([]);
     data &&
       data.assignmentInfo.forEach((datum: any) => {
         if (datum.outof) {
           setAssignmentMetaData({ ...assignmentMetaData, outof: datum.outof });
         }
-        if (datum.id) {
+        if (datum.student && datum.id) {
           setStudentMarks((prev) => [
             ...prev,
             {
@@ -138,7 +141,10 @@ export const AssignmentMarksTable = (props: {
           </div>
         );
       })}
-      <button onClick={() => submitMarkUpdate(studentMarks)}>CLICK</button>
+      <button onClick={() => submitMarkUpdate(studentMarks)}>
+        Submit Marks
+      </button>
+      <button onClick={() => console.log(studentMarks)}>CLICK</button>
     </div>
   ) : (
     <h1>{error ? "There was an error." : "Loading..."}</h1>
