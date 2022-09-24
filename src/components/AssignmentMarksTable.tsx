@@ -53,9 +53,9 @@ export const AssignmentMarksTable = (props: {
     FormattedMarksData[]
   >([]);
 
-  if (data) {
-    console.log(data);
-  }
+  // if (data) {
+  //   console.log(data);
+  // }
 
   React.useCallback(() => {}, [data]);
 

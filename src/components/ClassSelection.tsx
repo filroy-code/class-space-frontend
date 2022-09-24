@@ -21,7 +21,9 @@ export const ClassSelection: React.FC = () => {
   const { user } = useParams<keyof Params>() as Params;
 
   //fetches list of classes.
-  const { data, error } = useSWR(`http://localhost:8000/${user}`);
+  const { data, error, isValidating, mutate } = useSWR(
+    `http://localhost:8000/${user}`
+  );
 
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
 
@@ -35,6 +37,7 @@ export const ClassSelection: React.FC = () => {
         children={
           <CreateNewClassForm
             modalController={setModalOpen}
+            mutate={mutate}
           ></CreateNewClassForm>
         }
       ></Modal>
@@ -42,7 +45,7 @@ export const ClassSelection: React.FC = () => {
         <div className="classBox" onClick={() => setModalOpen(true)}>
           <AddIcon></AddIcon>
         </div>
-        {data ? (
+        {data && !isValidating ? (
           data.classList.map((classInList: ClassSelectionDataShape) => {
             return (
               <ClassBox classData={classInList} key={classInList.id}></ClassBox>
