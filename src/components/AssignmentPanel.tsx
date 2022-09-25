@@ -30,6 +30,10 @@ export const AssignmentPanel = (): JSX.Element => {
   //     admins: string;
   //   };
 
+  if (classAssignmentData) {
+    console.log(classAssignmentData);
+  }
+
   // to do: add a message for when no assignments are found
   return (
     <div className="assignmentPanel">
