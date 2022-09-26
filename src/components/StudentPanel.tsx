@@ -2,6 +2,7 @@ import React from "react";
 import useSWR from "swr";
 import { useParams } from "react-router-dom";
 import { CreateNewStudentForm } from "./CreateNewStudentForm";
+import { StudentDetails } from "./StudentDetails";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "./Modal";
 
@@ -76,10 +77,11 @@ export const StudentPanel = (): JSX.Element => {
           </h1>
         )}
       </div>
-      {selectedStudent ? (
-        <div className="markUpdatePanel">
-          <h2>{selectedStudent}</h2>
-        </div>
+      {selectedStudent && data ? (
+        <StudentDetails
+          classStudentData={data.classInfo}
+          selectedStudent={selectedStudent}
+        ></StudentDetails>
       ) : null}
     </div>
   );
