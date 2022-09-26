@@ -21,6 +21,8 @@ export const StudentPanel = (): JSX.Element => {
   const [studentModalOpen, setStudentModalOpen] =
     React.useState<boolean>(false);
 
+  const [editState, setEditState] = React.useState<boolean>(false);
+
   // to do: add a message for when no students are found
   return (
     <div className="studentPanel">
@@ -52,6 +54,7 @@ export const StudentPanel = (): JSX.Element => {
                   key={item.students}
                   data-studentname={item.students}
                   onClick={(event) => {
+                    setEditState(false);
                     const result = (event.target as HTMLDivElement).dataset
                       .studentname;
                     setSelectedStudent(result);
@@ -79,6 +82,8 @@ export const StudentPanel = (): JSX.Element => {
       </div>
       {selectedStudent && data ? (
         <StudentDetails
+          editState={editState}
+          setEditState={setEditState}
           classStudentData={data.classInfo}
           selectedStudent={selectedStudent}
         ></StudentDetails>

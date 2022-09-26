@@ -3,6 +3,7 @@ import useSWR from "swr";
 import { useParams } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
+import { EditStudentDetails } from "./EditStudentDetails";
 
 export const StudentDetails = (props: {
   selectedStudent: string;
@@ -12,6 +13,8 @@ export const StudentDetails = (props: {
     lastname: string;
     email: string;
   }[];
+  editState: boolean;
+  setEditState: any;
 }) => {
   const iconButtonStyle = {
     margin: "10px 0px",
@@ -22,7 +25,7 @@ export const StudentDetails = (props: {
   };
 
   const selectedIconButtonStyle = {
-    margin: "5px 0px",
+    margin: "10px 0px",
     backgroundColor: "rgb(50, 200, 249)",
     color: "rgb(0, 109, 119)",
     border: "1px solid black",
@@ -66,21 +69,35 @@ export const StudentDetails = (props: {
 
   return (
     <div className="studentDetailsPanel">
-      <IconButton style={iconButtonStyle}>
+      <IconButton
+        onClick={() => props.setEditState((prev: boolean) => !prev)}
+        style={props.editState ? selectedIconButtonStyle : iconButtonStyle}
+      >
         <EditIcon></EditIcon>
       </IconButton>
-      <div className="studentDetailsRow">
-        <b>First Name:</b> <div>{selectedStudentDetails.firstname}</div>
-      </div>
-      <div className="studentDetailsRow">
-        <b>Last Name:</b> <div>{selectedStudentDetails.lastname}</div>
-      </div>
-      <div className="studentDetailsRow">
-        <b>Student ID:</b> <div>{selectedStudentDetails.id}</div>
-      </div>
-      <div className="studentDetailsRow">
-        <b>Email:</b> <div>{selectedStudentDetails.email}</div>
-      </div>
+      {props.editState ? (
+        <EditStudentDetails
+          selectedStudentDetails={selectedStudentDetails}
+          editState={props.editState}
+          setEditState={props.setEditState}
+        ></EditStudentDetails>
+      ) : (
+        <>
+          <div className="studentDetailsRow">
+            <b>First Name:</b>
+            <div>{selectedStudentDetails.firstname}</div>
+          </div>
+          <div className="studentDetailsRow">
+            <b>Last Name:</b> <div>{selectedStudentDetails.lastname}</div>
+          </div>
+          <div className="studentDetailsRow">
+            <b>Student ID:</b> <div>{selectedStudentDetails.id}</div>
+          </div>
+          <div className="studentDetailsRow">
+            <b>Email:</b> <div>{selectedStudentDetails.email}</div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
