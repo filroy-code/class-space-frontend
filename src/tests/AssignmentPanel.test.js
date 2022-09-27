@@ -55,15 +55,17 @@ describe("AssignmentPanel", () => {
     expect(assignmentBox).toBeInTheDocument();
   });
 
-  //   it("opens new assignment modal", async () => {
-  //     render(
-  //       <SWRConfig value={{ fetcher }}>
-  //         <AssignmentPanel></AssignmentPanel>
-  //       </SWRConfig>
-  //     );
+  it("opens new assignment modal", async () => {
+    render(
+      <div id="portal">
+        <SWRConfig value={{ fetcher }}>
+          <AssignmentPanel></AssignmentPanel>
+        </SWRConfig>
+      </div>
+    );
 
-  //     const newAssignmentButton = screen.getByTestId("newAssignmentButton");
-  //     fireEvent.click(newAssignmentButton);
-  //     expect(await screen.findByText("New Assignment:")).toBeInTheDocument();
-  //   });
+    const newAssignmentButton = screen.getByTestId("newAssignmentButton");
+    fireEvent.click(newAssignmentButton);
+    expect(await screen.findByText("New Assignment:")).toBeInTheDocument();
+  });
 });
