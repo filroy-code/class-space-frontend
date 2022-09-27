@@ -18,6 +18,9 @@ const App = (): JSX.Element => {
         <div className="App">
           <BrowserRouter>
             <Routes>
+              {
+                //to add: authentication at route "/"}
+              }
               <Route path="/:user" element={<LoggedInLayout />}>
                 <Route index element={<ClassSelection></ClassSelection>} />
 

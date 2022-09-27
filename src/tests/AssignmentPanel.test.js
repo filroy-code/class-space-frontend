@@ -1,41 +1,38 @@
 import {
+  fireEvent,
   render,
   screen,
   waitForElementToBeRemoved,
-  act,
 } from "@testing-library/react";
 import { setupServer } from "msw/node";
 import { rest } from "msw";
 import { AssignmentPanel } from "../components/AssignmentPanel";
 import { SWRConfig } from "swr";
 import "@testing-library/jest-dom";
+import "whatwg-fetch";
 
 const server = setupServer(
-  rest.get(":user/:classID/assignments", (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json([
-        {
-          students: "605",
-          id: "605",
-          firstname: "Chef",
-          lastname: "Lastie",
-          email: "jias",
-          assignments: "asj",
-          admins: "null",
-        },
-        {
-          students: null,
-          id: null,
-          firstname: null,
-          lastname: null,
-          email: null,
-          assignments: "Recess",
-          admins: null,
-        },
-      ])
-    );
-  })
+  rest.get(
+    "http://localhost:8000/:user/:classID/assignments",
+    (req, res, ctx) => {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          classInfo: [
+            {
+              students: "605",
+              id: "605",
+              firstname: "Chef",
+              lastname: "Lastie",
+              email: "jias",
+              assignments: null,
+              admins: null,
+            },
+          ],
+        })
+      );
+    }
+  )
 );
 
 const fetcher = (...args) => {
@@ -43,8 +40,8 @@ const fetcher = (...args) => {
 };
 
 beforeAll(() => server.listen());
-afterAll(() => server.close());
 afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 describe("AssignmentPanel", () => {
   it("displays a list of assignments", async () => {
@@ -53,8 +50,20 @@ describe("AssignmentPanel", () => {
         <AssignmentPanel></AssignmentPanel>
       </SWRConfig>
     );
-    // await waitForElementToBeRemoved(() => screen.queryByText("Loading..."));
-    const assignmentBox = screen.getByText("Loading...");
+    await waitForElementToBeRemoved(() => screen.queryByText("Loading..."));
+    const assignmentBox = await screen.findByText("Loading...");
     expect(assignmentBox).toBeInTheDocument();
   });
+
+  //   it("opens new assignment modal", async () => {
+  //     render(
+  //       <SWRConfig value={{ fetcher }}>
+  //         <AssignmentPanel></AssignmentPanel>
+  //       </SWRConfig>
+  //     );
+
+  //     const newAssignmentButton = screen.getByTestId("newAssignmentButton");
+  //     fireEvent.click(newAssignmentButton);
+  //     expect(await screen.findByText("New Assignment:")).toBeInTheDocument();
+  //   });
 });

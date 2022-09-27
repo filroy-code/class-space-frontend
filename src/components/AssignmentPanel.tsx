@@ -24,15 +24,9 @@ export const AssignmentPanel = (): JSX.Element => {
   const [assignmentModalOpen, setAssignmentModalOpen] =
     React.useState<boolean>(false);
 
-  //   type ClassInfo = {
-  //     students: string;
-  //     assignments: string;
-  //     admins: string;
-  //   };
-
-  if (classAssignmentData) {
-    console.log(classAssignmentData);
-  }
+  // if (classAssignmentData) {
+  //   console.log(classAssignmentData);
+  // }
 
   // to do: add a message for when no assignments are found
   return (
@@ -49,8 +43,9 @@ export const AssignmentPanel = (): JSX.Element => {
           ></CreateNewAssignmentForm>
         }
       ></Modal>
-      <div className="selectorColumn" data-testid="assignmentColumn">
+      <div className="selectorColumn">
         <div
+          data-testid="newAssignmentButton"
           className="assignmentOrStudentSelectorBox"
           onClick={() => setAssignmentModalOpen(true)}
         >
@@ -76,13 +71,6 @@ export const AssignmentPanel = (): JSX.Element => {
             }
           })
         ) : (
-          // data.classInfo.assignments ? (
-          //   data.classInfo.assignments.map((assignment: string) => {
-          //     return <div>{assignment}</div>;
-          //   })
-          // ) : (
-          //   <h1>No assignments found.</h1>
-          // )
           <h1>
             {classAssignmentError
               ? "There was an error retrieving your assignments."
