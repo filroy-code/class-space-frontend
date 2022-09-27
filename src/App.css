@@ -96,3 +96,8 @@
   padding: 10px;
   align-items: center;
 }
+
+.studentDetailsGrid {
+  display: grid;
+  grid-template-rows: 4.75rem 4.75rem 4.75rem 4.75rem;
+}

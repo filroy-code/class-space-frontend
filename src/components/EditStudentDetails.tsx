@@ -47,7 +47,7 @@ export const EditStudentDetails = (props: {
     setUpdatedStudentDetails(props.selectedStudentDetails);
   }, []);
   return updatedStudentDetails ? (
-    <>
+    <div className="studentDetailsGrid">
       <div className="studentDetailsRow">
         <b>First Name:</b>
         <TextField
@@ -98,6 +98,6 @@ export const EditStudentDetails = (props: {
           DISCARD
         </Button>
       </div>
-    </>
+    </div>
   ) : null;
 };

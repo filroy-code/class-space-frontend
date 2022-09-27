@@ -82,7 +82,7 @@ export const StudentDetails = (props: {
           setEditState={props.setEditState}
         ></EditStudentDetails>
       ) : (
-        <>
+        <div className="studentDetailsGrid">
           <div className="studentDetailsRow">
             <b>First Name:</b>
             <div>{selectedStudentDetails.firstname}</div>
@@ -96,7 +96,7 @@ export const StudentDetails = (props: {
           <div className="studentDetailsRow">
             <b>Email:</b> <div>{selectedStudentDetails.email}</div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
