@@ -18,6 +18,8 @@ export const EditStudentDetails = (props: {
     lastname: string;
     email: string;
   };
+
+  //this exists as a value to compare updates against to determine if there's been a change
   const [initialStudentDetails, setInitialStudentDetails] =
     React.useState<StudentDetailsData>({
       id: "",
@@ -34,7 +36,10 @@ export const EditStudentDetails = (props: {
     });
 
   function textFieldChangeHandler(event: any) {
-    console.log(event);
+    setUpdatedStudentDetails({
+      ...updatedStudentDetails,
+      [event.target.name]: event.target.value,
+    });
   }
 
   React.useEffect(() => {
@@ -47,20 +52,33 @@ export const EditStudentDetails = (props: {
         <b>First Name:</b>
         <TextField
           value={updatedStudentDetails.firstname}
+          name="firstname"
           onChange={(e) => textFieldChangeHandler(e)}
         ></TextField>
       </div>
       <div className="studentDetailsRow">
         <b>Last Name:</b>
-        <TextField value={updatedStudentDetails.lastname}></TextField>
+        <TextField
+          value={updatedStudentDetails.lastname}
+          name="lastname"
+          onChange={(e) => textFieldChangeHandler(e)}
+        ></TextField>
       </div>
       <div className="studentDetailsRow">
         <b>Student ID:</b>
-        <TextField value={updatedStudentDetails.id}></TextField>
+        <TextField
+          value={updatedStudentDetails.id}
+          name="id"
+          onChange={(e) => textFieldChangeHandler(e)}
+        ></TextField>
       </div>
       <div className="studentDetailsRow">
         <b>Email:</b>
-        <TextField value={updatedStudentDetails.email}></TextField>
+        <TextField
+          value={updatedStudentDetails.email}
+          name="email"
+          onChange={(e) => textFieldChangeHandler(e)}
+        ></TextField>
       </div>
       <div
         style={{
@@ -70,7 +88,12 @@ export const EditStudentDetails = (props: {
           margin: "15px",
         }}
       >
-        <Button variant="outlined">SAVE</Button>
+        <Button
+          variant="outlined"
+          onClick={() => console.log(updatedStudentDetails)}
+        >
+          SAVE
+        </Button>
         <Button onClick={() => props.setEditState(false)} variant="outlined">
           DISCARD
         </Button>

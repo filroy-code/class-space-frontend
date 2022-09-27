@@ -20,12 +20,12 @@ const server = setupServer(
         ctx.json({
           classInfo: [
             {
-              students: "605",
-              id: "605",
-              firstname: "Chef",
-              lastname: "Lastie",
-              email: "jias",
-              assignments: null,
+              students: null,
+              id: null,
+              firstname: null,
+              lastname: null,
+              email: null,
+              assignments: "Recess",
               admins: null,
             },
           ],
@@ -51,7 +51,7 @@ describe("AssignmentPanel", () => {
       </SWRConfig>
     );
     await waitForElementToBeRemoved(() => screen.queryByText("Loading..."));
-    const assignmentBox = await screen.findByText("Loading...");
+    const assignmentBox = await screen.findByText("Recess");
     expect(assignmentBox).toBeInTheDocument();
   });
 
