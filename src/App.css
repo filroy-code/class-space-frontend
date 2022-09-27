@@ -101,3 +101,10 @@
   display: grid;
   grid-template-rows: 4.75rem 4.75rem 4.75rem 4.75rem;
 }
+
+.editMarksAndStudentDetailsButtonContainer {
+  display: flex;
+  gap: 15px;
+  margin: 15px;
+  justify-content: center;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import useSWR from "swr";
 import { useParams } from "react-router-dom";
 import { TextField } from "@mui/material";
+import Button from "@mui/material/Button";
 
 export const AssignmentMarksTable = (props: {
   selectedAssignment: string;
@@ -141,10 +142,20 @@ export const AssignmentMarksTable = (props: {
           </div>
         );
       })}
-      <button onClick={() => submitMarkUpdate(studentMarks)}>
-        Submit Marks
-      </button>
-      <button onClick={() => console.log(studentMarks)}>CLICK</button>
+      <div className="editMarksAndStudentDetailsButtonContainer">
+        <Button
+          variant="outlined"
+          onClick={() => submitMarkUpdate(studentMarks)}
+        >
+          SAVE
+        </Button>
+        <Button
+          onClick={() => console.log(studentMarksInitial)}
+          variant="outlined"
+        >
+          DISCARD
+        </Button>
+      </div>
     </div>
   ) : (
     <h1>{error ? "There was an error." : "Loading..."}</h1>

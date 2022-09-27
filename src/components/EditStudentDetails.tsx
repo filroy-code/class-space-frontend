@@ -80,14 +80,7 @@ export const EditStudentDetails = (props: {
           onChange={(e) => textFieldChangeHandler(e)}
         ></TextField>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          gap: "15px",
-          margin: "15px",
-        }}
-      >
+      <div className="editMarksAndStudentDetailsButtonContainer">
         <Button
           variant="outlined"
           onClick={() => console.log(updatedStudentDetails)}
