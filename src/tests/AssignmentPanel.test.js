@@ -35,9 +35,7 @@ const server = setupServer(
   )
 );
 
-const fetcher = (...args) => {
-  fetch(args).then((response) => response.json());
-};
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
