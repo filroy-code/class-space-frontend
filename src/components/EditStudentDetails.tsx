@@ -1,5 +1,6 @@
 import React from "react";
 import { TextField } from "@mui/material";
+import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 
 export const EditStudentDetails = (props: {
@@ -12,6 +13,12 @@ export const EditStudentDetails = (props: {
   editState: boolean;
   setEditState: any;
 }) => {
+  type Params = {
+    user: string;
+    classID: string;
+  };
+  const { user, classID } = useParams<keyof Params>() as Params;
+
   type StudentDetailsData = {
     id: string;
     firstname: string;
@@ -40,6 +47,28 @@ export const EditStudentDetails = (props: {
       ...updatedStudentDetails,
       [event.target.name]: event.target.value,
     });
+  }
+
+  async function submitStudentDetailChanges(
+    studentDetails: StudentDetailsData
+  ) {
+    let response = await fetch(
+      `http://localhost:8000/${user}/${classID}/students/${props.selectedStudentDetails.id}`,
+      {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          Origin: "localhost:8000",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(studentDetails),
+      }
+    );
+    if (response.status === 200) {
+      console.log("success!");
+    } else {
+      console.log("there was an error");
+    }
   }
 
   React.useEffect(() => {
@@ -83,7 +112,7 @@ export const EditStudentDetails = (props: {
       <div className="editMarksAndStudentDetailsButtonContainer">
         <Button
           variant="outlined"
-          onClick={() => console.log(updatedStudentDetails)}
+          onClick={() => submitStudentDetailChanges(updatedStudentDetails)}
         >
           SAVE
         </Button>
