@@ -10,8 +10,10 @@ export const EditStudentDetails = (props: {
     lastname: string;
     email: string;
   };
+  setSelectedStudent: any;
   editState: boolean;
   setEditState: any;
+  mutate: any;
 }) => {
   type Params = {
     user: string;
@@ -65,7 +67,9 @@ export const EditStudentDetails = (props: {
       }
     );
     if (response.status === 200) {
-      console.log("success!");
+      props.mutate(`http://localhost:8000/${user}/${classID}/students`);
+      // props.setSelectedStudent(updatedStudentDetails);
+      props.setEditState(false);
     } else {
       console.log("there was an error");
     }

@@ -66,13 +66,6 @@ export const StudentPanel = (): JSX.Element => {
             }
           })
         ) : (
-          // data.classInfo.assignments ? (
-          //   data.classInfo.assignments.map((assignment: string) => {
-          //     return <div>{assignment}</div>;
-          //   })
-          // ) : (
-          //   <h1>No assignments found.</h1>
-          // )
           <h1>
             {error
               ? "There was an error retrieving your student list."
@@ -86,6 +79,8 @@ export const StudentPanel = (): JSX.Element => {
           setEditState={setEditState}
           classStudentData={data.classInfo}
           selectedStudent={selectedStudent}
+          setSelectedStudent={setSelectedStudent}
+          mutate={mutate}
         ></StudentDetails>
       ) : null}
     </div>

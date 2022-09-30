@@ -7,6 +7,7 @@ import { EditStudentDetails } from "./EditStudentDetails";
 
 export const StudentDetails = (props: {
   selectedStudent: string;
+  setSelectedStudent: any;
   classStudentData: {
     id: string;
     firstname: string;
@@ -15,6 +16,7 @@ export const StudentDetails = (props: {
   }[];
   editState: boolean;
   setEditState: any;
+  mutate: any;
 }) => {
   const iconButtonStyle = {
     margin: "10px 0px",
@@ -77,9 +79,11 @@ export const StudentDetails = (props: {
       </IconButton>
       {props.editState ? (
         <EditStudentDetails
+          setSelectedStudent={props.setSelectedStudent}
           selectedStudentDetails={selectedStudentDetails}
           editState={props.editState}
           setEditState={props.setEditState}
+          mutate={props.mutate}
         ></EditStudentDetails>
       ) : (
         <div className="studentDetailsGrid">

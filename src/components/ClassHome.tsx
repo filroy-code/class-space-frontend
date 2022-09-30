@@ -24,7 +24,7 @@ export const ClassHome = (): JSX.Element => {
       </div>
       <div
         className="classHomeSelector"
-        // onClick={() => navigate(`/${user}/${classID}/assignments`)}
+        onClick={() => navigate(`/${user}/${classID}/summary`)}
       >
         Summary
       </div>
