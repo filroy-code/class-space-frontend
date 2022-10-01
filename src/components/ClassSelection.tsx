@@ -64,6 +64,8 @@ export const ClassSelection: React.FC = () => {
                 classData={classInList}
                 key={classInList.id}
                 deleteMode={state.selectionType}
+                selected={state.selectedClasses.includes(classInList.name)}
+                dispatch={dispatch}
               ></ClassBox>
             );
           })
@@ -87,12 +89,13 @@ export const ClassSelection: React.FC = () => {
           >
             DISCARD
           </Button>
+          <Button onClick={() => console.log(state)}>CHECK</Button>
         </div>
       ) : (
         <IconButton
           className="classDeleteButton"
           onClick={() => {
-            dispatch({ type: "DELETE_SELECT" });
+            dispatch({ type: "DELETE_ENABLE" });
           }}
         >
           <DeleteIcon></DeleteIcon>

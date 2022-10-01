@@ -19,10 +19,16 @@ export const classSelectReducer = (
         selectedClasses: [],
       };
 
-    case "DELETE_SELECT":
+    case "DELETE_ENABLE":
       return {
         selectionType: "delete",
         selectedClasses: [],
+      };
+
+    case "DELETE_SELECT":
+      return {
+        selectionType: "delete",
+        selectedClasses: [...state.selectedClasses, action.payload.value],
       };
 
     case "DELETE_SUBMIT":
