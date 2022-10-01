@@ -5,6 +5,14 @@ import { ClassBox } from "./ClassBox";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "./Modal";
 import { CreateNewClassForm } from "./CreateNewClassForm";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { IconButton } from "@mui/material";
+import { Button } from "@mui/material";
+import {
+  INITIAL_STATE,
+  classSelectReducer,
+  SelectionData,
+} from "../reducers/classSelectReducer";
 
 export type ClassSelectionDataShape = {
   id: number;
@@ -20,12 +28,16 @@ export const ClassSelection: React.FC = () => {
 
   const { user } = useParams<keyof Params>() as Params;
 
+  const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
+
   //fetches list of classes.
   const { data, error, isValidating, mutate } = useSWR(
     `http://localhost:8000/${user}`
   );
 
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
+
+  const [state, dispatch] = React.useReducer(classSelectReducer, INITIAL_STATE);
 
   return (
     <div className="classSelection">
@@ -41,14 +53,18 @@ export const ClassSelection: React.FC = () => {
           ></CreateNewClassForm>
         }
       ></Modal>
-      <>
+      <div className="classBoxContainer">
         <div className="classBox" onClick={() => setModalOpen(true)}>
           <AddIcon></AddIcon>
         </div>
         {data && !isValidating ? (
           data.classList.map((classInList: ClassSelectionDataShape) => {
             return (
-              <ClassBox classData={classInList} key={classInList.id}></ClassBox>
+              <ClassBox
+                classData={classInList}
+                key={classInList.id}
+                deleteMode={state.selectionType}
+              ></ClassBox>
             );
           })
         ) : (
@@ -56,7 +72,32 @@ export const ClassSelection: React.FC = () => {
             {error ? "There was an error getting your classes." : "Loading..."}
           </h1>
         )}
-      </>
+      </div>
+      {state.selectionType ? (
+        <div className="editMarksAndStudentDetailsButtonContainer">
+          <Button
+            variant="outlined"
+            // onClick={() => submitStudentDetailChanges(updatedStudentDetails)}
+          >
+            SAVE
+          </Button>
+          <Button
+            onClick={() => dispatch({ type: "RESET" })}
+            variant="outlined"
+          >
+            DISCARD
+          </Button>
+        </div>
+      ) : (
+        <IconButton
+          className="classDeleteButton"
+          onClick={() => {
+            dispatch({ type: "DELETE_SELECT" });
+          }}
+        >
+          <DeleteIcon></DeleteIcon>
+        </IconButton>
+      )}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { ClassSelection } from "./components/ClassSelection";
 import { ClassHome } from "./components/ClassHome";
 import { AssignmentPanel } from "./components/AssignmentPanel";
 import { StudentPanel } from "./components/StudentPanel";
+import { SummaryHome } from "./components/SummaryHome";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 
 const App = (): JSX.Element => {
@@ -34,6 +35,11 @@ const App = (): JSX.Element => {
                 <Route
                   path=":classID/assignments"
                   element={<AssignmentPanel></AssignmentPanel>}
+                />
+
+                <Route
+                  path=":classID/summary"
+                  element={<SummaryHome></SummaryHome>}
                 />
               </Route>
             </Routes>

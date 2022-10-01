@@ -13,5 +13,22 @@ export const SummaryHome = (props: {}) => {
     `http://localhost:8000/${user}/${classID}/summary`
   );
 
-  return <div>SummaryHome</div>;
+  if (data) {
+    console.log(data);
+  }
+
+  if (error) {
+    console.log(error);
+  }
+  return (
+    <div>
+      {data
+        ? data.map((entry: any) => {
+            if (entry.assignments) {
+              return <div key={entry.assignments}>{entry.assignments}</div>;
+            }
+          })
+        : null}
+    </div>
+  );
 };
