@@ -39,6 +39,33 @@ export const ClassSelection: React.FC = () => {
 
   const [state, dispatch] = React.useReducer(classSelectReducer, INITIAL_STATE);
 
+  async function deleteClass(selectedClass: string) {
+    let response = await fetch(
+      `http://localhost:8000/${user}/${selectedClass}`,
+      {
+        method: "DELETE",
+        mode: "cors",
+        headers: {
+          Origin: "localhost:8000",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (response.status === 200) {
+      console.log("success!");
+    } else {
+      console.log("there was an error");
+    }
+  }
+
+  async function deleteSelectedClasses() {
+    state.selectedClasses.forEach((selectedClass) => {
+      deleteClass(selectedClass);
+    });
+    dispatch({ type: "RESET" });
+    mutate(`http://localhost:8000/${user}`);
+  }
+
   return (
     <div className="classSelection">
       <Modal
@@ -77,17 +104,14 @@ export const ClassSelection: React.FC = () => {
       </div>
       {state.selectionType ? (
         <div className="editMarksAndStudentDetailsButtonContainer">
-          <Button
-            variant="outlined"
-            // onClick={() => submitStudentDetailChanges(updatedStudentDetails)}
-          >
-            SAVE
+          <Button variant="outlined" onClick={() => deleteSelectedClasses()}>
+            DELETE CLASSES
           </Button>
           <Button
             onClick={() => dispatch({ type: "RESET" })}
             variant="outlined"
           >
-            DISCARD
+            UNDO
           </Button>
           <Button onClick={() => console.log(state)}>CHECK</Button>
         </div>
