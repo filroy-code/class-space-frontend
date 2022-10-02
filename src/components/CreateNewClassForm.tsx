@@ -80,7 +80,14 @@ export const CreateNewClassForm = (props: {
     });
   }
 
+  const [textfieldError, setTextfieldError] = React.useState<boolean>(false);
+
   async function createNewClassSubmit(user: string, formState: FormState) {
+    if (formState.nameOfNewClass.length < 1) {
+      setTextfieldError(true);
+      return;
+    }
+    setTextfieldError(false);
     let response = await fetch(`http://localhost:8000/${user}`, {
       method: "POST",
       mode: "cors",
@@ -116,14 +123,18 @@ export const CreateNewClassForm = (props: {
     >
       <h2>New Class:</h2>
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <label htmlFor="nameOfNewClass">Class Name:</label>
-        <TextField
-          onChange={textFieldChangeHandler}
-          name="nameOfNewClass"
-          style={{ backgroundColor: "white" }}
-          placeholder="e.g. Science 101"
-          value={formState.nameOfNewClass}
-        ></TextField>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <label htmlFor="nameOfNewClass">Class Name: </label>
+          <TextField
+            error={textfieldError ? true : false}
+            helperText={textfieldError && "This field cannot be left blank."}
+            onChange={textFieldChangeHandler}
+            name="nameOfNewClass"
+            style={{ backgroundColor: "white", padding: "10px" }}
+            placeholder="e.g. Science 101"
+            value={formState.nameOfNewClass}
+          ></TextField>
+        </div>
       </div>
       <div
         style={{
