@@ -127,7 +127,7 @@
 .editMarksAndStudentDetailsButtonContainer {
   display: flex;
   gap: 15px;
-  margin: 15px;
+  margin: 20px;
   justify-content: center;
 }
 
@@ -140,10 +140,9 @@
 .summaryRow {
   display: grid;
   grid-template-columns: 16rem 6.5rem 6.5rem;
-  padding: 1px;
 }
 
-.summaryRow:hover:not(:first-of-type) {
+.summaryRow:hover:not(:first-of-type):not(.summarySelected) {
   background-color: antiquewhite;
 }
 
@@ -154,4 +153,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.summarySelected {
+  background-color: rgb(214, 214, 214);
 }

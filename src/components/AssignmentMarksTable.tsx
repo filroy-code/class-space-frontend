@@ -3,6 +3,7 @@ import useSWR from "swr";
 import { useParams } from "react-router-dom";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
+import Divider from "@mui/material/Divider";
 
 export const AssignmentMarksTable = (props: {
   selectedAssignment: string;
@@ -54,12 +55,6 @@ export const AssignmentMarksTable = (props: {
     FormattedMarksData[]
   >([]);
 
-  // if (data) {
-  //   console.log(data);
-  // }
-
-  React.useCallback(() => {}, [data]);
-
   React.useEffect(() => {
     setStudentMarks([]);
     data &&
@@ -104,6 +99,8 @@ export const AssignmentMarksTable = (props: {
     }
   }
 
+  const editedColor = "rgb(252, 252, 138)";
+
   return data ? (
     <div>
       {studentMarks.map((singleStudent: any, index: number) => {
@@ -142,6 +139,7 @@ export const AssignmentMarksTable = (props: {
           </div>
         );
       })}
+      <Divider style={{ margin: "15px" }}></Divider>
       <div className="editMarksAndStudentDetailsButtonContainer">
         <Button
           variant="outlined"
