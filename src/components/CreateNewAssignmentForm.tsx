@@ -13,7 +13,7 @@ export const CreateNewAssignmentForm = (props: {
   const { user, classID } = useParams();
 
   const iconButtonStyle = {
-    margin: "20px 0px",
+    margin: "15px 0px",
     backgroundColor: "rgb(237, 246, 249)",
     color: "rgb(0, 109, 119)",
     border: "1px solid black",
@@ -33,6 +33,7 @@ export const CreateNewAssignmentForm = (props: {
     alignItems: "center",
     justifyContent: "space-between",
     gap: "20px",
+    margin: "10px",
   };
 
   type IconButtonType = {
@@ -105,7 +106,7 @@ export const CreateNewAssignmentForm = (props: {
       }}
     >
       <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-        <h2>New Assignment:</h2>
+        <h2 style={{ alignSelf: "center" }}>New Assignment:</h2>
         <div style={textFieldStyle}>
           <label htmlFor="assignmentName">Assignment Name:</label>
           <TextField
