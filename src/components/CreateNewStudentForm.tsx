@@ -73,7 +73,7 @@ export const CreateNewStudentForm = (props: {
     if (formState.studentID.length < 1) {
       setTextfieldErrors((prev) => [...prev, "studentID"]);
     }
-    if (textfieldErrors) {
+    if (textfieldErrors.length > 0) {
       return;
     }
     let response = await fetch(`http://localhost:8000/${user}/${classID}`, {
