@@ -22,12 +22,33 @@ export const SummaryHome = (props: {}) => {
     AssignmentData[]
   >([]);
 
-  const [updatedAssignmentsData, setUpdatedAssignmentsData] = React.useState<
-    AssignmentData[]
-  >([]);
+  //   const [updatedAssignmentsData, setUpdatedAssignmentsData] = React.useState<
+  //     AssignmentData[]
+  //   >([]);
 
-  function textFieldChangeHandler(event: any) {
-    setAssignmentsData([...assignmentsData]);
+  //   function textFieldChangeHandler(event: any) {
+  //     setAssignmentsData([...assignmentsData]);
+  //   }
+
+  async function submitWeightingChanges(assignmentsData: AssignmentData[]) {
+    console.log(assignmentsData);
+    let response = await fetch(
+      `http://localhost:8000/${user}/${classID}/summary/`,
+      {
+        method: "PUT",
+        mode: "cors",
+        headers: {
+          Origin: "localhost:8000",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(assignmentsData),
+      }
+    );
+    if (response.status === 200) {
+      //   props.mutate(`http://localhost:8000/${user}/${classID}/summary`);
+    } else {
+      console.log("there was an error");
+    }
   }
 
   React.useEffect(() => {
@@ -68,7 +89,7 @@ export const SummaryHome = (props: {}) => {
       </div>
       <Button
         onClick={() => {
-          console.log(assignmentsData);
+          submitWeightingChanges(assignmentsData);
         }}
       >
         CLICK
