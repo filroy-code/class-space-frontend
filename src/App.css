@@ -131,10 +131,16 @@
   justify-content: center;
 }
 
-.summaryPanel {
+.summaryHome {
+  display: flex;
+}
+
+.summaryTable {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin: 20px;
+  overflow-y: scroll;
+  height: 97vh;
 }
 
 .summaryRow {
