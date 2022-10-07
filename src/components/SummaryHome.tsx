@@ -55,7 +55,7 @@ export const SummaryHome = (props: {}) => {
     setAssignmentsData([]);
     if (data) {
       let assignmentArray: AssignmentData[] = [];
-      data.forEach((datum: any) => {
+      data.classInfo.forEach((datum: any) => {
         if (datum.assignments) {
           assignmentArray.push({
             name: datum.assignments,
@@ -84,16 +84,9 @@ export const SummaryHome = (props: {}) => {
           <b>Weight</b>
         </div>
         <div className="summaryColumn">
-          <b>Class Median</b>
+          <b>Class Average</b>
         </div>
       </div>
-      <Button
-        onClick={() => {
-          submitWeightingChanges(assignmentsData);
-        }}
-      >
-        CLICK
-      </Button>
       {data ? (
         assignmentsData.map((entry: any, index: number) => {
           if (entry.name) {
@@ -110,6 +103,11 @@ export const SummaryHome = (props: {}) => {
                 <div className="summaryColumn">{entry.name}</div>
                 <div className="summaryColumn">
                   <TextField
+                    InputProps={{
+                      inputProps: {
+                        style: { textAlign: "center" },
+                      },
+                    }}
                     id={`${index}`}
                     value={entry.weight ? entry.weight : ""}
                     onChange={(event) => {
@@ -134,13 +132,32 @@ export const SummaryHome = (props: {}) => {
                     }}
                   ></TextField>
                 </div>
-                <div className="summaryColumn"></div>
+                <div className="summaryColumn">
+                  {(
+                    (data.marksData[index].average /
+                      parseInt(data.marksData[index].outof)) *
+                    100
+                  ).toPrecision(3)}
+                  %
+                </div>
               </div>
             );
           }
         })
       ) : (
         <h1>{error ? "There was an error." : "Loading..."}</h1>
+      )}
+      {!error && (
+        <div className="editMarksAndStudentDetailsButtonContainer">
+          <Button
+            variant="outlined"
+            onClick={() => {
+              submitWeightingChanges(assignmentsData);
+            }}
+          >
+            Submit Weighting Adjustments
+          </Button>
+        </div>
       )}
     </div>
   );
