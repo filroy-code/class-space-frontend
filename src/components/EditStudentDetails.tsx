@@ -28,6 +28,15 @@ export const EditStudentDetails = (props: {
     email: string;
   };
 
+  const iconButtonStyle = {
+    margin: "10px 0px",
+    backgroundColor: "rgb(237, 246, 249)",
+    color: "rgb(0, 109, 119)",
+    border: "1px solid black",
+    borderRadius: "5px",
+    fontSize: "1rem",
+  };
+
   //this exists as a value to compare updates against to determine if there's been a change
   const [initialStudentDetails, setInitialStudentDetails] =
     React.useState<StudentDetailsData>({
@@ -80,50 +89,58 @@ export const EditStudentDetails = (props: {
     setUpdatedStudentDetails(props.selectedStudentDetails);
   }, []);
   return updatedStudentDetails ? (
-    <div className="studentDetailsGrid">
-      <div className="studentDetailsRow">
-        <b>First Name:</b>
-        <TextField
-          value={updatedStudentDetails.firstname}
-          name="firstname"
-          onChange={(e) => textFieldChangeHandler(e)}
-        ></TextField>
-      </div>
-      <div className="studentDetailsRow">
-        <b>Last Name:</b>
-        <TextField
-          value={updatedStudentDetails.lastname}
-          name="lastname"
-          onChange={(e) => textFieldChangeHandler(e)}
-        ></TextField>
-      </div>
-      <div className="studentDetailsRow">
-        <b>Student ID:</b>
-        <TextField
-          value={updatedStudentDetails.id}
-          name="id"
-          onChange={(e) => textFieldChangeHandler(e)}
-        ></TextField>
-      </div>
-      <div className="studentDetailsRow">
-        <b>Email:</b>
-        <TextField
-          value={updatedStudentDetails.email}
-          name="email"
-          onChange={(e) => textFieldChangeHandler(e)}
-        ></TextField>
-      </div>
+    <>
+      {" "}
       <div className="editMarksAndStudentDetailsButtonContainer">
         <Button
+          style={iconButtonStyle}
           variant="outlined"
           onClick={() => submitStudentDetailChanges(updatedStudentDetails)}
         >
           SAVE
         </Button>
-        <Button onClick={() => props.setEditState(false)} variant="outlined">
+        <Button
+          onClick={() => props.setEditState(false)}
+          variant="outlined"
+          style={iconButtonStyle}
+        >
           DISCARD
         </Button>
       </div>
-    </div>
+      <div className="studentDetailsGrid">
+        <div className="studentDetailsRow">
+          <b>First Name:</b>
+          <TextField
+            value={updatedStudentDetails.firstname}
+            name="firstname"
+            onChange={(e) => textFieldChangeHandler(e)}
+          ></TextField>
+        </div>
+        <div className="studentDetailsRow">
+          <b>Last Name:</b>
+          <TextField
+            value={updatedStudentDetails.lastname}
+            name="lastname"
+            onChange={(e) => textFieldChangeHandler(e)}
+          ></TextField>
+        </div>
+        <div className="studentDetailsRow">
+          <b>Student ID:</b>
+          <TextField
+            value={updatedStudentDetails.id}
+            name="id"
+            onChange={(e) => textFieldChangeHandler(e)}
+          ></TextField>
+        </div>
+        <div className="studentDetailsRow">
+          <b>Email:</b>
+          <TextField
+            value={updatedStudentDetails.email}
+            name="email"
+            onChange={(e) => textFieldChangeHandler(e)}
+          ></TextField>
+        </div>
+      </div>
+    </>
   ) : null;
 };

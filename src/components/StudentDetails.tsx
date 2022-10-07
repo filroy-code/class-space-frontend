@@ -24,6 +24,7 @@ export const StudentDetails = (props: {
     color: "rgb(0, 109, 119)",
     border: "1px solid black",
     borderRadius: "5px",
+    fontSize: "1rem",
   };
 
   const selectedIconButtonStyle = {
@@ -71,12 +72,17 @@ export const StudentDetails = (props: {
 
   return (
     <div className="studentDetailsPanel">
-      <IconButton
-        onClick={() => props.setEditState((prev: boolean) => !prev)}
-        style={props.editState ? selectedIconButtonStyle : iconButtonStyle}
-      >
-        <EditIcon></EditIcon>
-      </IconButton>
+      {!props.editState && (
+        <div className="editMarksAndStudentDetailsButtonContainer">
+          <IconButton
+            onClick={() => props.setEditState((prev: boolean) => !prev)}
+            style={props.editState ? selectedIconButtonStyle : iconButtonStyle}
+          >
+            <span>Edit Details </span>
+            <EditIcon style={{ marginLeft: "10px" }}></EditIcon>
+          </IconButton>
+        </div>
+      )}
       {props.editState ? (
         <EditStudentDetails
           setSelectedStudent={props.setSelectedStudent}
