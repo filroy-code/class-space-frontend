@@ -5,6 +5,10 @@
   margin: 0;
 }
 
+.loggedInLayout {
+  width: 95vw;
+}
+
 .classSelection {
   display: flex;
   flex-direction: column;
@@ -12,11 +16,15 @@
 
 .classBoxContainer {
   display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-evenly; */
 }
 
 .classDeleteButton {
   position: absolute;
-  margin: 5px 0px;
+  top: 0%;
+  right: 0%;
+  margin: 10px;
   background-color: rgb(237, 246, 249);
   color: rgb(0, 109, 119);
   border: 1px solid black;
@@ -25,9 +33,19 @@
 
 .classBox {
   height: 100px;
-  width: 100px;
+  width: 15rem;
   border: 1px solid black;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.newClassBox {
+  justify-content: center;
+  align-items: center;
+  border: 5px double black;
 }
 
 .classBox:hover {
@@ -42,8 +60,13 @@
   background-color: rgb(166, 166, 166);
 }
 
+.icon {
+  margin: 15px;
+}
+
 .classHome {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .classHomeSelector {
@@ -138,7 +161,7 @@
 .summaryTable {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  padding: 20px;
   overflow-y: scroll;
   height: 97vh;
 }

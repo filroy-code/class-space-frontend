@@ -8,6 +8,7 @@ import { CreateNewClassForm } from "./CreateNewClassForm";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
 import { Button } from "@mui/material";
+import Divider from "@mui/material/Divider";
 import {
   INITIAL_STATE,
   classSelectReducer,
@@ -80,27 +81,35 @@ export const ClassSelection: React.FC = () => {
           ></CreateNewClassForm>
         }
       ></Modal>
-      <div className="classBoxContainer">
-        <div className="classBox" onClick={() => setModalOpen(true)}>
+      <div className="classSelection">
+        <div
+          className="classBox newClassBox"
+          onClick={() => setModalOpen(true)}
+        >
           <AddIcon></AddIcon>
         </div>
-        {data && !isValidating ? (
-          data.classList.map((classInList: ClassSelectionDataShape) => {
-            return (
-              <ClassBox
-                classData={classInList}
-                key={classInList.id}
-                deleteMode={state.selectionType}
-                selected={state.selectedClasses.includes(classInList.name)}
-                dispatch={dispatch}
-              ></ClassBox>
-            );
-          })
-        ) : (
-          <h1>
-            {error ? "There was an error getting your classes." : "Loading..."}
-          </h1>
-        )}
+        <Divider style={{ margin: "15px" }}></Divider>
+        <div className="classBoxContainer">
+          {data && !isValidating ? (
+            data.classList.map((classInList: ClassSelectionDataShape) => {
+              return (
+                <ClassBox
+                  classData={classInList}
+                  key={classInList.id}
+                  deleteMode={state.selectionType}
+                  selected={state.selectedClasses.includes(classInList.name)}
+                  dispatch={dispatch}
+                ></ClassBox>
+              );
+            })
+          ) : (
+            <h1>
+              {error
+                ? "There was an error getting your classes."
+                : "Loading..."}
+            </h1>
+          )}
+        </div>
       </div>
       {state.selectionType ? (
         <div className="editMarksAndStudentDetailsButtonContainer">
@@ -116,14 +125,15 @@ export const ClassSelection: React.FC = () => {
           <Button onClick={() => console.log(state)}>CHECK</Button>
         </div>
       ) : (
-        <IconButton
-          className="classDeleteButton"
-          onClick={() => {
-            dispatch({ type: "DELETE_ENABLE" });
-          }}
-        >
-          <DeleteIcon></DeleteIcon>
-        </IconButton>
+        <div className="classDeleteButton">
+          <IconButton
+            onClick={() => {
+              dispatch({ type: "DELETE_ENABLE" });
+            }}
+          >
+            <DeleteIcon></DeleteIcon>
+          </IconButton>
+        </div>
       )}
     </div>
   );

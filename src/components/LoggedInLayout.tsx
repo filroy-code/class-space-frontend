@@ -4,7 +4,7 @@ const LoggedInLayout: React.FC = (props) => {
   const { user } = useParams();
 
   return (
-    <div>
+    <div className="loggedInLayout">
       <Outlet />
     </div>
   );
