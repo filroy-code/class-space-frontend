@@ -9,11 +9,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
 import { Button } from "@mui/material";
 import Divider from "@mui/material/Divider";
+import Skeleton from "@mui/material/Skeleton";
 import {
   INITIAL_STATE,
   classSelectReducer,
   SelectionData,
 } from "../reducers/classSelectReducer";
+import LoadingSkeletonBoxes from "./LoadingSkeletonBoxes";
 
 export type ClassSelectionDataShape = {
   id: number;
@@ -104,9 +106,11 @@ export const ClassSelection: React.FC = () => {
             })
           ) : (
             <h1>
-              {error
-                ? "There was an error getting your classes."
-                : "Loading..."}
+              {error ? (
+                "There was an error getting your classes."
+              ) : (
+                <LoadingSkeletonBoxes type="classBoxContainer"></LoadingSkeletonBoxes>
+              )}
             </h1>
           )}
         </div>

@@ -5,6 +5,7 @@ import { AssignmentMarksTable } from "./AssignmentMarksTable";
 import { CreateNewAssignmentForm } from "./CreateNewAssignmentForm";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "./Modal";
+import LoadingSkeletonBoxes from "./LoadingSkeletonBoxes";
 
 export const AssignmentPanel = (): JSX.Element => {
   type Params = {
@@ -72,9 +73,11 @@ export const AssignmentPanel = (): JSX.Element => {
           })
         ) : (
           <h1>
-            {classAssignmentError
-              ? "There was an error retrieving your assignments."
-              : "Loading..."}
+            {classAssignmentError ? (
+              "There was an error retrieving your assignments."
+            ) : (
+              <LoadingSkeletonBoxes type="selectorColumn" />
+            )}
           </h1>
         )}
       </div>

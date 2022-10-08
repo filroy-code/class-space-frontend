@@ -5,6 +5,7 @@ import { CreateNewStudentForm } from "./CreateNewStudentForm";
 import { StudentDetails } from "./StudentDetails";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "./Modal";
+import LoadingSkeletonBoxes from "./LoadingSkeletonBoxes";
 
 export const StudentPanel = (): JSX.Element => {
   type Params = {
@@ -67,9 +68,11 @@ export const StudentPanel = (): JSX.Element => {
           })
         ) : (
           <h1>
-            {error
-              ? "There was an error retrieving your student list."
-              : "Loading..."}
+            {error ? (
+              "There was an error retrieving your student list."
+            ) : (
+              <LoadingSkeletonBoxes type="selectorColumn" />
+            )}
           </h1>
         )}
       </div>
