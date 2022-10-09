@@ -105,13 +105,13 @@ export const ClassSelection: React.FC = () => {
               );
             })
           ) : (
-            <h1>
+            <>
               {error ? (
-                "There was an error getting your classes."
+                <h1>"There was an error getting your classes."</h1>
               ) : (
                 <LoadingSkeletonBoxes type="classBoxContainer"></LoadingSkeletonBoxes>
               )}
-            </h1>
+            </>
           )}
         </div>
       </div>

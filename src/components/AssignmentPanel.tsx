@@ -53,7 +53,7 @@ export const AssignmentPanel = (): JSX.Element => {
           <AddIcon></AddIcon>
         </div>
         {classAssignmentData && !isValidating ? (
-          classAssignmentData.classInfo.length < 0 ? (
+          classAssignmentData.classInfo.length > 1 ? (
             classAssignmentData.classInfo.map((item: any) => {
               if (item.assignments) {
                 return (
