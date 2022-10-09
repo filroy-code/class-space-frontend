@@ -72,13 +72,13 @@ export const AssignmentPanel = (): JSX.Element => {
             }
           })
         ) : (
-          <h1>
+          <>
             {classAssignmentError ? (
-              "There was an error retrieving your assignments."
+              <h1>"There was an error retrieving your assignments."</h1>
             ) : (
-              <LoadingSkeletonBoxes type="selectorColumn" />
+              <LoadingSkeletonBoxes type="" />
             )}
-          </h1>
+          </>
         )}
       </div>
       {selectedAssignment ? (

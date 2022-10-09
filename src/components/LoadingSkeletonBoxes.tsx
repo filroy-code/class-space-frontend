@@ -7,7 +7,10 @@ export default function LoadingSkeletonBoxes(props: { type: string }) {
     border: "1px solid black",
   };
   return (
-    <div className={props.type}>
+    <div
+      className={props.type}
+      style={{ display: "flex", flexDirection: "column" }}
+    >
       <Skeleton
         variant="rectangular"
         width={"15rem"}

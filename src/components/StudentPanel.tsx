@@ -67,13 +67,13 @@ export const StudentPanel = (): JSX.Element => {
             }
           })
         ) : (
-          <h1>
+          <>
             {error ? (
-              "There was an error retrieving your student list."
+              <h1>"There was an error retrieving your student list."</h1>
             ) : (
-              <LoadingSkeletonBoxes type="selectorColumn" />
+              <LoadingSkeletonBoxes type="" />
             )}
-          </h1>
+          </>
         )}
       </div>
       {selectedStudent && data ? (
