@@ -53,24 +53,28 @@ export const AssignmentPanel = (): JSX.Element => {
           <AddIcon></AddIcon>
         </div>
         {classAssignmentData && !isValidating ? (
-          classAssignmentData.classInfo.map((item: any) => {
-            if (item.assignments) {
-              return (
-                <div
-                  className="assignmentOrStudentSelectorBox"
-                  key={item.assignments}
-                  data-assignmentname={item.assignments}
-                  onClick={(event) => {
-                    const result = (event.target as HTMLDivElement).dataset
-                      .assignmentname;
-                    setSelectedAssignment(result);
-                  }}
-                >
-                  {item.assignments}
-                </div>
-              );
-            }
-          })
+          classAssignmentData.classInfo.length < 0 ? (
+            classAssignmentData.classInfo.map((item: any) => {
+              if (item.assignments) {
+                return (
+                  <div
+                    className="assignmentOrStudentSelectorBox"
+                    key={item.assignments}
+                    data-assignmentname={item.assignments}
+                    onClick={(event) => {
+                      const result = (event.target as HTMLDivElement).dataset
+                        .assignmentname;
+                      setSelectedAssignment(result);
+                    }}
+                  >
+                    {item.assignments}
+                  </div>
+                );
+              }
+            })
+          ) : (
+            <h1>No assignments found.</h1>
+          )
         ) : (
           <>
             {classAssignmentError ? (

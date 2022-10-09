@@ -47,25 +47,29 @@ export const StudentPanel = (): JSX.Element => {
           <AddIcon></AddIcon>
         </div>
         {data && !isValidating ? (
-          data.classInfo.map((item: any) => {
-            if (item.students) {
-              return (
-                <div
-                  className="assignmentOrStudentSelectorBox"
-                  key={item.students}
-                  data-studentname={item.students}
-                  onClick={(event) => {
-                    setEditState(false);
-                    const result = (event.target as HTMLDivElement).dataset
-                      .studentname;
-                    setSelectedStudent(result);
-                  }}
-                >
-                  {`${item.firstname} ${item.lastname}`}
-                </div>
-              );
-            }
-          })
+          data.classInfo.length > 0 ? (
+            data.classInfo.map((item: any) => {
+              if (item.students) {
+                return (
+                  <div
+                    className="assignmentOrStudentSelectorBox"
+                    key={item.students}
+                    data-studentname={item.students}
+                    onClick={(event) => {
+                      setEditState(false);
+                      const result = (event.target as HTMLDivElement).dataset
+                        .studentname;
+                      setSelectedStudent(result);
+                    }}
+                  >
+                    {`${item.firstname} ${item.lastname}`}
+                  </div>
+                );
+              }
+            })
+          ) : (
+            <h1>No students found.</h1>
+          )
         ) : (
           <>
             {error ? (
