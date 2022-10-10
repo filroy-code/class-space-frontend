@@ -10,8 +10,8 @@ export default function LoadingSkeletonBoxes(props: { type: string }) {
     <div
       style={
         props.type === "classBoxContainer"
-          ? { display: "flex" }
-          : { display: "flex", flexDirection: "column" }
+          ? { display: "flex", flexWrap: "wrap" }
+          : { display: "flex", flexDirection: "column", flexWrap: "wrap" }
       }
     >
       <Skeleton

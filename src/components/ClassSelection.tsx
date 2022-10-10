@@ -135,7 +135,7 @@ export const ClassSelection: React.FC = () => {
             onClick={() => dispatch({ type: "RESET" })}
             variant="outlined"
           >
-            UNDO
+            CANCEL
           </Button>
         </div>
       ) : (
