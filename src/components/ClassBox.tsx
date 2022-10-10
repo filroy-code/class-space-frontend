@@ -22,7 +22,6 @@ export const ClassBox = (props: {
     user: string;
   };
   const { user } = useParams<keyof Params>() as Params;
-  console.log(props.classData);
 
   const displayedName = props.classData.name.split(/_(.*)/s)[1];
 

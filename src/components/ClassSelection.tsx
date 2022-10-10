@@ -10,6 +10,8 @@ import { IconButton } from "@mui/material";
 import { Button } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import Skeleton from "@mui/material/Skeleton";
+import Tooltip from "@mui/material/Tooltip";
+
 import {
   INITIAL_STATE,
   classSelectReducer,
@@ -69,6 +71,13 @@ export const ClassSelection: React.FC = () => {
     mutate(`http://localhost:8000/${user}`);
   }
 
+  const [newClassMouseover, setNewClassMouseover] =
+    React.useState<boolean>(false);
+
+  function createClassMouseover(toggle: boolean) {
+    setNewClassMouseover(toggle);
+  }
+
   return (
     <div className="classSelection">
       <Modal
@@ -86,9 +95,11 @@ export const ClassSelection: React.FC = () => {
       <div className="classSelection">
         <div
           className="classBox newClassBox"
+          onMouseEnter={() => createClassMouseover(true)}
+          onMouseLeave={() => createClassMouseover(false)}
           onClick={() => setModalOpen(true)}
         >
-          <AddIcon></AddIcon>
+          {newClassMouseover ? <h3>Create New Class</h3> : <AddIcon></AddIcon>}
         </div>
         <Divider style={{ margin: "15px" }}></Divider>
         <div className="classBoxContainer">
@@ -126,18 +137,24 @@ export const ClassSelection: React.FC = () => {
           >
             UNDO
           </Button>
-          <Button onClick={() => console.log(state)}>CHECK</Button>
         </div>
       ) : (
-        <div className="classDeleteButton">
-          <IconButton
-            onClick={() => {
-              dispatch({ type: "DELETE_ENABLE" });
-            }}
-          >
-            <DeleteIcon></DeleteIcon>
-          </IconButton>
-        </div>
+        <Tooltip
+          title="Delete Classes"
+          placement="left"
+          className="classDeleteButton"
+          arrow
+        >
+          <div className="classDeleteButton">
+            <IconButton
+              onClick={() => {
+                dispatch({ type: "DELETE_ENABLE" });
+              }}
+            >
+              <DeleteIcon></DeleteIcon>
+            </IconButton>
+          </div>
+        </Tooltip>
       )}
     </div>
   );

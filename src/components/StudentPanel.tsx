@@ -6,6 +6,7 @@ import { StudentDetails } from "./StudentDetails";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "./Modal";
 import LoadingSkeletonBoxes from "./LoadingSkeletonBoxes";
+import Divider from "@mui/material/Divider";
 
 export const StudentPanel = (): JSX.Element => {
   type Params = {
@@ -46,6 +47,7 @@ export const StudentPanel = (): JSX.Element => {
         >
           <AddIcon></AddIcon>
         </div>
+        <Divider style={{ margin: "15px" }}></Divider>
         {data && !isValidating ? (
           data.classInfo.length > 0 ? (
             data.classInfo.map((item: any) => {

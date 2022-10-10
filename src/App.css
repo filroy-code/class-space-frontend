@@ -46,6 +46,8 @@
   justify-content: center;
   align-items: center;
   border: 5px double black;
+  user-select: none;
+  cursor: pointer;
 }
 
 .classBox:hover {
@@ -133,6 +135,8 @@
   grid-template-columns: 16rem 6.5rem 5rem;
   padding: 10px;
   align-items: center;
+  border: 1px solid black;
+  margin: 1px;
 }
 
 .studentDetailsRow {
