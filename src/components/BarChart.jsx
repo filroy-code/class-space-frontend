@@ -21,27 +21,25 @@ const stats = [
   const ref = useD3(
     (svg) => {
       const yScale = d3
-      .scaleLinear().domain([0, 10]).range([0, 500])
+      .scaleLinear().domain([0, 10]).range([300, 0])
 
       const xScale = d3
       .scaleBand()
-      .domain(
-        stats.map((dataPoint) => {
-          return dataPoint.score;
-        })
-      )
-      .rangeRound([0, 750])
+      .domain(stats.map((dataPoint) => dataPoint.score))
+      .rangeRound([0, 600])
       .padding(1);
 
       svg
         .classed("graph", true)
         .selectAll(".bar")
         .data(stats)
-        .join("rect")
+        .enter()
+        .append("rect")
         .classed("bar", true)
-        .attr("height", (data) => xScale(data.number))
-        .transition()
-        .duration(700)
+        .attr("width", 50)
+        .attr("height", (data) => yScale(data.number))
+        // .transition()
+        // .duration(700)
         .attr("x", (data) => {
             return xScale(data.score);
         //   if (data.comparison < 0) {
@@ -51,7 +49,7 @@ const stats = [
         //   }
         })
         .attr("y", (data) => {
-            return 500
+            return 500 - yScale(data.number)
         //   return yScale(data.number);
         })
         .attr("fill", (data) => {
@@ -59,9 +57,6 @@ const stats = [
         })
         .transition()
         .duration(700)
-        .attr("width", (data) => {
-            return xScale.bandwidth();
-        })
 
       // const graphText = svg.append('g').attr('class', 'graphText');
 
@@ -70,19 +65,16 @@ const stats = [
         .data(stats)
         .join("text")
         .attr("x", (data) => {
-          if (data.comparison < 0) {
-            return -120 + xScale(data.comparison / data.playerOne);
-          } else {
-            return 10 + xScale(data.comparison / data.playerOne);
-          }
+            return xScale(data.score);
         })
         .attr("y", (data) => {
-          return yScale(data.stat) + 19;
+          return 530
         })
-        .attr("font-weight", "bold")
         .text(
-          (data) => `${data.stat} (+ ${Math.abs(data.comparison).toFixed(2)})`
-        );
+          (data) => data.score
+        )
+        .attr("font-weight", "bold");
+
       // graphText
       // .selectAll("text")
       // .data(stats)

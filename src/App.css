@@ -206,3 +206,9 @@
 .summarySelected {
   background-color: rgb(214, 214, 214);
 }
+
+.graphPanel {
+  display: flex;
+  margin: 10px;
+  justify-content: center;
+}

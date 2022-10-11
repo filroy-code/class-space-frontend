@@ -172,7 +172,9 @@ export const SummaryHome = (props: {}) => {
           </div>
         )}
       </div>
-      {/* {selectedAssignment ? <BarChart></BarChart> : null} */}
+      <div className="graphPanel">
+        {selectedAssignment ? <BarChart></BarChart> : null}
+      </div>
     </div>
   );
 };
