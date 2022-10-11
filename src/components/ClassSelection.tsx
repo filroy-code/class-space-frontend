@@ -11,6 +11,7 @@ import { Button } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import Skeleton from "@mui/material/Skeleton";
 import Tooltip from "@mui/material/Tooltip";
+import Zoom from "@mui/material/Zoom";
 
 import {
   INITIAL_STATE,
@@ -140,6 +141,7 @@ export const ClassSelection: React.FC = () => {
         </div>
       ) : (
         <Tooltip
+          TransitionComponent={Zoom}
           title="Delete Classes"
           placement="left"
           className="classDeleteButton"

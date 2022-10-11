@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { TextField, Button } from "@mui/material";
 import { SummaryPieChart } from "./SummaryPieChart";
+import BarChart from "./BarChart";
 
 export const SummaryHome = (props: {}) => {
   type Params = {
@@ -152,24 +153,26 @@ export const SummaryHome = (props: {}) => {
             }
           })
         ) : (
-          <h1>{error ? "There was an error." : "Loading..."}</h1>
+          <h3>{error ? "There was an error." : "Loading..."}</h3>
         )}
         {!error && (
           <div className="editMarksAndStudentDetailsButtonContainer">
-            <Button
-              variant="outlined"
-              onClick={() => {
-                submitWeightingChanges(assignmentsData);
-              }}
-            >
-              Submit Weighting Adjustments
-            </Button>
+            {assignmentsData.length > 0 ? (
+              <Button
+                variant="outlined"
+                onClick={() => {
+                  submitWeightingChanges(assignmentsData);
+                }}
+              >
+                Submit Weighting Adjustments
+              </Button>
+            ) : (
+              <h3>No assignments found.</h3>
+            )}
           </div>
         )}
       </div>
-      {/* {selectedAssignment ? (
-        <SummaryPieChart assignmentArray={assignmentsData}></SummaryPieChart>
-      ) : null} */}
+      {/* {selectedAssignment ? <BarChart></BarChart> : null} */}
     </div>
   );
 };

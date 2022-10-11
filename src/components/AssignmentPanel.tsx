@@ -6,6 +6,7 @@ import { CreateNewAssignmentForm } from "./CreateNewAssignmentForm";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "./Modal";
 import LoadingSkeletonBoxes from "./LoadingSkeletonBoxes";
+import Divider from "@mui/material/Divider";
 
 export const AssignmentPanel = (): JSX.Element => {
   type Params = {
@@ -25,14 +26,6 @@ export const AssignmentPanel = (): JSX.Element => {
   const [assignmentModalOpen, setAssignmentModalOpen] =
     React.useState<boolean>(false);
 
-  // if (classAssignmentData) {
-  //   console.log(classAssignmentData);
-  // }
-
-  // to do: add a message for when no assignments are found
-  if (classAssignmentData) {
-    console.log(classAssignmentData);
-  }
   return (
     <div className="assignmentPanel">
       <Modal
@@ -50,38 +43,35 @@ export const AssignmentPanel = (): JSX.Element => {
       <div className="selectorColumn">
         <div
           data-testid="newAssignmentButton"
-          className="assignmentOrStudentSelectorBox"
+          className="assignmentOrStudentSelectorBox newAssignmentOrStudent"
           onClick={() => setAssignmentModalOpen(true)}
         >
           <AddIcon></AddIcon>
         </div>
+        <Divider style={{ margin: "15px" }}></Divider>
         {classAssignmentData && !isValidating ? (
-          classAssignmentData.classInfo.length > 1 ? (
-            classAssignmentData.classInfo.map((item: any) => {
-              if (item.assignments) {
-                return (
-                  <div
-                    className="assignmentOrStudentSelectorBox"
-                    key={item.assignments}
-                    data-assignmentname={item.assignments}
-                    onClick={(event) => {
-                      const result = (event.target as HTMLDivElement).dataset
-                        .assignmentname;
-                      setSelectedAssignment(result);
-                    }}
-                  >
-                    {item.assignments}
-                  </div>
-                );
-              }
-            })
-          ) : (
-            <h1>No assignments found.</h1>
-          )
+          classAssignmentData.classInfo.map((item: any) => {
+            if (item.assignments) {
+              return (
+                <div
+                  className="assignmentOrStudentSelectorBox"
+                  key={item.assignments}
+                  data-assignmentname={item.assignments}
+                  onClick={(event) => {
+                    const result = (event.target as HTMLDivElement).dataset
+                      .assignmentname;
+                    setSelectedAssignment(result);
+                  }}
+                >
+                  {item.assignments}
+                </div>
+              );
+            }
+          })
         ) : (
           <>
             {classAssignmentError ? (
-              <h1>"There was an error retrieving your assignments."</h1>
+              <h3>"There was an error retrieving your assignments."</h3>
             ) : (
               <LoadingSkeletonBoxes type="" />
             )}

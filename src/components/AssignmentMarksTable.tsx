@@ -42,6 +42,10 @@ export const AssignmentMarksTable = (props: {
     `http://localhost:8000/${user}/${classID}/assignments/${props.selectedAssignment}`
   );
 
+  if (data) {
+    console.log(data);
+  }
+
   type FormattedMarksData = {
     student: { id: string; firstname: string; lastname: string };
     score: number | null | undefined;
@@ -99,7 +103,7 @@ export const AssignmentMarksTable = (props: {
     }
   }
 
-  const editedColor = "rgb(252, 252, 138)";
+  // const editedColor = "rgb(252, 252, 138)";
 
   return data ? (
     <div>
@@ -140,22 +144,26 @@ export const AssignmentMarksTable = (props: {
         );
       })}
       <Divider style={{ margin: "15px" }}></Divider>
-      <div className="editMarksAndStudentDetailsButtonContainer">
-        <Button
-          variant="outlined"
-          onClick={() => submitMarkUpdate(studentMarks)}
-        >
-          SAVE
-        </Button>
-        <Button
-          onClick={() => console.log(studentMarksInitial)}
-          variant="outlined"
-        >
-          DISCARD
-        </Button>
-      </div>
+      {studentMarks.length > 0 ? (
+        <div className="editMarksAndStudentDetailsButtonContainer">
+          <Button
+            variant="outlined"
+            onClick={() => submitMarkUpdate(studentMarks)}
+          >
+            SAVE
+          </Button>
+          <Button
+            onClick={() => console.log(studentMarksInitial)}
+            variant="outlined"
+          >
+            DISCARD
+          </Button>
+        </div>
+      ) : (
+        <h3>No students found.</h3>
+      )}
     </div>
   ) : (
-    <h1>{error ? "There was an error." : "Loading..."}</h1>
+    <h3>{error ? "There was an error." : "Loading..."}</h3>
   );
 };

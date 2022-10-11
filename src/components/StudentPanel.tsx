@@ -42,7 +42,7 @@ export const StudentPanel = (): JSX.Element => {
       ></Modal>
       <div className="selectorColumn">
         <div
-          className="assignmentOrStudentSelectorBox"
+          className="assignmentOrStudentSelectorBox newAssignmentOrStudent"
           onClick={() => setStudentModalOpen(true)}
         >
           <AddIcon></AddIcon>
@@ -70,12 +70,12 @@ export const StudentPanel = (): JSX.Element => {
               }
             })
           ) : (
-            <h1>No students found.</h1>
+            <h3>No students found.</h3>
           )
         ) : (
           <>
             {error ? (
-              <h1>"There was an error retrieving your student list."</h1>
+              <h3>"There was an error retrieving your student list."</h3>
             ) : (
               <LoadingSkeletonBoxes type="" />
             )}
