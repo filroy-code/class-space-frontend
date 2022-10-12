@@ -50,7 +50,6 @@ const stats = [
         })
         .attr("y", (data) => {
             return 500 - yScale(data.number)
-        //   return yScale(data.number);
         })
         .attr("fill", (data) => {
             return "blue";
@@ -65,30 +64,49 @@ const stats = [
         .data(stats)
         .join("text")
         .attr("x", (data) => {
-            return xScale(data.score);
+            return 250
         })
         .attr("y", (data) => {
-          return 530
+          return 150
         })
         .text(
-          (data) => data.score
+          (data) => "Mark distribution for "
         )
         .attr("font-weight", "bold");
 
-      // graphText
-      // .selectAll("text")
-      // .data(stats)
-      // .enter()
-      // .append("text")
-      // .attr("x", (data) => {
-      //     return -800;
-      // })
-      // .attr("y", (data) => {
-      //   return yScale(data.stat) + 19;
-      // })
-      // .text(
-      //   (data) => `${data.playerOne}`
-      // );
+    //   svg
+    //   .selectAll("dataText")
+    //   .data(stats)
+    //   .join("text")
+    //   .attr("x", (data) => {
+    //       return xScale(data.score) + 20;
+    //   })
+    //   .attr("y", (data) => {
+    //     return 450 - yScale(data.number)
+    //   })
+    //   .attr("z-index", "10")
+    //   .attr("font-weight", "bold")
+    //   .text(
+    //     (data) => `${data.number}`
+    //   );
+
+      var x_axis = d3.axisBottom()
+      .scale(xScale)
+
+
+    // svg.append("g")
+    // .call(x_axis)
+
+    var y_axis = d3.axisLeft()
+        .scale(yScale);
+
+    svg.append("g")
+       .attr("transform", "translate(50, 200)")
+       .call(y_axis);
+
+    svg.append("g")
+            .attr("transform", "translate(20, 510)")
+            .call(x_axis)
     },
     [stats]
   );
@@ -98,10 +116,9 @@ const stats = [
       className="graph"
       ref={ref}
       style={{
-        paddingTop: "50px",
+        paddingTop: "0px",
         marginRight: "0px",
         marginLeft: "0px",
-        viewBox: "0 0 500 750",
         preserveAspectRatio: "xMinYMin meet",
       }}
     ></svg>

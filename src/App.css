@@ -175,6 +175,7 @@
 
 .summaryHome {
   display: flex;
+  /* justify-content: space-between; */
 }
 
 .summaryTable {
@@ -183,6 +184,8 @@
   padding: 20px;
   overflow-y: scroll;
   height: 97vh;
+  width: 30rem;
+  flex-wrap: wrap;
 }
 
 .summaryRow {
@@ -211,4 +214,9 @@
   display: flex;
   margin: 10px;
   justify-content: center;
+}
+
+.graph {
+  width: 600px;
+  display: flex;
 }
