@@ -11,6 +11,19 @@
   flex-direction: column;
 }
 
+nav {
+  height: 2.5rem;
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  padding-left: 20px;
+}
+
+hr {
+  width: 100%;
+}
+
 .classSelection {
   display: flex;
   flex-direction: column;
