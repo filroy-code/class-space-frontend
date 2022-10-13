@@ -26,6 +26,19 @@ export const AssignmentPanel = (): JSX.Element => {
   const [assignmentModalOpen, setAssignmentModalOpen] =
     React.useState<boolean>(false);
 
+  const [assignmentsExist, setAssignmentsExist] =
+    React.useState<boolean>(false);
+  React.useEffect(() => {
+    if (classAssignmentData) {
+      classAssignmentData.classInfo &&
+        classAssignmentData.classInfo.forEach((entry: any) => {
+          if (entry.assignments) {
+            setAssignmentsExist(true);
+          }
+        });
+    }
+  }, classAssignmentData);
+
   return (
     <div className="assignmentPanel">
       <Modal
@@ -50,24 +63,28 @@ export const AssignmentPanel = (): JSX.Element => {
         </div>
         <Divider style={{ margin: "15px" }}></Divider>
         {classAssignmentData && !isValidating ? (
-          classAssignmentData.classInfo.map((item: any) => {
-            if (item.assignments) {
-              return (
-                <div
-                  className="assignmentOrStudentSelectorBox"
-                  key={item.assignments}
-                  data-assignmentname={item.assignments}
-                  onClick={(event) => {
-                    const result = (event.target as HTMLDivElement).dataset
-                      .assignmentname;
-                    setSelectedAssignment(result);
-                  }}
-                >
-                  {item.assignments}
-                </div>
-              );
-            }
-          })
+          assignmentsExist ? (
+            classAssignmentData.classInfo.map((item: any) => {
+              if (item.assignments) {
+                return (
+                  <div
+                    className="assignmentOrStudentSelectorBox"
+                    key={item.assignments}
+                    data-assignmentname={item.assignments}
+                    onClick={(event) => {
+                      const result = (event.target as HTMLDivElement).dataset
+                        .assignmentname;
+                      setSelectedAssignment(result);
+                    }}
+                  >
+                    {item.assignments}
+                  </div>
+                );
+              }
+            })
+          ) : (
+            <h3>No assignments found.</h3>
+          )
         ) : (
           <>
             {classAssignmentError ? (
