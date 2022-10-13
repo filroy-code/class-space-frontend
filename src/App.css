@@ -190,7 +190,7 @@
 
 .summaryRow {
   display: grid;
-  grid-template-columns: 16rem 6.5rem 6.5rem;
+  grid-template-columns: 16rem 6.5rem 8rem;
 }
 
 .summaryRow:hover:not(:first-of-type):not(.summarySelected) {

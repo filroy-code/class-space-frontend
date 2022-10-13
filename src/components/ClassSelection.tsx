@@ -104,7 +104,7 @@ export const ClassSelection: React.FC = () => {
         </div>
         <Divider style={{ margin: "15px" }}></Divider>
         <div className="classBoxContainer">
-          {data.classList && !isValidating ? (
+          {data && !isValidating ? (
             data.classList.map((classInList: ClassSelectionDataShape) => {
               return (
                 <ClassBox

@@ -73,12 +73,41 @@ export const SummaryHome = (props: {}) => {
     console.log(error);
   }
 
-  if (assignmentsData) {
-    console.log(assignmentsData);
-  }
-
   const [selectedAssignment, setSelectedAssignment] =
     React.useState<string>("");
+
+  async function getSingleAssignmentData(selectedAssignment: string) {
+    let response = await fetch(
+      `http://localhost:8000/${user}/${classID}/assignments/${selectedAssignment}/distribution`,
+      {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          Origin: "localhost:8000",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    if (response.status === 200) {
+      let resJSON = await response.json();
+      return resJSON.assignmentInfo;
+    } else {
+      console.log("there was an error");
+    }
+  }
+
+  const [distribution, setDistribution] = React.useState([]);
+
+  React.useEffect(() => {
+    if (!selectedAssignment) {
+      return;
+    }
+    if (selectedAssignment) {
+      getSingleAssignmentData(selectedAssignment).then((res) => {
+        setDistribution(res);
+      });
+    }
+  }, [selectedAssignment]);
 
   return (
     <div className="summaryHome">
@@ -173,7 +202,12 @@ export const SummaryHome = (props: {}) => {
         )}
       </div>
       <div className="graphPanel">
-        {selectedAssignment ? <BarChart></BarChart> : null}
+        {selectedAssignment && distribution.length > 0 ? (
+          <BarChart
+            selectedAssignment={selectedAssignment}
+            distribution={distribution}
+          ></BarChart>
+        ) : null}
       </div>
     </div>
   );
