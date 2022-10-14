@@ -12,7 +12,6 @@ import Divider from "@mui/material/Divider";
 import Skeleton from "@mui/material/Skeleton";
 import Tooltip from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
-
 import {
   INITIAL_STATE,
   classSelectReducer,
@@ -27,12 +26,14 @@ export type ClassSelectionDataShape = {
   admins: string;
 };
 
-export const ClassSelection: React.FC = () => {
+export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
   type Params = {
     user: string;
   };
 
   const { user } = useParams<keyof Params>() as Params;
+
+  React.useEffect(() => props.setNavState(null), []);
 
   const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
 

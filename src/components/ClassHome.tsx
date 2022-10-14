@@ -4,13 +4,14 @@ import PeopleIcon from "@mui/icons-material/People";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import BarChartIcon from "@mui/icons-material/BarChart";
 
-export const ClassHome = (): JSX.Element => {
+export const ClassHome = (props: { setNavState: any }): JSX.Element => {
   const navigate = useNavigate();
   type Params = {
     user: string;
     classID: string;
   };
   const { user, classID } = useParams<keyof Params>() as Params;
+  React.useEffect(() => props.setNavState(null), []);
   return (
     <div className="classHome">
       <div

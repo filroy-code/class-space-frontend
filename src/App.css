@@ -12,16 +12,26 @@
 }
 
 nav {
-  height: 2.5rem;
+  height: 3.2rem;
   width: 100%;
   display: flex;
   gap: 20px;
   align-items: center;
-  padding-left: 20px;
+  padding-left: 10px;
+}
+
+.navLink {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navLink:last-of-type {
+  background-color: rgb(175, 255, 255);
 }
 
 hr {
   width: 100%;
+  margin: 5px;
 }
 
 .classSelection {

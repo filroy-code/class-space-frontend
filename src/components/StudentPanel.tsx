@@ -8,7 +8,7 @@ import Modal from "./Modal";
 import LoadingSkeletonBoxes from "./LoadingSkeletonBoxes";
 import Divider from "@mui/material/Divider";
 
-export const StudentPanel = (): JSX.Element => {
+export const StudentPanel = (props: { setNavState: any }): JSX.Element => {
   type Params = {
     user: string;
     classID: string;
@@ -17,6 +17,8 @@ export const StudentPanel = (): JSX.Element => {
   const { data, error, isValidating, mutate } = useSWR(
     `http://localhost:8000/${user}/${classID}/students`
   );
+
+  React.useEffect(() => props.setNavState("Students"), []);
 
   const [selectedStudent, setSelectedStudent] = React.useState<string>();
 

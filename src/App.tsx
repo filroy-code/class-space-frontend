@@ -8,43 +8,66 @@ import { AssignmentPanel } from "./components/AssignmentPanel";
 import { StudentPanel } from "./components/StudentPanel";
 import { SummaryHome } from "./components/SummaryHome";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { NavigationContext } from "./contexts/NavigationContext";
 
 const App = (): JSX.Element => {
   const fetcher = (...args: any) =>
     fetch(args).then((response) => response.json());
 
+  const [navState, setNavState] = React.useState(null);
+
   return (
     <>
       <SWRConfig value={{ fetcher }}>
-        <div className="App">
-          <BrowserRouter>
-            <Routes>
-              {
-                //to add: authentication at route "/"}
-              }
-              <Route path="/:user" element={<LoggedInLayout />}>
-                <Route index element={<ClassSelection></ClassSelection>} />
+        <NavigationContext.Provider value={navState}>
+          <div className="App">
+            <BrowserRouter>
+              <Routes>
+                {
+                  //to add: authentication at route "/"}
+                }
+                <Route path="/:user" element={<LoggedInLayout />}>
+                  <Route
+                    index
+                    element={
+                      <ClassSelection
+                        setNavState={setNavState}
+                      ></ClassSelection>
+                    }
+                  />
 
-                <Route path=":classID" element={<ClassHome></ClassHome>} />
+                  <Route
+                    path=":classID"
+                    element={<ClassHome setNavState={setNavState}></ClassHome>}
+                  />
 
-                <Route
-                  path=":classID/students"
-                  element={<StudentPanel></StudentPanel>}
-                />
+                  <Route
+                    path=":classID/students"
+                    element={
+                      <StudentPanel setNavState={setNavState}></StudentPanel>
+                    }
+                  />
 
-                <Route
-                  path=":classID/assignments"
-                  element={<AssignmentPanel></AssignmentPanel>}
-                />
+                  <Route
+                    path=":classID/assignments"
+                    element={
+                      <AssignmentPanel
+                        setNavState={setNavState}
+                      ></AssignmentPanel>
+                    }
+                  />
 
-                <Route
-                  path=":classID/summary"
-                  element={<SummaryHome></SummaryHome>}
-                />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </div>
+                  <Route
+                    path=":classID/summary"
+                    element={
+                      <SummaryHome setNavState={setNavState}></SummaryHome>
+                    }
+                  />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </div>
+        </NavigationContext.Provider>
       </SWRConfig>
     </>
   );

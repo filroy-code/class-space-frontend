@@ -5,7 +5,7 @@ import { TextField, Button } from "@mui/material";
 import { SummaryPieChart } from "./SummaryPieChart";
 import BarChart from "./BarChart";
 
-export const SummaryHome = (props: {}) => {
+export const SummaryHome = (props: { setNavState: any }) => {
   type Params = {
     user: string;
     classID: string;
@@ -15,6 +15,8 @@ export const SummaryHome = (props: {}) => {
   const { data, error, mutate, isValidating } = useSWR(
     `http://localhost:8000/${user}/${classID}/summary`
   );
+
+  React.useEffect(() => props.setNavState("Summary"), []);
 
   type AssignmentData = {
     name: string;
