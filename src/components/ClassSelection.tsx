@@ -33,7 +33,7 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
 
   const { user } = useParams<keyof Params>() as Params;
 
-  React.useEffect(() => props.setNavState(null), []);
+  React.useEffect(() => props.setNavState(null));
 
   const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
 

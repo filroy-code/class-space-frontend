@@ -23,43 +23,40 @@ export const NavBar = () => {
 
   let breadcrumbs = [
     user && (
-      <Link
+      <div
         className="navLink"
-        style={linkStyle}
         key="1"
-        color="inherit"
+        style={linkStyle}
         onClick={() => navigate(`/${user}`)}
       >
         Logged in as: {user}
-      </Link>
+      </div>
     ),
     classID && (
-      <Link
+      <div
         className="navLink"
+        key="2"
         style={linkStyle}
-        key="1"
-        color="inherit"
         onClick={() => navigate(`/${user}/${classID}`)}
       >
         {classID.split(/_(.*)/s)[1]}
-      </Link>
+      </div>
     ),
     navContext && (
-      <Link
+      <div
         className="navLink"
+        key="3"
         style={linkStyle}
-        key="1"
-        color="inherit"
-        href="/"
+        onClick={() => navigate(`/${user}/${classID}/${navContext}`)}
       >
         {navContext}
-      </Link>
+      </div>
     ),
   ];
   return (
     <nav>
       <Breadcrumbs
-        separator={<NavigateNextIcon fontSize="small" />}
+        separator={<NavigateNextIcon className="navArrow" fontSize="small" />}
         aria-label="breadcrumb"
       >
         {breadcrumbs}

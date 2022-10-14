@@ -16,7 +16,7 @@ export const SummaryHome = (props: { setNavState: any }) => {
     `http://localhost:8000/${user}/${classID}/summary`
   );
 
-  React.useEffect(() => props.setNavState("Summary"), []);
+  React.useEffect(() => props.setNavState("Summary"));
 
   type AssignmentData = {
     name: string;

@@ -21,7 +21,7 @@ export const AssignmentPanel = (props: { setNavState: any }): JSX.Element => {
     isValidating,
   } = useSWR(`http://localhost:8000/${user}/${classID}/assignments`);
 
-  React.useEffect(() => props.setNavState("Assignments"), []);
+  React.useEffect(() => props.setNavState("Assignments"));
 
   const [selectedAssignment, setSelectedAssignment] = React.useState<string>();
 

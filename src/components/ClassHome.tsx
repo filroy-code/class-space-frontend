@@ -11,7 +11,7 @@ export const ClassHome = (props: { setNavState: any }): JSX.Element => {
     classID: string;
   };
   const { user, classID } = useParams<keyof Params>() as Params;
-  React.useEffect(() => props.setNavState(null), []);
+  React.useEffect(() => props.setNavState(null));
   return (
     <div className="classHome">
       <div

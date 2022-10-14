@@ -18,7 +18,7 @@ export const StudentPanel = (props: { setNavState: any }): JSX.Element => {
     `http://localhost:8000/${user}/${classID}/students`
   );
 
-  React.useEffect(() => props.setNavState("Students"), []);
+  React.useEffect(() => props.setNavState("Students"));
 
   const [selectedStudent, setSelectedStudent] = React.useState<string>();
 

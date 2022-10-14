@@ -23,11 +23,18 @@ nav {
 .navLink {
   cursor: pointer;
   text-decoration: none;
+  animation: 0.4s ease-out 0s 1 slideInFromLeft;
+  /* animation-delay: 0.4s; */
+  user-select: none;
 }
 
-.navLink:last-of-type {
-  background-color: rgb(175, 255, 255);
+.navArrow {
+  animation: 0.4s ease-out 0s 1 slideInFromLeftArrow;
 }
+
+/* .navLink:last-of-type {
+  background-color: rgb(175, 255, 255);
+} */
 
 hr {
   width: 100%;
@@ -242,4 +249,26 @@ hr {
 .graph {
   width: 600px;
   display: flex;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0.01;
+    transform: translateX(-10vw);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeftArrow {
+  0% {
+    opacity: 0.01;
+    transform: translateX(-3vw);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
