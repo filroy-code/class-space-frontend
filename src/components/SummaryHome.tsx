@@ -26,14 +26,6 @@ export const SummaryHome = (props: { setNavState: any }) => {
     AssignmentData[]
   >([]);
 
-  //   const [updatedAssignmentsData, setUpdatedAssignmentsData] = React.useState<
-  //     AssignmentData[]
-  //   >([]);
-
-  //   function textFieldChangeHandler(event: any) {
-  //     setAssignmentsData([...assignmentsData]);
-  //   }
-
   async function submitWeightingChanges(assignmentsData: AssignmentData[]) {
     console.log(assignmentsData);
     let response = await fetch(
@@ -49,7 +41,9 @@ export const SummaryHome = (props: { setNavState: any }) => {
       }
     );
     if (response.status === 200) {
-      //   props.mutate(`http://localhost:8000/${user}/${classID}/summary`);
+      setTimeout(() => {
+        mutate(`http://localhost:8000/${user}/${classID}/summary`);
+      }, 1000);
     } else {
       console.log("there was an error");
     }
@@ -59,14 +53,16 @@ export const SummaryHome = (props: { setNavState: any }) => {
     setAssignmentsData([]);
     if (data) {
       let assignmentArray: AssignmentData[] = [];
-      data.classInfo.forEach((datum: any) => {
-        if (datum.assignments) {
-          assignmentArray.push({
-            name: datum.assignments,
-            weight: datum.assignment_weight,
-          });
-        }
-      });
+      if (data.classInfo) {
+        data.classInfo.forEach((datum: any) => {
+          if (datum.assignments) {
+            assignmentArray.push({
+              name: datum.assignments,
+              weight: datum.assignment_weight,
+            });
+          }
+        });
+      }
       setAssignmentsData(assignmentArray);
     }
   }, [data]);
@@ -111,6 +107,10 @@ export const SummaryHome = (props: { setNavState: any }) => {
     }
   }, [selectedAssignment]);
 
+  if (data) {
+    console.log(data);
+  }
+
   return (
     <div className="summaryHome">
       <div className="summaryTable">
@@ -125,7 +125,14 @@ export const SummaryHome = (props: { setNavState: any }) => {
             <b>Class Average</b>
           </div>
         </div>
-        {data ? (
+        <div className="overallRow">
+          <div className="summaryColumn">Overall</div>
+          <div className="summaryColumn"></div>
+          <div className="summaryColumn">
+            {data ? (data.overall * 100).toPrecision(3) : null}%
+          </div>
+        </div>
+        {data && !isValidating ? (
           assignmentsData.map((entry: any, index: number) => {
             if (entry.name) {
               return (
