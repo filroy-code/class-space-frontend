@@ -1,8 +1,10 @@
 .App {
   display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
   margin: 0;
+  overflow-x: hidden;
 }
 
 .loggedInLayout {
@@ -11,8 +13,18 @@
   flex-direction: column;
 }
 
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+h1 {
+  font-size: 1.4rem;
+}
+
 nav {
-  height: 3.2rem;
+  /* height: 3.2rem; */
   width: 100%;
   display: flex;
   gap: 20px;
@@ -26,6 +38,7 @@ nav {
   animation: 0.4s ease-out 0s 1 slideInFromLeft;
   /* animation-delay: 0.4s; */
   user-select: none;
+  margin: 10px;
 }
 
 .navArrow {
@@ -149,9 +162,14 @@ hr {
 .selectorColumn {
   display: flex;
   flex-direction: column;
-  padding: 0px 50px;
+  padding: 0px;
   overflow: scroll;
   height: 100vh;
+  width: 18rem;
+}
+
+h3 {
+  margin: 10px;
 }
 
 .assignmentOrStudentSelectorBox {
@@ -214,7 +232,7 @@ hr {
   padding: 20px;
   overflow-y: scroll;
   height: 97vh;
-  width: 30rem;
+  width: 32rem;
   flex-wrap: wrap;
 }
 
@@ -244,17 +262,19 @@ hr {
   display: flex;
   margin: 10px;
   justify-content: center;
+  width: 45rem;
 }
 
 .graph {
   width: 600px;
   display: flex;
+  transform: translateY(-70px);
 }
 
 @keyframes slideInFromLeft {
   0% {
     opacity: 0.01;
-    transform: translateX(-10vw);
+    transform: translateX(-6vw);
   }
   100% {
     opacity: 1;

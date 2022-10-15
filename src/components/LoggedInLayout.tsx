@@ -5,11 +5,17 @@ const LoggedInLayout: React.FC = (props) => {
   const { user } = useParams();
 
   return (
-    <div className="loggedInLayout">
-      <NavBar></NavBar>
-      <hr></hr>
-      <Outlet />
-    </div>
+    <>
+      <header>
+        <h1>Class Space</h1>
+      </header>
+      <div className="loggedInLayout">
+        <hr></hr>
+        <NavBar></NavBar>
+        <hr></hr>
+        <Outlet />
+      </div>
+    </>
   );
 };
 

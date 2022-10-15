@@ -80,7 +80,7 @@ export const CreateNewAssignmentForm = (props: {
     });
     if (response.status === 200) {
       props.modalController(false);
-      props.mutate(`http://localhost:8000/${user}/${classID}/assignments`);
+      // props.mutate(`http://localhost:8000/${user}/${classID}/assignments`);
     } else {
       console.log("there was an error");
     }
