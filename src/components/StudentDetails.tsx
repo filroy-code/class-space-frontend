@@ -25,6 +25,7 @@ export const StudentDetails = (props: {
     border: "1px solid black",
     borderRadius: "5px",
     fontSize: "1rem",
+    zIndex: "1",
   };
 
   const selectedIconButtonStyle = {

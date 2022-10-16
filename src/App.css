@@ -21,6 +21,7 @@ header {
 
 h1 {
   font-size: 1.4rem;
+  padding: 3px;
 }
 
 nav {
@@ -29,7 +30,15 @@ nav {
   display: flex;
   gap: 20px;
   align-items: center;
-  padding-left: 10px;
+  padding: 3px 3px 3px 10px;
+  background-color: white;
+  margin: 0;
+}
+
+.navBar {
+  position: sticky;
+  top: 0%;
+  z-index: 5;
 }
 
 .navLink {
@@ -49,9 +58,9 @@ nav {
   background-color: rgb(175, 255, 255);
 } */
 
-hr {
-  width: 100%;
-  margin: 5px;
+.navhr {
+  width: 100vw;
+  margin: 0px;
 }
 
 .classSelection {
@@ -63,11 +72,12 @@ hr {
 .classBoxContainer {
   display: flex;
   flex-wrap: wrap;
+  cursor: pointer;
   /* justify-content: space-evenly; */
 }
 
 .classDeleteButton {
-  position: absolute;
+  position: fixed;
   top: 0%;
   right: 0%;
   margin: 10px;
@@ -127,6 +137,7 @@ hr {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 }
 
 .classHomeSelector:hover {
@@ -145,19 +156,22 @@ hr {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 0px 50px;
+  margin: 10px;
+  padding: 20px;
+  background-color: aqua;
   overflow: scroll;
-  height: 100vh;
+  border: 1px solid black;
 }
 
 .studentDetailsPanel {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding: 0px 50px;
+  /* padding: 0px 50px; */
   overflow: scroll;
-  height: 100vh;
-  margin-top: 20px;
+  margin: 10px;
+  padding: 20px;
+  background-color: aqua;
 }
 
 .selectorColumn {
@@ -168,6 +182,8 @@ hr {
   height: 100vh;
   padding: 12px;
   margin: 10px;
+  background-color: rgb(100, 255, 255);
+  border: 1px solid black;
   /* width: 20rem; */
 }
 
@@ -184,6 +200,7 @@ h3 {
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .newAssignmentOrStudent {
@@ -274,7 +291,7 @@ h3 {
 }
 
 .graph {
-  width: 600px;
+  width: 90%;
   display: flex;
   transform: translateY(-70px);
 }

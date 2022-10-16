@@ -10,9 +10,11 @@ const LoggedInLayout: React.FC = (props) => {
         <h1>Class Space</h1>
       </header>
       <div className="loggedInLayout">
-        <hr></hr>
-        <NavBar></NavBar>
-        <hr></hr>
+        <div className="navBar">
+          <hr className="navhr"></hr>
+          <NavBar></NavBar>
+          <hr className="navhr"></hr>
+        </div>
         <Outlet />
       </div>
     </>

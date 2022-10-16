@@ -30,16 +30,17 @@ export const AssignmentPanel = (props: { setNavState: any }): JSX.Element => {
 
   const [assignmentsExist, setAssignmentsExist] =
     React.useState<boolean>(false);
-  React.useEffect(() => {
-    if (classAssignmentData) {
-      classAssignmentData.classInfo &&
-        classAssignmentData.classInfo.forEach((entry: any) => {
-          if (entry.assignments) {
-            setAssignmentsExist(true);
-          }
-        });
-    }
-  }, classAssignmentData);
+
+  // React.useEffect(() => {
+  //   if (classAssignmentData) {
+  //     classAssignmentData.classInfo &&
+  //       classAssignmentData.classInfo.forEach((entry: any) => {
+  //         if (entry.assignments) {
+  //           setAssignmentsExist(true);
+  //         }
+  //       });
+  //   }
+  // }, classAssignmentData);
 
   return (
     <div className="assignmentPanel">
@@ -65,29 +66,29 @@ export const AssignmentPanel = (props: { setNavState: any }): JSX.Element => {
         </div>
         <Divider style={{ margin: "15px" }}></Divider>
         {classAssignmentData && !isValidating ? (
-          assignmentsExist ? (
-            classAssignmentData.classInfo.map((item: any) => {
-              if (item.assignments) {
-                return (
-                  <div
-                    className="assignmentOrStudentSelectorBox"
-                    key={item.assignments}
-                    data-assignmentname={item.assignments}
-                    onClick={(event) => {
-                      const result = (event.target as HTMLDivElement).dataset
-                        .assignmentname;
-                      setSelectedAssignment(result);
-                    }}
-                  >
-                    {item.assignments}
-                  </div>
-                );
-              }
-            })
-          ) : (
-            <h3>No assignments found.</h3>
-          )
+          // assignmentsExist ? (
+          classAssignmentData.classInfo.map((item: any) => {
+            if (item.assignments) {
+              return (
+                <div
+                  className="assignmentOrStudentSelectorBox"
+                  key={item.assignments}
+                  data-assignmentname={item.assignments}
+                  onClick={(event) => {
+                    const result = (event.target as HTMLDivElement).dataset
+                      .assignmentname;
+                    setSelectedAssignment(result);
+                  }}
+                >
+                  {item.assignments}
+                </div>
+              );
+            }
+          })
         ) : (
+          // ) : (
+          //   <h3>No assignments found.</h3>
+
           <>
             {classAssignmentError ? (
               <h3>"There was an error retrieving your assignments."</h3>
