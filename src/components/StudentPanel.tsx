@@ -62,11 +62,16 @@ export const StudentPanel = (props: { setNavState: any }): JSX.Element => {
                         : "assignmentOrStudentSelectorBox"
                     }
                     key={item.students}
-                    data-studentname={item.students}
-                    onClick={() => {
-                      setEditState(false);
-                      setSelectedStudent(item.students);
-                    }}
+                    onClick={
+                      selectedStudent === item.students
+                        ? () => {
+                            return;
+                          }
+                        : () => {
+                            setEditState(false);
+                            setSelectedStudent(item.students);
+                          }
+                    }
                   >
                     {`${item.firstname} ${item.lastname}`}
                   </div>

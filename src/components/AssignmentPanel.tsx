@@ -76,11 +76,16 @@ export const AssignmentPanel = (props: { setNavState: any }): JSX.Element => {
                       : "assignmentOrStudentSelectorBox"
                   }
                   key={item.assignments}
-                  data-assignmentname={item.assignments}
-                  onClick={() => {
-                    setEditState(false);
-                    setSelectedAssignment(item.assignments);
-                  }}
+                  onClick={
+                    selectedAssignment === item.assignments
+                      ? () => {
+                          return;
+                        }
+                      : () => {
+                          setEditState(false);
+                          setSelectedAssignment(item.assignments);
+                        }
+                  }
                 >
                   {item.assignments}
                 </div>
