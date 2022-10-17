@@ -1,21 +1,18 @@
 import React from "react";
 import useSWR from "swr";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { ClassBox } from "./ClassBox";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "./Modal";
 import { CreateNewClassForm } from "./CreateNewClassForm";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
-import { Button } from "@mui/material";
 import Divider from "@mui/material/Divider";
-import Skeleton from "@mui/material/Skeleton";
 import Tooltip from "@mui/material/Tooltip";
 import Zoom from "@mui/material/Zoom";
 import {
   INITIAL_STATE,
   classSelectReducer,
-  SelectionData,
 } from "../reducers/classSelectReducer";
 import LoadingSkeletonBoxes from "./LoadingSkeletonBoxes";
 import { ActionButton } from "./ActionButton";
@@ -35,8 +32,6 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
   const { user } = useParams<keyof Params>() as Params;
 
   React.useEffect(() => props.setNavState(null));
-
-  const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
 
   //fetches list of classes.
   const { data, error, isValidating, mutate } = useSWR(

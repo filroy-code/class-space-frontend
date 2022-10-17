@@ -1,7 +1,6 @@
 import React from "react";
 import { TextField } from "@mui/material";
 import { useParams } from "react-router-dom";
-import Button from "@mui/material/Button";
 import { ActionButton } from "./ActionButton";
 
 export const EditStudentDetails = (props: {

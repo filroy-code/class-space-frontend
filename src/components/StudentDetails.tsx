@@ -1,8 +1,6 @@
 import React from "react";
-import useSWR from "swr";
 import { useParams } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
-import IconButton from "@mui/material/IconButton";
 import { EditStudentDetails } from "./EditStudentDetails";
 import { ActionButton } from "./ActionButton";
 

@@ -1,7 +1,6 @@
 import React from "react";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Link from "@mui/material/Link";
 import { useNavigate, useParams } from "react-router-dom";
 import { NavigationContext } from "../contexts/NavigationContext";
 

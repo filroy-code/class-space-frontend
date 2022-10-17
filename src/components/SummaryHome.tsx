@@ -1,8 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
-import { TextField, Button } from "@mui/material";
-import { SummaryPieChart } from "./SummaryPieChart";
+import { TextField } from "@mui/material";
 import BarChart from "./BarChart";
 import { ActionButton } from "./ActionButton";
 
@@ -10,16 +9,6 @@ export const SummaryHome = (props: { setNavState: any }) => {
   type Params = {
     user: string;
     classID: string;
-  };
-
-  const iconButtonStyle = {
-    margin: "10px 0px",
-    backgroundColor: "rgb(238, 240, 235)",
-    color: "rgb(21, 50, 67)",
-    border: "1px solid black",
-    borderRadius: "5px",
-    fontSize: "1rem",
-    zIndex: "1",
   };
 
   const { user, classID } = useParams<keyof Params>() as Params;

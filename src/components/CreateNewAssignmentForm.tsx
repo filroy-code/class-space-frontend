@@ -1,9 +1,5 @@
-import React, { ReactElement } from "react";
-import { IconButton } from "@mui/material";
+import React from "react";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import { SvgIconTypeMap } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { ActionButton } from "./ActionButton";
 
@@ -19,11 +15,6 @@ export const CreateNewAssignmentForm = (props: {
     justifyContent: "space-between",
     gap: "20px",
     margin: "10px",
-  };
-
-  type IconButtonType = {
-    icon: OverridableComponent<SvgIconTypeMap<{}, "svg">>;
-    name: string;
   };
 
   function modalClick(e: any) {

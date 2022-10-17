@@ -5,10 +5,6 @@ import ScienceIcon from "@mui/icons-material/Science";
 import GroupsIcon from "@mui/icons-material/Groups";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import SportsBasketballIcon from "@mui/icons-material/SportsBasketball";
-import {
-  SelectionData,
-  classSelectReducer,
-} from "../reducers/classSelectReducer";
 
 export const ClassBox = (props: {
   classData: ClassSelectionDataShape;
