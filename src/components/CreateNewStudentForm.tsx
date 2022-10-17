@@ -12,11 +12,13 @@ export const CreateNewStudentForm = (props: {
   const { user, classID } = useParams();
 
   const iconButtonStyle = {
-    margin: "15px 0px",
-    backgroundColor: "rgb(237, 246, 249)",
-    color: "rgb(0, 109, 119)",
+    margin: "10px 0px",
+    backgroundColor: "rgb(238, 240, 235)",
+    color: "rgb(21, 50, 67)",
     border: "1px solid black",
     borderRadius: "5px",
+    fontSize: "1rem",
+    zIndex: "1",
   };
 
   const selectedIconButtonStyle = {

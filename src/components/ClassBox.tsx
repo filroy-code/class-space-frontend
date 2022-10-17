@@ -45,7 +45,7 @@ export const ClassBox = (props: {
     <div
       style={
         props.selected && props.deleteMode
-          ? { backgroundColor: "red" }
+          ? { backgroundColor: "rgb(109, 33, 60)", color: "rgb(238, 240, 235)" }
           : undefined
       }
       className={props.deleteMode ? "classBox classBoxSelecting" : "classBox"}

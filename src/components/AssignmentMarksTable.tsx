@@ -16,6 +16,16 @@ export const AssignmentMarksTable = (props: {
     });
   }, [props.selectedAssignment]);
 
+  const iconButtonStyle = {
+    margin: "10px 0px",
+    backgroundColor: "rgb(238, 240, 235)",
+    color: "rgb(21, 50, 67)",
+    border: "1px solid black",
+    borderRadius: "5px",
+    fontSize: "1rem",
+    zIndex: "1",
+  };
+
   type AssignmentData = {
     assignmentInfo: {
       email: string;
@@ -147,12 +157,16 @@ export const AssignmentMarksTable = (props: {
       {studentMarks.length > 0 ? (
         <div className="editMarksAndStudentDetailsButtonContainer">
           <Button
+            className="muiButton"
+            style={iconButtonStyle}
             variant="outlined"
             onClick={() => submitMarkUpdate(studentMarks)}
           >
             SAVE
           </Button>
           <Button
+            className="muiButton"
+            style={iconButtonStyle}
             onClick={() => console.log(studentMarksInitial)}
             variant="outlined"
           >

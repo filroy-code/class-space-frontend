@@ -10,6 +10,17 @@ export const SummaryHome = (props: { setNavState: any }) => {
     user: string;
     classID: string;
   };
+
+  const iconButtonStyle = {
+    margin: "10px 0px",
+    backgroundColor: "rgb(238, 240, 235)",
+    color: "rgb(21, 50, 67)",
+    border: "1px solid black",
+    borderRadius: "5px",
+    fontSize: "1rem",
+    zIndex: "1",
+  };
+
   const { user, classID } = useParams<keyof Params>() as Params;
 
   const { data, error, mutate, isValidating } = useSWR(
@@ -127,7 +138,10 @@ export const SummaryHome = (props: { setNavState: any }) => {
         </div>
         <div className="overallRow">
           <div className="summaryColumn">Overall</div>
-          <div className="summaryColumn"></div>
+          <div
+            className="summaryColumn"
+            style={{ backgroundColor: "rgb(40, 75, 99)" }}
+          ></div>
           <div className="summaryColumn">
             {data ? (data.overall * 100).toPrecision(3) : null}%
           </div>
@@ -197,6 +211,8 @@ export const SummaryHome = (props: { setNavState: any }) => {
           <div className="editMarksAndStudentDetailsButtonContainer">
             {assignmentsData.length > 0 ? (
               <Button
+                style={iconButtonStyle}
+                className="muiButton"
                 variant="outlined"
                 onClick={() => {
                   submitWeightingChanges(assignmentsData);

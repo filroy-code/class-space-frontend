@@ -29,7 +29,7 @@ export const NavBar = () => {
         style={linkStyle}
         onClick={() => navigate(`/${user}`)}
       >
-        Logged in as: {user}
+        Logged in as: <b>{user}</b>
       </div>
     ),
     classID && (

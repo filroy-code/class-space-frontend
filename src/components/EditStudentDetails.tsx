@@ -30,11 +30,12 @@ export const EditStudentDetails = (props: {
 
   const iconButtonStyle = {
     margin: "10px 0px",
-    backgroundColor: "rgb(237, 246, 249)",
-    color: "rgb(0, 109, 119)",
+    backgroundColor: "rgb(238, 240, 235)",
+    color: "rgb(21, 50, 67)",
     border: "1px solid black",
     borderRadius: "5px",
     fontSize: "1rem",
+    zIndex: "1",
   };
 
   //this exists as a value to compare updates against to determine if there's been a change
@@ -93,6 +94,7 @@ export const EditStudentDetails = (props: {
       {" "}
       <div className="editMarksAndStudentDetailsButtonContainer">
         <Button
+          className="muiButton"
           style={iconButtonStyle}
           variant="outlined"
           onClick={() => submitStudentDetailChanges(updatedStudentDetails)}
@@ -100,6 +102,7 @@ export const EditStudentDetails = (props: {
           SAVE
         </Button>
         <Button
+          className="muiButton"
           onClick={() => props.setEditState(false)}
           variant="outlined"
           style={iconButtonStyle}

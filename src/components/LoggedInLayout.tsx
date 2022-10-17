@@ -18,9 +18,7 @@ const LoggedInLayout: React.FC = (props) => {
           </h1>
         </header>
         <div className="navBar">
-          <hr className="navhr"></hr>
           <NavBar></NavBar>
-          <hr className="navhr"></hr>
         </div>
         <Outlet />
       </div>

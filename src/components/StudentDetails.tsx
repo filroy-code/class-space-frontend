@@ -20,8 +20,8 @@ export const StudentDetails = (props: {
 }) => {
   const iconButtonStyle = {
     margin: "10px 0px",
-    backgroundColor: "rgb(237, 246, 249)",
-    color: "rgb(0, 109, 119)",
+    backgroundColor: "rgb(238, 240, 235)",
+    color: "rgb(21, 50, 67)",
     border: "1px solid black",
     borderRadius: "5px",
     fontSize: "1rem",
@@ -76,6 +76,7 @@ export const StudentDetails = (props: {
       {!props.editState && (
         <div className="editMarksAndStudentDetailsButtonContainer">
           <IconButton
+            className="muiButton"
             onClick={() => props.setEditState((prev: boolean) => !prev)}
             style={props.editState ? selectedIconButtonStyle : iconButtonStyle}
           >

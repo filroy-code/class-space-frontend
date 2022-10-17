@@ -84,7 +84,6 @@ function BarChart(props) {
           return 300;
         })
         .attr("z-index", "10")
-        .attr("font-weight", "bold")
         .attr("fill", (data) => {
           return "rgb(244, 249, 233)";
         })
@@ -101,6 +100,7 @@ function BarChart(props) {
         .append("g")
         .attr("transform", "translate(50, 200)")
         .attr("color", "rgb(244, 249, 233)")
+        .attr("font-size", "20px")
         .call(y_axis);
 
       svg
