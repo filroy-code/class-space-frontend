@@ -33,6 +33,16 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
 
   const { user } = useParams<keyof Params>() as Params;
 
+  const iconButtonStyle = {
+    margin: "10px 0px",
+    backgroundColor: "rgb(238, 240, 235)",
+    color: "rgb(21, 50, 67)",
+    border: "1px solid black",
+    borderRadius: "5px",
+    fontSize: "1rem",
+    zIndex: "1",
+  };
+
   React.useEffect(() => props.setNavState(null));
 
   const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
@@ -130,10 +140,17 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
       </div>
       {state.selectionType ? (
         <div className="editMarksAndStudentDetailsButtonContainer">
-          <Button variant="outlined" onClick={() => deleteSelectedClasses()}>
+          <Button
+            className="muiButton"
+            style={iconButtonStyle}
+            variant="outlined"
+            onClick={() => deleteSelectedClasses()}
+          >
             DELETE CLASSES
           </Button>
           <Button
+            className="muiButton"
+            style={iconButtonStyle}
             onClick={() => dispatch({ type: "RESET" })}
             variant="outlined"
           >
