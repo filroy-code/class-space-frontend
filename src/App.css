@@ -116,9 +116,7 @@ nav {
   position: fixed;
   top: 0%;
   right: 0%;
-  margin: 10px;
-  background-color: var(--primary-color-light);
-  color: var(--secondary-color-dark);
+  margin: 15px;
   border: 1px solid black;
   border-radius: 5px;
 }

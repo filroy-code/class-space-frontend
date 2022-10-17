@@ -156,6 +156,11 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
         >
           <div className="classDeleteButton">
             <IconButton
+              style={{
+                color: "rgb(21, 50, 67)",
+                backgroundColor: "rgb(238, 240, 235)",
+                borderRadius: "5px",
+              }}
               onClick={() => {
                 dispatch({ type: "DELETE_ENABLE" });
               }}
