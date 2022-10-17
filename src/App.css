@@ -266,7 +266,7 @@ h3 {
 
 .tableRow {
   display: grid;
-  grid-template-columns: 16rem 6.5rem 5rem;
+  grid-template-columns: 2fr 1fr 1fr;
   padding: 10px;
   align-items: center;
   border: 1px solid black;
@@ -275,8 +275,8 @@ h3 {
 
 .studentDetailsRow {
   display: grid;
-  grid-template-columns: 8rem 16rem;
-  padding: 10px;
+  grid-template-columns: 8rem 1fr;
+  padding: 20px;
   align-items: center;
 }
 
@@ -298,8 +298,6 @@ h3 {
 }
 
 .summaryTable {
-  display: flex;
-  flex-direction: column;
   margin: 10px;
   padding: 20px;
   background-color: var(--primary-color-light);
@@ -314,7 +312,7 @@ h3 {
 
 .summaryRow {
   display: grid;
-  grid-template-columns: 16rem 6.5rem 8rem;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .summaryRow:hover:not(:first-of-type):not(.summarySelected) {
@@ -323,7 +321,7 @@ h3 {
 
 .overallRow {
   display: grid;
-  grid-template-columns: 16rem 6.5rem 8rem;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .summaryColumn {
