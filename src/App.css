@@ -231,6 +231,7 @@ nav {
   border-radius: 5px;
   -webkit-box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
   box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
+  max-height: 72vh;
   /* width: 20rem; */
 }
 
@@ -249,6 +250,8 @@ h3 {
   align-items: center;
   cursor: pointer;
   border-radius: 5px;
+  -webkit-box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
+  box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
 }
 
 .newAssignmentOrStudent {
@@ -301,7 +304,7 @@ h3 {
   padding: 20px;
   background-color: var(--primary-color-light);
   overflow-y: scroll;
-  height: 95%;
+  max-height: 72vh;
   /* width: 32rem; */
   flex-wrap: wrap;
   border-radius: 5px;
