@@ -262,13 +262,22 @@ h3 {
   overflow-x: hidden;
 }
 
+.assignmentOrStudentSelectorBox:hover {
+  background-color: rgb(214, 214, 214);
+}
+
 .newAssignmentOrStudent {
   border: 5px double black;
   user-select: none;
   cursor: pointer;
 }
 
-.assignmentOrStudentSelectorBox:hover {
+.selectedAssignmentOrStudent {
+  background-color: var(--secondary-color-light);
+  cursor: default;
+}
+
+.selectedAssignmentOrStudent:hover {
   background-color: var(--secondary-color-light);
 }
 

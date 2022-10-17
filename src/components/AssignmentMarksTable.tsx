@@ -2,12 +2,14 @@ import React from "react";
 import useSWR from "swr";
 import { useParams } from "react-router-dom";
 import { TextField } from "@mui/material";
-import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
 import { ActionButton } from "./ActionButton";
+import { flexbox } from "@mui/system";
 
 export const AssignmentMarksTable = (props: {
   selectedAssignment: string;
+  editState: boolean;
+  setEditState: any;
 }): JSX.Element => {
   React.useEffect(() => {
     setStudentMarks([]);
@@ -103,8 +105,6 @@ export const AssignmentMarksTable = (props: {
     }
   }
 
-  // const editedColor = "rgb(252, 252, 138)";
-
   return data ? (
     <div>
       {studentMarks.map((singleStudent: any, index: number) => {
@@ -112,60 +112,87 @@ export const AssignmentMarksTable = (props: {
           <div className="tableRow" key={singleStudent.student.id}>
             <div>{`${singleStudent.student.firstname} ${singleStudent.student.lastname}`}</div>
             <div>
-              <TextField
-                value={singleStudent.score ? `${singleStudent.score}` : ""}
-                InputProps={{
-                  inputProps: {
-                    style: { textAlign: "center" },
-                  },
-                }}
-                id={`${index}`}
-                onChange={(event) => {
-                  setStudentMarks((prev: any) =>
-                    prev.map((dataPoint: any, index: number) => {
-                      if (isNaN(parseInt(event.target.value))) {
-                        return {
-                          ...dataPoint,
-                          score: null,
-                        };
-                      }
-                      if (index !== parseInt(event.target.id)) {
-                        return dataPoint;
-                      } else {
-                        return {
-                          ...dataPoint,
-                          score: parseInt(event.target.value),
-                        };
-                      }
-                    })
-                  );
-                }}
-              ></TextField>
+              {props.editState ? (
+                <TextField
+                  value={singleStudent.score ? `${singleStudent.score}` : ""}
+                  InputProps={{
+                    inputProps: {
+                      style: { textAlign: "center" },
+                    },
+                  }}
+                  id={`${index}`}
+                  onChange={(event) => {
+                    setStudentMarks((prev: any) =>
+                      prev.map((dataPoint: any, index: number) => {
+                        if (isNaN(parseInt(event.target.value))) {
+                          return {
+                            ...dataPoint,
+                            score: null,
+                          };
+                        }
+                        if (index !== parseInt(event.target.id)) {
+                          return dataPoint;
+                        } else {
+                          return {
+                            ...dataPoint,
+                            score: parseInt(event.target.value),
+                          };
+                        }
+                      })
+                    );
+                  }}
+                ></TextField>
+              ) : (
+                <div style={{ display: "flexbox", textAlign: "right" }}>
+                  {singleStudent.score}
+                </div>
+              )}
             </div>
             <div
               style={{ padding: "10px" }}
-            >{`/${assignmentMetaData.outof}`}</div>
+            >{`/ ${assignmentMetaData.outof}`}</div>
           </div>
         );
       })}
       <Divider style={{ margin: "15px" }}></Divider>
       {studentMarks.length > 0 ? (
-        <div className="editMarksAndStudentDetailsButtonContainer">
-          <ActionButton
-            className="muiButton"
-            variant="outlined"
-            onClick={() => submitMarkUpdate(studentMarks)}
-          >
-            SAVE
-          </ActionButton>
-          <ActionButton
-            className="muiButton"
-            onClick={() => console.log(studentMarksInitial)}
-            variant="outlined"
-          >
-            DISCARD
-          </ActionButton>
-        </div>
+        props.editState ? (
+          <div className="editMarksAndStudentDetailsButtonContainer">
+            <ActionButton
+              className="muiButton"
+              variant="outlined"
+              onClick={() => {
+                submitMarkUpdate(studentMarks);
+                props.setEditState(false);
+              }}
+            >
+              SAVE
+            </ActionButton>
+            <ActionButton
+              className="muiButton"
+              onClick={() => {
+                setStudentMarks([...studentMarksInitial]);
+                props.setEditState(false);
+              }}
+              variant="outlined"
+            >
+              DISCARD
+            </ActionButton>
+          </div>
+        ) : (
+          <div className="editMarksAndStudentDetailsButtonContainer">
+            <ActionButton
+              className="muiButton"
+              onClick={() => {
+                props.setEditState(true);
+                setStudentMarksInitial([...studentMarks]);
+              }}
+              variant="outlined"
+            >
+              EDIT
+            </ActionButton>
+          </div>
+        )
       ) : (
         <h3>No students found.</h3>
       )}

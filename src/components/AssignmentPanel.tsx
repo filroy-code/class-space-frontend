@@ -28,8 +28,7 @@ export const AssignmentPanel = (props: { setNavState: any }): JSX.Element => {
   const [assignmentModalOpen, setAssignmentModalOpen] =
     React.useState<boolean>(false);
 
-  const [assignmentsExist, setAssignmentsExist] =
-    React.useState<boolean>(false);
+  const [editState, setEditState] = React.useState<boolean>(false);
 
   // React.useEffect(() => {
   //   if (classAssignmentData) {
@@ -71,13 +70,16 @@ export const AssignmentPanel = (props: { setNavState: any }): JSX.Element => {
             if (item.assignments) {
               return (
                 <div
-                  className="assignmentOrStudentSelectorBox"
+                  className={
+                    selectedAssignment === item.assignments
+                      ? "assignmentOrStudentSelectorBox selectedAssignmentOrStudent"
+                      : "assignmentOrStudentSelectorBox"
+                  }
                   key={item.assignments}
                   data-assignmentname={item.assignments}
-                  onClick={(event) => {
-                    const result = (event.target as HTMLDivElement).dataset
-                      .assignmentname;
-                    setSelectedAssignment(result);
+                  onClick={() => {
+                    setEditState(false);
+                    setSelectedAssignment(item.assignments);
                   }}
                 >
                   {item.assignments}
@@ -103,6 +105,8 @@ export const AssignmentPanel = (props: { setNavState: any }): JSX.Element => {
           <h2>{selectedAssignment}</h2>
           <AssignmentMarksTable
             selectedAssignment={selectedAssignment}
+            editState={editState}
+            setEditState={setEditState}
           ></AssignmentMarksTable>
         </div>
       ) : null}
