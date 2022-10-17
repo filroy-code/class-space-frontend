@@ -49,7 +49,7 @@ function BarChart(props) {
           return 201 + yScale(data.number);
         })
         .attr("fill", (data) => {
-          return "blue";
+          return "rgb(244, 249, 233)";
         })
         .transition()
         .duration(700);
@@ -67,10 +67,14 @@ function BarChart(props) {
           return 150;
         })
         .text((data) => `Mark distribution for ${props.selectedAssignment}`)
-        .attr("font-weight", "bold");
+        .attr("font-weight", "bold")
+        .attr("fill", (data) => {
+          return "rgb(244, 249, 233)";
+        });
 
       svg
         .selectAll("dataText")
+        .classed("graphText", true)
         .data(props.distribution)
         .join("text")
         .attr("x", (data) => {
@@ -81,6 +85,9 @@ function BarChart(props) {
         })
         .attr("z-index", "10")
         .attr("font-weight", "bold")
+        .attr("fill", (data) => {
+          return "rgb(244, 249, 233)";
+        })
         .text((data) => `${data.number}`);
 
       var x_axis = d3.axisBottom().scale(xScale);
@@ -90,9 +97,17 @@ function BarChart(props) {
 
       var y_axis = d3.axisLeft().scale(yScale);
 
-      svg.append("g").attr("transform", "translate(50, 200)").call(y_axis);
+      svg
+        .append("g")
+        .attr("transform", "translate(50, 200)")
+        .attr("color", "rgb(244, 249, 233)")
+        .call(y_axis);
 
-      svg.append("g").attr("transform", "translate(20, 510)").call(x_axis);
+      svg
+        .append("g")
+        .attr("transform", "translate(20, 510)")
+        .attr("color", "rgb(244, 249, 233)")
+        .call(x_axis);
     },
     [props.distribution]
   );
