@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import IconButton from "@mui/material/IconButton";
 import { EditStudentDetails } from "./EditStudentDetails";
+import { ActionButton } from "./ActionButton";
 
 export const StudentDetails = (props: {
   selectedStudent: string;
@@ -18,24 +19,6 @@ export const StudentDetails = (props: {
   setEditState: any;
   mutate: any;
 }) => {
-  const iconButtonStyle = {
-    margin: "10px 0px",
-    backgroundColor: "rgb(238, 240, 235)",
-    color: "rgb(21, 50, 67)",
-    border: "1px solid black",
-    borderRadius: "5px",
-    fontSize: "1rem",
-    zIndex: "1",
-  };
-
-  const selectedIconButtonStyle = {
-    margin: "10px 0px",
-    backgroundColor: "rgb(50, 200, 249)",
-    color: "rgb(0, 109, 119)",
-    border: "1px solid black",
-    borderRadius: "5px",
-  };
-
   type StudentDetailType = {
     id: string;
     firstname: string;
@@ -73,18 +56,6 @@ export const StudentDetails = (props: {
 
   return (
     <div className="studentDetailsPanel">
-      {!props.editState && (
-        <div className="editMarksAndStudentDetailsButtonContainer">
-          <IconButton
-            className="muiButton"
-            onClick={() => props.setEditState((prev: boolean) => !prev)}
-            style={props.editState ? selectedIconButtonStyle : iconButtonStyle}
-          >
-            <span>Edit Details </span>
-            <EditIcon style={{ marginLeft: "10px" }}></EditIcon>
-          </IconButton>
-        </div>
-      )}
       {props.editState ? (
         <EditStudentDetails
           setSelectedStudent={props.setSelectedStudent}
@@ -108,6 +79,17 @@ export const StudentDetails = (props: {
           <div className="studentDetailsRow">
             <b>Email:</b> <div>{selectedStudentDetails.email}</div>
           </div>
+        </div>
+      )}
+      {!props.editState && (
+        <div className="editMarksAndStudentDetailsButtonContainer">
+          <ActionButton
+            className="muiButton"
+            onClick={() => props.setEditState((prev: boolean) => !prev)}
+          >
+            <span>Edit Details </span>
+            <EditIcon style={{ marginLeft: "10px" }}></EditIcon>
+          </ActionButton>
         </div>
       )}
     </div>

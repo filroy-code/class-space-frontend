@@ -4,30 +4,13 @@ import Button from "@mui/material/Button";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { SvgIconTypeMap } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { ActionButton } from "./ActionButton";
 
 export const CreateNewStudentForm = (props: {
   modalController: any;
   mutate: any;
 }) => {
   const { user, classID } = useParams();
-
-  const iconButtonStyle = {
-    margin: "10px 0px",
-    backgroundColor: "rgb(238, 240, 235)",
-    color: "rgb(21, 50, 67)",
-    border: "1px solid black",
-    borderRadius: "5px",
-    fontSize: "1rem",
-    zIndex: "1",
-  };
-
-  const selectedIconButtonStyle = {
-    margin: "5px 0px",
-    backgroundColor: "rgb(50, 200, 249)",
-    color: "rgb(0, 109, 119)",
-    border: "1px solid black",
-    borderRadius: "5px",
-  };
 
   const textFieldStyle = {
     display: "flex",
@@ -174,9 +157,7 @@ export const CreateNewStudentForm = (props: {
           ></TextField>
         </div>
       </div>
-      <Button type="submit" style={iconButtonStyle}>
-        Add Student
-      </Button>
+      <ActionButton type="submit">Add Student</ActionButton>
     </form>
   );
 };

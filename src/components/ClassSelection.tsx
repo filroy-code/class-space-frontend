@@ -18,6 +18,7 @@ import {
   SelectionData,
 } from "../reducers/classSelectReducer";
 import LoadingSkeletonBoxes from "./LoadingSkeletonBoxes";
+import { ActionButton } from "./ActionButton";
 
 export type ClassSelectionDataShape = {
   id: number;
@@ -32,16 +33,6 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
   };
 
   const { user } = useParams<keyof Params>() as Params;
-
-  const iconButtonStyle = {
-    margin: "10px 0px",
-    backgroundColor: "rgb(238, 240, 235)",
-    color: "rgb(21, 50, 67)",
-    border: "1px solid black",
-    borderRadius: "5px",
-    fontSize: "1rem",
-    zIndex: "1",
-  };
 
   React.useEffect(() => props.setNavState(null));
 
@@ -104,7 +95,7 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
           ></CreateNewClassForm>
         }
       ></Modal>
-      <div className="classSelection">
+      <div>
         <div
           className="classBox newClassBox"
           onMouseEnter={() => createClassMouseover(true)}
@@ -140,22 +131,20 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
       </div>
       {state.selectionType ? (
         <div className="editMarksAndStudentDetailsButtonContainer">
-          <Button
+          <ActionButton
             className="muiButton"
-            style={iconButtonStyle}
             variant="outlined"
             onClick={() => deleteSelectedClasses()}
           >
             DELETE CLASSES
-          </Button>
-          <Button
+          </ActionButton>
+          <ActionButton
             className="muiButton"
-            style={iconButtonStyle}
             onClick={() => dispatch({ type: "RESET" })}
             variant="outlined"
           >
             CANCEL
-          </Button>
+          </ActionButton>
         </div>
       ) : (
         <Tooltip

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import Divider from "@mui/material/Divider";
+import { ActionButton } from "./ActionButton";
 
 export const AssignmentMarksTable = (props: {
   selectedAssignment: string;
@@ -15,16 +16,6 @@ export const AssignmentMarksTable = (props: {
       outof: undefined,
     });
   }, [props.selectedAssignment]);
-
-  const iconButtonStyle = {
-    margin: "10px 0px",
-    backgroundColor: "rgb(238, 240, 235)",
-    color: "rgb(21, 50, 67)",
-    border: "1px solid black",
-    borderRadius: "5px",
-    fontSize: "1rem",
-    zIndex: "1",
-  };
 
   type AssignmentData = {
     assignmentInfo: {
@@ -51,10 +42,6 @@ export const AssignmentMarksTable = (props: {
   const { data, error, isValidating } = useSWR<AssignmentData | undefined>(
     `http://localhost:8000/${user}/${classID}/assignments/${props.selectedAssignment}`
   );
-
-  if (data) {
-    console.log(data);
-  }
 
   type FormattedMarksData = {
     student: { id: string; firstname: string; lastname: string };
@@ -90,8 +77,11 @@ export const AssignmentMarksTable = (props: {
           ]);
         }
       });
-    setStudentMarksInitial([...studentMarks]);
   }, [data]);
+
+  React.useEffect(() => {
+    setStudentMarksInitial([...studentMarks]);
+  }, [props.selectedAssignment]);
 
   async function submitMarkUpdate(studentMarks: FormattedMarksData[]) {
     let response = await fetch(
@@ -107,7 +97,7 @@ export const AssignmentMarksTable = (props: {
       }
     );
     if (response.status === 200) {
-      console.log("success!");
+      return;
     } else {
       console.log("there was an error");
     }
@@ -124,6 +114,11 @@ export const AssignmentMarksTable = (props: {
             <div>
               <TextField
                 value={singleStudent.score ? `${singleStudent.score}` : ""}
+                InputProps={{
+                  inputProps: {
+                    style: { textAlign: "center" },
+                  },
+                }}
                 id={`${index}`}
                 onChange={(event) => {
                   setStudentMarks((prev: any) =>
@@ -156,22 +151,20 @@ export const AssignmentMarksTable = (props: {
       <Divider style={{ margin: "15px" }}></Divider>
       {studentMarks.length > 0 ? (
         <div className="editMarksAndStudentDetailsButtonContainer">
-          <Button
+          <ActionButton
             className="muiButton"
-            style={iconButtonStyle}
             variant="outlined"
             onClick={() => submitMarkUpdate(studentMarks)}
           >
             SAVE
-          </Button>
-          <Button
+          </ActionButton>
+          <ActionButton
             className="muiButton"
-            style={iconButtonStyle}
             onClick={() => console.log(studentMarksInitial)}
             variant="outlined"
           >
             DISCARD
-          </Button>
+          </ActionButton>
         </div>
       ) : (
         <h3>No students found.</h3>

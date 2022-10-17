@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 import { SvgIconTypeMap } from "@mui/material";
 import { useParams } from "react-router-dom";
+import { ActionButton } from "./ActionButton";
 
 export const CreateNewClassForm = (props: {
   modalController: any;
@@ -32,8 +33,8 @@ export const CreateNewClassForm = (props: {
 
   const selectedIconButtonStyle = {
     margin: "5px 0px",
-    backgroundColor: "rgb(50, 200, 249)",
-    color: "rgb(0, 109, 119)",
+    backgroundColor: "rgb(21, 50, 67)",
+    color: "rgb(238, 240, 235)",
     border: "1px solid black",
     borderRadius: "5px",
   };
@@ -169,9 +170,7 @@ export const CreateNewClassForm = (props: {
           );
         })}
       </div>
-      <Button type="submit" style={iconButtonStyle}>
-        Create Class
-      </Button>
+      <ActionButton type="submit">Create Class</ActionButton>
     </form>
   );
 };

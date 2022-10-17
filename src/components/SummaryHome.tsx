@@ -4,6 +4,7 @@ import useSWR from "swr";
 import { TextField, Button } from "@mui/material";
 import { SummaryPieChart } from "./SummaryPieChart";
 import BarChart from "./BarChart";
+import { ActionButton } from "./ActionButton";
 
 export const SummaryHome = (props: { setNavState: any }) => {
   type Params = {
@@ -38,7 +39,6 @@ export const SummaryHome = (props: { setNavState: any }) => {
   >([]);
 
   async function submitWeightingChanges(assignmentsData: AssignmentData[]) {
-    console.log(assignmentsData);
     let response = await fetch(
       `http://localhost:8000/${user}/${classID}/summary/`,
       {
@@ -117,10 +117,6 @@ export const SummaryHome = (props: { setNavState: any }) => {
       });
     }
   }, [selectedAssignment]);
-
-  if (data) {
-    console.log(data);
-  }
 
   return (
     <div className="summaryHome">
@@ -210,8 +206,7 @@ export const SummaryHome = (props: { setNavState: any }) => {
         {!error && (
           <div className="editMarksAndStudentDetailsButtonContainer">
             {assignmentsData.length > 0 ? (
-              <Button
-                style={iconButtonStyle}
+              <ActionButton
                 className="muiButton"
                 variant="outlined"
                 onClick={() => {
@@ -219,21 +214,21 @@ export const SummaryHome = (props: { setNavState: any }) => {
                 }}
               >
                 Submit Weighting Adjustments
-              </Button>
+              </ActionButton>
             ) : (
               <h3>No assignments found.</h3>
             )}
           </div>
         )}
       </div>
-      <div className="graphPanel">
-        {selectedAssignment && distribution.length > 0 ? (
+      {selectedAssignment && distribution.length > 0 ? (
+        <div className="graphPanel">
           <BarChart
             selectedAssignment={selectedAssignment}
             distribution={distribution}
           ></BarChart>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </div>
   );
 };

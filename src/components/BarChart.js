@@ -3,12 +3,6 @@ import React from "react";
 import * as d3 from "d3";
 
 function BarChart(props) {
-  //   const [stats, updateStats] = React.useState(props.compare);
-
-  //   React.useEffect(() => {
-  //     updateStats(props.compare);
-  //   }, [props.compare]);
-
   // const stats = [
   //     {score: "NM", number: 2},
   //     {score: "<50%", number: 3},
@@ -17,8 +11,6 @@ function BarChart(props) {
   //     {score: "70-79%", number: 6},
   //     {score: "80-89%", number: 5},
   //     {score: "90-100%", number: 2}]
-
-  console.log(props.distribution);
 
   const ref = useD3(
     (svg) => {

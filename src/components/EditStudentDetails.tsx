@@ -2,6 +2,7 @@ import React from "react";
 import { TextField } from "@mui/material";
 import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
+import { ActionButton } from "./ActionButton";
 
 export const EditStudentDetails = (props: {
   selectedStudentDetails: {
@@ -26,16 +27,6 @@ export const EditStudentDetails = (props: {
     firstname: string;
     lastname: string;
     email: string;
-  };
-
-  const iconButtonStyle = {
-    margin: "10px 0px",
-    backgroundColor: "rgb(238, 240, 235)",
-    color: "rgb(21, 50, 67)",
-    border: "1px solid black",
-    borderRadius: "5px",
-    fontSize: "1rem",
-    zIndex: "1",
   };
 
   //this exists as a value to compare updates against to determine if there's been a change
@@ -91,25 +82,6 @@ export const EditStudentDetails = (props: {
   }, []);
   return updatedStudentDetails ? (
     <>
-      {" "}
-      <div className="editMarksAndStudentDetailsButtonContainer">
-        <Button
-          className="muiButton"
-          style={iconButtonStyle}
-          variant="outlined"
-          onClick={() => submitStudentDetailChanges(updatedStudentDetails)}
-        >
-          SAVE
-        </Button>
-        <Button
-          className="muiButton"
-          onClick={() => props.setEditState(false)}
-          variant="outlined"
-          style={iconButtonStyle}
-        >
-          DISCARD
-        </Button>
-      </div>
       <div className="studentDetailsGrid">
         <div className="studentDetailsRow">
           <b>First Name:</b>
@@ -143,6 +115,22 @@ export const EditStudentDetails = (props: {
             onChange={(e) => textFieldChangeHandler(e)}
           ></TextField>
         </div>
+      </div>
+      <div className="editMarksAndStudentDetailsButtonContainer">
+        <ActionButton
+          className="muiButton"
+          variant="outlined"
+          onClick={() => submitStudentDetailChanges(updatedStudentDetails)}
+        >
+          SAVE
+        </ActionButton>
+        <ActionButton
+          className="muiButton"
+          onClick={() => props.setEditState(false)}
+          variant="outlined"
+        >
+          DISCARD
+        </ActionButton>
       </div>
     </>
   ) : null;

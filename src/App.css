@@ -46,15 +46,18 @@ nav {
   gap: 20px;
   align-items: center;
   padding: 3px;
-  background-color: var(--primary-color-light);
-  margin: 10px;
-  border-radius: 5px;
 }
 
 .navBar {
   position: sticky;
   top: 0%;
   z-index: 5;
+  border: 1px solid var(--secondary-color-dark);
+  background-color: var(--primary-color-light);
+  margin: 10px;
+  border-radius: 5px;
+  -webkit-box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
+  box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
 }
 
 .navLink {
@@ -64,20 +67,20 @@ nav {
   /* animation-delay: 0.4s; */
   user-select: none;
   margin: 10px;
-  background-color: var(--primary-color-light);
-  color: var(--primary-color-dark);
-  border: 1px solid var(--primary-color-dark);
+  background-color: var(--secondary-color-dark);
+  color: var(--primary-color-light);
+  border: 1px solid var(--secondary-color-dark);
   -webkit-box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
   box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
 }
 
 .navLink:hover {
-  background-color: var(--secondary-color-light);
+  background-color: var(--tertiary-color-dark);
 }
 
 .navArrow {
   animation: 0.4s ease-out 0s 1 slideInFromLeftArrow;
-  color: var(--primary-color-light);
+  color: var(--secondary-color-dark);
 }
 
 /* .navLink:last-of-type {
@@ -96,6 +99,9 @@ nav {
   padding: 12px;
   margin: 10px;
   background-color: var(--primary-color-light);
+  border-radius: 5px;
+  -webkit-box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
+  box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
 }
 
 .classBoxContainer {
@@ -165,8 +171,7 @@ nav {
 
 .classHomeSelector {
   height: 100px;
-  width: 90%;
-  margin: 20px;
+  margin: 10px;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -198,11 +203,12 @@ nav {
   margin: 10px;
   padding: 20px;
   background-color: var(--primary-color-light);
-  overflow: scroll;
+  overflow-y: scroll;
   border: 1px solid black;
   border-radius: 5px;
   -webkit-box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
   box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
+  max-height: 72vh;
 }
 
 .studentDetailsPanel {
@@ -222,6 +228,7 @@ nav {
 .selectorColumn {
   display: flex;
   flex-direction: column;
+  align-items: center;
   padding: 0px;
   overflow: scroll;
   padding: 12px;
@@ -240,7 +247,7 @@ h3 {
 }
 
 .assignmentOrStudentSelectorBox {
-  height: 100px;
+  height: 50px;
   width: 15rem;
   border: 1px solid black;
   margin: 10px;
@@ -252,6 +259,7 @@ h3 {
   border-radius: 5px;
   -webkit-box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
   box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
+  overflow-x: hidden;
 }
 
 .newAssignmentOrStudent {
@@ -266,7 +274,7 @@ h3 {
 
 .tableRow {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   padding: 10px;
   align-items: center;
   border: 1px solid black;
@@ -312,7 +320,7 @@ h3 {
 
 .summaryRow {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 16rem 6.5rem 8rem;
 }
 
 .summaryRow:hover:not(:first-of-type):not(.summarySelected) {
@@ -321,7 +329,7 @@ h3 {
 
 .overallRow {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 16rem 6.5rem 8rem;
 }
 
 .summaryColumn {
@@ -359,10 +367,6 @@ h3 {
   box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
 }
 
-.muiButton:hover {
-  background-color: var(--secondary-color-light);
-}
-
 @keyframes slideInFromLeft {
   0% {
     opacity: 0.01;
@@ -382,5 +386,33 @@ h3 {
   100% {
     opacity: 1;
     transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: 1182px) {
+  .assignmentOrStudentSelectorBox {
+    width: 12rem;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .assignmentOrStudentSelectorBox {
+    width: 9rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 891px) {
+  /* .assignmentPanel {
+    flex-direction: column;
+  } */
+}
+
+@media screen and (max-width: 542px) {
+  .assignmentOrStudentSelectorBox {
+    width: 5rem;
+  }
+
+  .navLink {
   }
 }
