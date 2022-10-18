@@ -199,6 +199,25 @@ export const AssignmentMarksTable = (props: {
       )}
     </div>
   ) : (
-    <h3>{error ? "There was an error." : "Loading..."}</h3>
+    <h3>
+      {error ? (
+        "There was an error."
+      ) : (
+        <div>
+          <div className="tableRow">Loading...</div>
+          <div></div>
+          <div></div>
+          <div className="tableRow">Loading...</div>
+          <div></div>
+          <div></div>
+          <div className="tableRow">Loading...</div>
+          <div></div>
+          <div></div>
+          <div className="tableRow">Loading...</div>
+          <div></div>
+          <div></div>
+        </div>
+      )}
+    </h3>
   );
 };
