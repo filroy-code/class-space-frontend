@@ -92,10 +92,32 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
       ></Modal>
       <div>
         <div
-          className="classBox newClassBox"
-          onMouseEnter={() => createClassMouseover(true)}
-          onMouseLeave={() => createClassMouseover(false)}
-          onClick={() => setModalOpen(true)}
+          className={
+            state.selectionType
+              ? "classBox newClassBox classBoxDisabled"
+              : "classBox newClassBox"
+          }
+          onMouseEnter={
+            state.selectionType
+              ? () => {
+                  return;
+                }
+              : () => createClassMouseover(true)
+          }
+          onMouseLeave={
+            state.selectionType
+              ? () => {
+                  return;
+                }
+              : () => createClassMouseover(false)
+          }
+          onClick={
+            state.selectionType
+              ? () => {
+                  return;
+                }
+              : () => setModalOpen(true)
+          }
         >
           {newClassMouseover ? <h3>Create New Class</h3> : <AddIcon></AddIcon>}
         </div>

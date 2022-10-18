@@ -144,6 +144,13 @@ nav {
   cursor: pointer;
 }
 
+.classBoxDisabled {
+  background-color: rgb(166, 166, 166);
+  opacity: 0.5;
+  user-select: none;
+  cursor: default;
+}
+
 .classBox:hover {
   background-color: var(--secondary-color-light);
 }
@@ -153,6 +160,10 @@ nav {
 }
 
 .classBoxSelecting:hover {
+  background-color: rgb(166, 166, 166);
+}
+
+.classBoxDisabled:hover {
   background-color: rgb(166, 166, 166);
 }
 
