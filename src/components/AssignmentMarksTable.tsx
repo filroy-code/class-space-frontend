@@ -111,15 +111,16 @@ export const AssignmentMarksTable = (props: {
         return (
           <div className="tableRow" key={singleStudent.student.id}>
             <div>{`${singleStudent.student.firstname} ${singleStudent.student.lastname}`}</div>
-            <div>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
               {props.editState ? (
-                <TextField
-                  value={singleStudent.score ? `${singleStudent.score}` : ""}
-                  InputProps={{
-                    inputProps: {
-                      style: { textAlign: "center" },
-                    },
+                <input
+                  type="text"
+                  style={{
+                    width: "2rem",
+                    textAlign: "center",
+                    justifySelf: "center",
                   }}
+                  value={singleStudent.score ? `${singleStudent.score}` : ""}
                   id={`${index}`}
                   onChange={(event) => {
                     setStudentMarks((prev: any) =>
@@ -141,7 +142,7 @@ export const AssignmentMarksTable = (props: {
                       })
                     );
                   }}
-                ></TextField>
+                ></input>
               ) : (
                 <div style={{ display: "flexbox", textAlign: "right" }}>
                   {singleStudent.score}

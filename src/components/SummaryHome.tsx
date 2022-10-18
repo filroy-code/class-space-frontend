@@ -107,6 +107,11 @@ export const SummaryHome = (props: { setNavState: any }) => {
     }
   }, [selectedAssignment]);
 
+  const [editState, setEditState] = React.useState<boolean>(false);
+  const [initialData, setInitialData] = React.useState<
+    { name: string; weight: number }[]
+  >([]);
+
   return (
     <div className="summaryHome">
       <div className="summaryTable">
@@ -146,36 +151,41 @@ export const SummaryHome = (props: { setNavState: any }) => {
                 >
                   <div className="summaryColumn">{entry.name}</div>
                   <div className="summaryColumn">
-                    <TextField
-                      onClick={(e) => e.stopPropagation()}
-                      InputProps={{
-                        inputProps: {
-                          style: { textAlign: "center" },
-                        },
-                      }}
-                      id={`${index}`}
-                      value={entry.weight ? entry.weight : ""}
-                      onChange={(event) => {
-                        setAssignmentsData((prev: any) =>
-                          prev.map((dataPoint: any, index: number) => {
-                            if (isNaN(parseInt(event.target.value))) {
-                              return {
-                                ...dataPoint,
-                                weight: null,
-                              };
-                            }
-                            if (index !== parseInt(event.target.id)) {
-                              return dataPoint;
-                            } else {
-                              return {
-                                ...dataPoint,
-                                weight: parseInt(event.target.value),
-                              };
-                            }
-                          })
-                        );
-                      }}
-                    ></TextField>
+                    {editState ? (
+                      <input
+                        style={{
+                          display: "flex",
+                          width: "2rem",
+                          textAlign: "center",
+                        }}
+                        type="text"
+                        onClick={(e) => e.stopPropagation()}
+                        id={`${index}`}
+                        value={entry.weight ? entry.weight : ""}
+                        onChange={(event) => {
+                          setAssignmentsData((prev: any) =>
+                            prev.map((dataPoint: any, index: number) => {
+                              if (isNaN(parseInt(event.target.value))) {
+                                return {
+                                  ...dataPoint,
+                                  weight: null,
+                                };
+                              }
+                              if (index !== parseInt(event.target.id)) {
+                                return dataPoint;
+                              } else {
+                                return {
+                                  ...dataPoint,
+                                  weight: parseInt(event.target.value),
+                                };
+                              }
+                            })
+                          );
+                        }}
+                      ></input>
+                    ) : (
+                      <div>{entry.weight}</div>
+                    )}
                   </div>
                   <div className="summaryColumn">
                     {(
@@ -195,15 +205,41 @@ export const SummaryHome = (props: { setNavState: any }) => {
         {!error && (
           <div className="editMarksAndStudentDetailsButtonContainer">
             {assignmentsData.length > 0 ? (
-              <ActionButton
-                className="muiButton"
-                variant="outlined"
-                onClick={() => {
-                  submitWeightingChanges(assignmentsData);
-                }}
-              >
-                Submit Weighting Adjustments
-              </ActionButton>
+              editState ? (
+                <>
+                  <ActionButton
+                    className="muiButton"
+                    variant="outlined"
+                    onClick={() => {
+                      submitWeightingChanges(assignmentsData);
+                      setEditState(false);
+                    }}
+                  >
+                    Submit Changes
+                  </ActionButton>
+                  <ActionButton
+                    className="muiButton"
+                    variant="outlined"
+                    onClick={() => {
+                      setEditState(false);
+                      setAssignmentsData([...initialData]);
+                    }}
+                  >
+                    Discard Changes
+                  </ActionButton>
+                </>
+              ) : (
+                <ActionButton
+                  className="muiButton"
+                  variant="outlined"
+                  onClick={() => {
+                    setInitialData([...assignmentsData]);
+                    setEditState(true);
+                  }}
+                >
+                  Edit Weighting
+                </ActionButton>
+              )
             ) : (
               <h3>No assignments found.</h3>
             )}

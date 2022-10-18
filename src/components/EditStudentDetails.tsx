@@ -84,35 +84,39 @@ export const EditStudentDetails = (props: {
       <div className="studentDetailsGrid">
         <div className="studentDetailsRow">
           <b>First Name:</b>
-          <TextField
+          <input
+            type="text"
             value={updatedStudentDetails.firstname}
             name="firstname"
             onChange={(e) => textFieldChangeHandler(e)}
-          ></TextField>
+          ></input>
         </div>
         <div className="studentDetailsRow">
           <b>Last Name:</b>
-          <TextField
+          <input
+            type="text"
             value={updatedStudentDetails.lastname}
             name="lastname"
             onChange={(e) => textFieldChangeHandler(e)}
-          ></TextField>
+          ></input>
         </div>
         <div className="studentDetailsRow">
           <b>Student ID:</b>
-          <TextField
+          <input
+            type="text"
             value={updatedStudentDetails.id}
             name="id"
             onChange={(e) => textFieldChangeHandler(e)}
-          ></TextField>
+          ></input>
         </div>
         <div className="studentDetailsRow">
           <b>Email:</b>
-          <TextField
+          <input
+            type="email"
             value={updatedStudentDetails.email}
             name="email"
             onChange={(e) => textFieldChangeHandler(e)}
-          ></TextField>
+          ></input>
         </div>
       </div>
       <div className="editMarksAndStudentDetailsButtonContainer">

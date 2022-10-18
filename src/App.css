@@ -362,6 +362,7 @@ h3 {
 
 .graph {
   width: 90%;
+  overflow: visible;
   display: flex;
   transform: translateY(-70px);
 }
