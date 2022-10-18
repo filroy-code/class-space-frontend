@@ -75,6 +75,8 @@ export const EditStudentDetails = (props: {
     }
   }
 
+  const inputRef = React.useRef<any>(null);
+
   React.useEffect(() => {
     setInitialStudentDetails(props.selectedStudentDetails);
     setUpdatedStudentDetails(props.selectedStudentDetails);
@@ -89,6 +91,10 @@ export const EditStudentDetails = (props: {
             value={updatedStudentDetails.firstname}
             name="firstname"
             onChange={(e) => textFieldChangeHandler(e)}
+            onClick={(event) => {
+              inputRef.current = event.target;
+              inputRef.current.select();
+            }}
           ></input>
         </div>
         <div className="studentDetailsRow">
@@ -97,6 +103,10 @@ export const EditStudentDetails = (props: {
             type="text"
             value={updatedStudentDetails.lastname}
             name="lastname"
+            onClick={(event) => {
+              inputRef.current = event.target;
+              inputRef.current.select();
+            }}
             onChange={(e) => textFieldChangeHandler(e)}
           ></input>
         </div>
@@ -106,6 +116,10 @@ export const EditStudentDetails = (props: {
             type="text"
             value={updatedStudentDetails.id}
             name="id"
+            onClick={(event) => {
+              inputRef.current = event.target;
+              inputRef.current.select();
+            }}
             onChange={(e) => textFieldChangeHandler(e)}
           ></input>
         </div>
@@ -115,6 +129,10 @@ export const EditStudentDetails = (props: {
             type="email"
             value={updatedStudentDetails.email}
             name="email"
+            onClick={(event) => {
+              inputRef.current = event.target;
+              inputRef.current.select();
+            }}
             onChange={(e) => textFieldChangeHandler(e)}
           ></input>
         </div>

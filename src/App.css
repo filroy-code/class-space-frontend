@@ -298,6 +298,7 @@ h3 {
   align-items: center;
   border: 1px solid black;
   margin: 1px;
+  min-height: 1rem;
 }
 
 .studentDetailsRow {

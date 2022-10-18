@@ -58,6 +58,8 @@ export const AssignmentMarksTable = (props: {
     FormattedMarksData[]
   >([]);
 
+  const inputRef = React.useRef<any>(null);
+
   React.useEffect(() => {
     setStudentMarks([]);
     data &&
@@ -115,6 +117,10 @@ export const AssignmentMarksTable = (props: {
               {props.editState ? (
                 <input
                   type="text"
+                  onClick={(event) => {
+                    inputRef.current = event.target;
+                    inputRef.current.select();
+                  }}
                   style={{
                     width: "2rem",
                     textAlign: "center",

@@ -112,6 +112,8 @@ export const SummaryHome = (props: { setNavState: any }) => {
     { name: string; weight: number }[]
   >([]);
 
+  const inputRef = React.useRef<any>(null);
+
   return (
     <div className="summaryHome">
       <div className="summaryTable">
@@ -159,7 +161,11 @@ export const SummaryHome = (props: { setNavState: any }) => {
                           textAlign: "center",
                         }}
                         type="text"
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          inputRef.current = event.target;
+                          inputRef.current.select();
+                        }}
                         id={`${index}`}
                         value={entry.weight ? entry.weight : ""}
                         onChange={(event) => {
