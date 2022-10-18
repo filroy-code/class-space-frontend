@@ -9,6 +9,7 @@ import { StudentPanel } from "./components/StudentPanel";
 import { SummaryHome } from "./components/SummaryHome";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { NavigationContext } from "./contexts/NavigationContext";
+import { Login } from "./components/Login";
 
 const App = (): JSX.Element => {
   const fetcher = (...args: any) =>
@@ -23,9 +24,7 @@ const App = (): JSX.Element => {
           <div className="App">
             <BrowserRouter>
               <Routes>
-                {
-                  //to add: authentication at route "/"}
-                }
+                <Route path="/" element={<Login></Login>}></Route>
                 <Route path="/:user" element={<LoggedInLayout />}>
                   <Route
                     index
