@@ -210,16 +210,24 @@ export const AssignmentMarksTable = (props: {
         "There was an error."
       ) : (
         <div>
-          <div className="tableRow">Loading...</div>
+          <div className="tableRow" style={{ padding: "20px" }}>
+            Loading...
+          </div>
           <div></div>
           <div></div>
-          <div className="tableRow">Loading...</div>
+          <div className="tableRow" style={{ padding: "20px" }}>
+            Loading...
+          </div>
           <div></div>
           <div></div>
-          <div className="tableRow">Loading...</div>
+          <div className="tableRow" style={{ padding: "20px" }}>
+            Loading...
+          </div>
           <div></div>
           <div></div>
-          <div className="tableRow">Loading...</div>
+          <div className="tableRow" style={{ padding: "20px" }}>
+            Loading...
+          </div>
           <div></div>
           <div></div>
         </div>

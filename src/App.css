@@ -162,7 +162,7 @@ nav {
 }
 
 .classBox:hover {
-  background-color: var(--secondary-color-light);
+  background-color: rgb(214, 214, 214);
 }
 
 .classBoxSelecting {
@@ -203,8 +203,12 @@ nav {
   box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
 }
 
+.classHomeSelector > h3 {
+  margin-top: 0px;
+}
+
 .classHomeSelector:hover {
-  background-color: var(--secondary-color-light);
+  background-color: rgb(214, 214, 214);
 }
 
 .assignmentPanel {
