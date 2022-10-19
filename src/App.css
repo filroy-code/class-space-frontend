@@ -27,8 +27,21 @@
   color: var(--primary-color-light);
 }
 
-.login > h1 {
+.titleContainer > h1 {
   font-weight: normal;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+}
+
+.typingCursor {
+  background-color: var(--primary-color-dark);
+  position: relative;
+  font-size: 2rem;
+  animation: cursorBlink 0.8s linear infinite;
+  transition: color 0s;
 }
 
 .loggedInLayout {
@@ -400,6 +413,15 @@ h3 {
 .muiButton {
   -webkit-box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
   box-shadow: 5px 7px 4px 0px rgba(0, 0, 0, 0.82);
+}
+
+@keyframes cursorBlink {
+  0% {
+    color: var(--primary-color-light);
+  }
+  100% {
+    color: var(--primary-color-dark);
+  }
 }
 
 @keyframes slideInFromLeft {

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { TypingEffect } from "./TypingEffect";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -9,10 +10,16 @@ export const Login = () => {
     backgroundColor: "rgb(238, 240, 235)",
     margin: "8px",
   };
+  const cursorRef = React.useRef<any>(null);
 
   return (
     <div className="login">
-      <h1>Class Space</h1>
+      <div className="titleContainer">
+        <TypingEffect />
+        <div ref={cursorRef} className="typingCursor">
+          |
+        </div>
+      </div>
       <Button
         style={buttonStyle}
         onClick={() => {
