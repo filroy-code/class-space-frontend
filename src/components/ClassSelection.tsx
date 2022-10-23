@@ -124,17 +124,21 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
         <Divider style={{ margin: "15px" }}></Divider>
         <div className="classBoxContainer">
           {data && !isValidating ? (
-            data.classList.map((classInList: ClassSelectionDataShape) => {
-              return (
-                <ClassBox
-                  classData={classInList}
-                  key={classInList.id}
-                  deleteMode={state.selectionType}
-                  selected={state.selectedClasses.includes(classInList.name)}
-                  dispatch={dispatch}
-                ></ClassBox>
-              );
-            })
+            data.classList ? (
+              data.classList.map((classInList: ClassSelectionDataShape) => {
+                return (
+                  <ClassBox
+                    classData={classInList}
+                    key={classInList.id}
+                    deleteMode={state.selectionType}
+                    selected={state.selectedClasses.includes(classInList.name)}
+                    dispatch={dispatch}
+                  ></ClassBox>
+                );
+              })
+            ) : (
+              <h3>No classes found.</h3>
+            )
           ) : (
             <>
               {error ? (

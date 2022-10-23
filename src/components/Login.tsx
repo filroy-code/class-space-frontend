@@ -5,29 +5,27 @@ import { TypingEffect } from "./TypingEffect";
 
 export const Login = () => {
   const navigate = useNavigate();
-  const buttonStyle = {
-    color: "rgb(21, 50, 67)",
-    backgroundColor: "rgb(238, 240, 235)",
-    margin: "8px",
-  };
+
   const cursorRef = React.useRef<any>(null);
+  const buttonRef = React.useRef<any>(null);
 
   return (
     <div className="login">
       <div className="titleContainer">
-        <TypingEffect />
+        <TypingEffect cursorRef={cursorRef} buttonRef={buttonRef} />
         <div ref={cursorRef} className="typingCursor">
           |
         </div>
       </div>
-      <Button
-        style={buttonStyle}
+      <div
+        className="loginButton"
+        ref={buttonRef}
         onClick={() => {
           navigate("/max");
         }}
       >
         ENTER
-      </Button>
+      </div>
     </div>
   );
 };
