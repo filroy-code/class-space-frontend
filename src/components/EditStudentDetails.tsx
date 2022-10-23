@@ -55,19 +55,20 @@ export const EditStudentDetails = (props: {
     studentDetails: StudentDetailsData
   ) {
     let response = await fetch(
-      `http://localhost:8000/${user}/${classID}/students/${props.selectedStudentDetails.id}`,
+      `https://class-space.herokuapp.com/${user}/${classID}/students/${props.selectedStudentDetails.id}`,
       {
         method: "PUT",
         mode: "cors",
         headers: {
-          Origin: "localhost:8000",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(studentDetails),
       }
     );
     if (response.status === 200) {
-      props.mutate(`http://localhost:8000/${user}/${classID}/students`);
+      props.mutate(
+        `https://class-space.herokuapp.com/${user}/${classID}/students`
+      );
       // props.setSelectedStudent(updatedStudentDetails);
       props.setEditState(false);
     } else {

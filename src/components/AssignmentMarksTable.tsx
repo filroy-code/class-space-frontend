@@ -42,7 +42,7 @@ export const AssignmentMarksTable = (props: {
   const { user, classID } = useParams<keyof Params>() as Params;
 
   const { data, error, isValidating } = useSWR<AssignmentData | undefined>(
-    `http://localhost:8000/${user}/${classID}/assignments/${props.selectedAssignment}`
+    `https://class-space.herokuapp.com/${user}/${classID}/assignments/${props.selectedAssignment}`
   );
 
   type FormattedMarksData = {
@@ -89,12 +89,11 @@ export const AssignmentMarksTable = (props: {
 
   async function submitMarkUpdate(studentMarks: FormattedMarksData[]) {
     let response = await fetch(
-      `http://localhost:8000/${user}/${classID}/assignments/${props.selectedAssignment}`,
+      `https://class-space.herokuapp.com/${user}/${classID}/assignments/${props.selectedAssignment}`,
       {
         method: "POST",
         mode: "cors",
         headers: {
-          Origin: "localhost:8000",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(studentMarks),

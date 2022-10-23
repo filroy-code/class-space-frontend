@@ -14,7 +14,7 @@ export const SummaryHome = (props: { setNavState: any }) => {
   const { user, classID } = useParams<keyof Params>() as Params;
 
   const { data, error, mutate, isValidating } = useSWR(
-    `http://localhost:8000/${user}/${classID}/summary`
+    `https://class-space.herokuapp.com/${user}/${classID}/summary`
   );
 
   React.useEffect(() => props.setNavState("Summary"));
@@ -29,12 +29,11 @@ export const SummaryHome = (props: { setNavState: any }) => {
 
   async function submitWeightingChanges(assignmentsData: AssignmentData[]) {
     let response = await fetch(
-      `http://localhost:8000/${user}/${classID}/summary/`,
+      `https://class-space.herokuapp.com/${user}/${classID}/summary/`,
       {
         method: "PUT",
         mode: "cors",
         headers: {
-          Origin: "localhost:8000",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(assignmentsData),
@@ -42,7 +41,7 @@ export const SummaryHome = (props: { setNavState: any }) => {
     );
     if (response.status === 200) {
       setTimeout(() => {
-        mutate(`http://localhost:8000/${user}/${classID}/summary`);
+        mutate(`https://class-space.herokuapp.com/${user}/${classID}/summary`);
       }, 1000);
     } else {
       console.log("there was an error");
@@ -76,12 +75,11 @@ export const SummaryHome = (props: { setNavState: any }) => {
 
   async function getSingleAssignmentData(selectedAssignment: string) {
     let response = await fetch(
-      `http://localhost:8000/${user}/${classID}/assignments/${selectedAssignment}/distribution`,
+      `https://class-space.herokuapp.com/${user}/${classID}/assignments/${selectedAssignment}/distribution`,
       {
         method: "GET",
         mode: "cors",
         headers: {
-          Origin: "localhost:8000",
           "Content-Type": "application/json",
         },
       }

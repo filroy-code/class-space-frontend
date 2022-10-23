@@ -15,7 +15,7 @@ export const StudentPanel = (props: { setNavState: any }): JSX.Element => {
   };
   const { user, classID } = useParams<keyof Params>() as Params;
   const { data, error, isValidating, mutate } = useSWR(
-    `http://localhost:8000/${user}/${classID}/students`
+    `https://class-space.herokuapp.com/${user}/${classID}/students`
   );
 
   React.useEffect(() => props.setNavState("Students"));

@@ -35,7 +35,7 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
 
   //fetches list of classes.
   const { data, error, isValidating, mutate } = useSWR(
-    `http://localhost:8000/${user}`
+    `https://class-space.herokuapp.com/${user}`
   );
 
   const [modalOpen, setModalOpen] = React.useState<boolean>(false);
@@ -44,12 +44,11 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
 
   async function deleteClass(selectedClass: string) {
     let response = await fetch(
-      `http://localhost:8000/${user}/${selectedClass}`,
+      `https://class-space.herokuapp.com/${user}/${selectedClass}`,
       {
         method: "DELETE",
         mode: "cors",
         headers: {
-          Origin: "localhost:8000",
           "Content-Type": "application/json",
         },
       }
@@ -66,7 +65,7 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
       deleteClass(selectedClass);
     });
     dispatch({ type: "RESET" });
-    mutate(`http://localhost:8000/${user}`);
+    mutate(`https://class-space.herokuapp.com/${user}`);
   }
 
   const [newClassMouseover, setNewClassMouseover] =

@@ -1,10 +1,10 @@
 export default async function fetchListOfClasses(
   user: string
 ): Promise<{ id: any; name: string }[]> {
-  let response = await fetch(`http://localhost:8000/${user}`, {
+  let response = await fetch(`https://class-space.herokuapp.com/${user}`, {
     method: "GET",
     mode: "cors",
-    headers: { Origin: "localhost:8000", "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json" },
   });
   if (response.status === 200) {
     let listOfClasses = await response.json();

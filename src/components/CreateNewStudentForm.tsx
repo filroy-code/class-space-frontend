@@ -58,15 +58,22 @@ export const CreateNewStudentForm = (props: {
     if (textfieldErrors.length > 0) {
       return;
     }
-    let response = await fetch(`http://localhost:8000/${user}/${classID}`, {
-      method: "POST",
-      mode: "cors",
-      headers: { Origin: "localhost:8000", "Content-Type": "application/json" },
-      body: JSON.stringify(formState),
-    });
+    let response = await fetch(
+      `https://class-space.herokuapp.com/${user}/${classID}`,
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      }
+    );
     if (response.status === 200) {
       props.modalController(false);
-      props.mutate(`http://localhost:8000/${user}/${classID}/students`);
+      props.mutate(
+        `https://class-space.herokuapp.com/${user}/${classID}/students`
+      );
     } else {
       console.log("there was an error");
     }

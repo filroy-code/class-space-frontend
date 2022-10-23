@@ -19,7 +19,9 @@ export const AssignmentPanel = (props: { setNavState: any }): JSX.Element => {
     error: classAssignmentError,
     mutate,
     isValidating,
-  } = useSWR(`http://localhost:8000/${user}/${classID}/assignments`);
+  } = useSWR(
+    `https://class-space.herokuapp.com/${user}/${classID}/assignments`
+  );
 
   React.useEffect(() => props.setNavState("Assignments"));
 

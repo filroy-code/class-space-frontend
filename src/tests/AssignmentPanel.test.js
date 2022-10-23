@@ -13,7 +13,7 @@ import "whatwg-fetch";
 
 const server = setupServer(
   rest.get(
-    "http://localhost:8000/:user/:classID/assignments",
+    "https://class-space.herokuapp.com/:user/:classID/assignments",
     (req, res, ctx) => {
       return res(
         ctx.status(200),

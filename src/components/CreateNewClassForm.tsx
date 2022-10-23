@@ -90,15 +90,15 @@ export const CreateNewClassForm = (props: {
       return;
     }
     setTextfieldError(false);
-    let response = await fetch(`http://localhost:8000/${user}`, {
+    let response = await fetch(`https://class-space.herokuapp.com/${user}`, {
       method: "POST",
       mode: "cors",
-      headers: { Origin: "localhost:8000", "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formState),
     });
     if (response.status === 200) {
       props.modalController(false);
-      props.mutate(`http://localhost:8000/${user}`);
+      props.mutate(`https://class-space.herokuapp.com/${user}`);
     } else {
       console.log("there was an error");
     }
