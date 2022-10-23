@@ -6,7 +6,7 @@ export const TypingEffect = (props: { cursorRef: any; buttonRef: any }) => {
   const index = React.useRef(-1);
 
   React.useEffect(() => {
-    let timeout = setTimeout(() => {
+    setTimeout(() => {
       if (index.current < desiredText.length) {
         setCurrentText((prev) => prev + desiredText.charAt(index.current));
         index.current = index.current + 1;
@@ -15,7 +15,6 @@ export const TypingEffect = (props: { cursorRef: any; buttonRef: any }) => {
       if (index.current === desiredText.length) {
         props.cursorRef.current.classList.add("completed");
         props.buttonRef.current.classList.add("visible");
-        clearTimeout(timeout);
       }
     }, 300);
   }, [currentText]);
