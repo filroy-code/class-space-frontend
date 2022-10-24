@@ -9,6 +9,10 @@ export const Login = () => {
   const cursorRef = React.useRef<any>(null);
   const buttonRef = React.useRef<any>(null);
 
+  React.useEffect(() => {
+    navigate("/user");
+  });
+
   return (
     <div className="login">
       <div className="titleContainer">
