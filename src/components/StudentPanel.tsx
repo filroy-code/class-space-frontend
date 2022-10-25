@@ -18,6 +18,10 @@ export const StudentPanel = (props: { setNavState: any }): JSX.Element => {
     `https://class-space.herokuapp.com/${user}/${classID}/students`
   );
 
+  if (data) {
+    console.log(data);
+  }
+
   React.useEffect(() => props.setNavState("Students"));
 
   const [selectedStudent, setSelectedStudent] = React.useState<string>();
@@ -27,7 +31,6 @@ export const StudentPanel = (props: { setNavState: any }): JSX.Element => {
 
   const [editState, setEditState] = React.useState<boolean>(false);
 
-  // to do: add a message for when no students are found
   return (
     <div className="studentPanel">
       <Modal
@@ -51,7 +54,7 @@ export const StudentPanel = (props: { setNavState: any }): JSX.Element => {
         </div>
         <Divider style={{ margin: "15px" }}></Divider>
         {data && !isValidating ? (
-          data.classInfo.length > 0 ? (
+          data.classInfo && data.classInfo.length > 0 ? (
             data.classInfo.map((item: any) => {
               if (item.students) {
                 return (

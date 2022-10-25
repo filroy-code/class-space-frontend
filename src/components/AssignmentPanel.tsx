@@ -67,40 +67,41 @@ export const AssignmentPanel = (props: { setNavState: any }): JSX.Element => {
         </div>
         <Divider style={{ margin: "15px" }}></Divider>
         {classAssignmentData && !isValidating ? (
-          // assignmentsExist ? (
-          classAssignmentData.classInfo.map((item: any) => {
-            if (item.assignments) {
-              return (
-                <div
-                  className={
-                    selectedAssignment === item.assignments
-                      ? "assignmentOrStudentSelectorBox selectedAssignmentOrStudent"
-                      : "assignmentOrStudentSelectorBox"
-                  }
-                  key={item.assignments}
-                  onClick={
-                    selectedAssignment === item.assignments
-                      ? () => {
-                          return;
-                        }
-                      : () => {
-                          setEditState(false);
-                          setSelectedAssignment(item.assignments);
-                        }
-                  }
-                >
-                  {item.assignments}
-                </div>
-              );
-            }
-          })
+          classAssignmentData.classInfo &&
+          classAssignmentData.classInfo.length > 0 ? (
+            classAssignmentData.classInfo.map((item: any) => {
+              if (item.assignments) {
+                return (
+                  <div
+                    className={
+                      selectedAssignment === item.assignments
+                        ? "assignmentOrStudentSelectorBox selectedAssignmentOrStudent"
+                        : "assignmentOrStudentSelectorBox"
+                    }
+                    key={item.assignments}
+                    onClick={
+                      selectedAssignment === item.assignments
+                        ? () => {
+                            return;
+                          }
+                        : () => {
+                            setEditState(false);
+                            setSelectedAssignment(item.assignments);
+                          }
+                    }
+                  >
+                    {item.assignments}
+                  </div>
+                );
+              }
+            })
+          ) : (
+            <h3>No assignments found.</h3>
+          )
         ) : (
-          // ) : (
-          //   <h3>No assignments found.</h3>
-
           <>
             {classAssignmentError ? (
-              <h3>"There was an error retrieving your assignments."</h3>
+              <h3>There was an error retrieving your assignments.</h3>
             ) : (
               <LoadingSkeletonBoxes type="" />
             )}

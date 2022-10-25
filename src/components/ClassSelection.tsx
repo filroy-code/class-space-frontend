@@ -141,7 +141,7 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
           ) : (
             <>
               {error ? (
-                <h1>There was an error getting your classes.</h1>
+                <h3>There was an error getting your classes.</h3>
               ) : (
                 <LoadingSkeletonBoxes type="classBoxContainer"></LoadingSkeletonBoxes>
               )}
