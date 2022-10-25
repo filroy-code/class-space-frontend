@@ -54,9 +54,7 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
       }
     );
     if (response.status === 200) {
-      setTimeout(() => {
-        mutate(`https://class-space.herokuapp.com/${user}`);
-      });
+      console.log("success!");
     } else {
       console.log("there was an error");
     }
