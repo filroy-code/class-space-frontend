@@ -54,7 +54,7 @@ export const ClassSelection = (props: { setNavState: any }): JSX.Element => {
       }
     );
     if (response.status === 200) {
-      console.log("success!");
+      return;
     } else {
       console.log("there was an error");
     }

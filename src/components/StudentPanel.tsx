@@ -18,10 +18,6 @@ export const StudentPanel = (props: { setNavState: any }): JSX.Element => {
     `https://class-space.herokuapp.com/${user}/${classID}/students`
   );
 
-  if (data) {
-    console.log(data);
-  }
-
   React.useEffect(() => props.setNavState("Students"));
 
   const [selectedStudent, setSelectedStudent] = React.useState<string>();

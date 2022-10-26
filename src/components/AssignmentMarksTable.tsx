@@ -62,7 +62,7 @@ export const AssignmentMarksTable = (props: {
 
   React.useEffect(() => {
     setStudentMarks([]);
-    data &&
+    data && data.assignmentInfo ? (
       data.assignmentInfo.forEach((datum: any) => {
         if (datum.outof) {
           setAssignmentMetaData({ ...assignmentMetaData, outof: datum.outof });
@@ -80,7 +80,10 @@ export const AssignmentMarksTable = (props: {
             },
           ]);
         }
-      });
+      })
+    ) : (
+      <h3>No data found.</h3>
+    );
   }, [data]);
 
   React.useEffect(() => {

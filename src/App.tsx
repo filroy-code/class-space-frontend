@@ -13,7 +13,7 @@ import { Login } from "./components/Login";
 
 const App = (): JSX.Element => {
   const fetcher = (...args: any) =>
-    fetch(args, { mode: "cors" }).then((response) => response.json());
+    fetch(args).then((response) => response.json());
 
   const [navState, setNavState] = React.useState(null);
 
